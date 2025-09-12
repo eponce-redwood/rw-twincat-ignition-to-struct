@@ -1,0 +1,998 @@
+{
+  "dataType": "Int4",
+  "name": "RW_DeadbandControl_V2",
+  "value": 0,
+  "parameters": {
+    "Node": {
+      "dataType": "String",
+      "value": "LiConv-PLC2"
+    },
+    "TIA_PLC_Name": {
+      "dataType": "String",
+      "value": "PLC2"
+    },
+    "Description": {
+      "dataType": "String"
+    },
+    "Units": {
+      "dataType": "String"
+    },
+    "Datablock_Name": {
+      "dataType": "String",
+      "value": ""
+    }
+  },
+  "tagType": "UdtType",
+  "tags": [
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.SP"
+      },
+      "tooltip": {
+        "bindType": "parameter",
+        "binding": "{Description}"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Units}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.01,
+      "historicalDeadbandMode": "Absolute",
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "documentation": "",
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.##",
+      "tagGroup": "Leased 1000",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Float4",
+      "name": "SP",
+      "historyEnabled": true,
+      "deadband": 0.01,
+      "value": 0.0,
+      "HistoryMaxAgeMode": "1.0",
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.On_Delay@Long"
+      },
+      "tooltip": {
+        "bindType": "parameter",
+        "binding": "{Description}"
+      },
+      "valueSource": "opc",
+      "rawHigh": 1000.0,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.01,
+      "historicalDeadbandMode": "Absolute",
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "documentation": "",
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.##",
+      "tagGroup": "Leased 1000",
+      "tagType": "AtomicTag",
+      "engUnit": "s",
+      "scaledHigh": 1.0,
+      "scaleMode": "Linear",
+      "readOnly": false,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Float4",
+      "name": "On_Delay",
+      "historyEnabled": true,
+      "deadband": 0.01,
+      "value": 0.0,
+      "HistoryMaxAgeMode": "1.0",
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Off_Delay@Long"
+      },
+      "tooltip": {
+        "bindType": "parameter",
+        "binding": "{Description}"
+      },
+      "rawHigh": 1000.0,
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.01,
+      "historicalDeadbandMode": "Absolute",
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "documentation": "",
+      "formatString": "#,##0.##",
+      "tagGroup": "Leased 1000",
+      "tagType": "AtomicTag",
+      "engUnit": "s",
+      "scaledHigh": 1.0,
+      "scaleMode": "Linear",
+      "readOnly": false,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Float4",
+      "name": "Off_Delay",
+      "historyEnabled": true,
+      "deadband": 0.01,
+      "value": 0.0,
+      "HistoryMaxAgeMode": "1.0",
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Batch_Duration@Long"
+      },
+      "tooltip": {
+        "bindType": "parameter",
+        "binding": "{Description}"
+      },
+      "rawHigh": 1000.0,
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.01,
+      "historicalDeadbandMode": "Absolute",
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "documentation": "",
+      "formatString": "#,##0.##",
+      "tagGroup": "Leased 1000",
+      "engUnit": "s",
+      "tagType": "AtomicTag",
+      "scaledHigh": 1.0,
+      "scaleMode": "Linear",
+      "readOnly": false,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Float4",
+      "name": "Batch_Duration",
+      "historyEnabled": true,
+      "deadband": 0.01,
+      "value": 0.0,
+      "HistoryMaxAgeMode": "1.0",
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Stage_1_Status"
+      },
+      "tooltip": {
+        "bindType": "parameter",
+        "binding": "{Description}"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Units}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.01,
+      "historicalDeadbandMode": "Absolute",
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "documentation": "",
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.##",
+      "tagGroup": "Leased 1000",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Boolean",
+      "name": "Batch_Loop_Status",
+      "historyEnabled": true,
+      "deadband": 0.01,
+      "value": false,
+      "HistoryMaxAgeMode": "1.0",
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Output_C"
+      },
+      "tooltip": {
+        "bindType": "parameter",
+        "binding": "{Description}"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Units}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.01,
+      "historicalDeadbandMode": "Absolute",
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "documentation": "",
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.##",
+      "tagGroup": "Leased 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Boolean",
+      "name": "Output",
+      "historyEnabled": true,
+      "deadband": 0.01,
+      "value": false,
+      "HistoryMaxAgeMode": "1.0",
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Range"
+      },
+      "tooltip": {
+        "bindType": "parameter",
+        "binding": "{Description}"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Units}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.01,
+      "historicalDeadbandMode": "Absolute",
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "documentation": "",
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.##",
+      "tagGroup": "Leased 1000",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Float4",
+      "name": "Range",
+      "historyEnabled": true,
+      "deadband": 0.01,
+      "value": 0.0,
+      "HistoryMaxAgeMode": "1.0",
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Batch_Gap@Long"
+      },
+      "tooltip": {
+        "bindType": "parameter",
+        "binding": "{Description}"
+      },
+      "rawHigh": 1000.0,
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.01,
+      "historicalDeadbandMode": "Absolute",
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "documentation": "",
+      "formatString": "#,##0.##",
+      "tagGroup": "Leased 1000",
+      "engUnit": "s",
+      "tagType": "AtomicTag",
+      "scaledHigh": 1.0,
+      "scaleMode": "Linear",
+      "readOnly": false,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Float4",
+      "name": "Batch_Gap",
+      "historyEnabled": true,
+      "deadband": 0.01,
+      "value": 0.0,
+      "HistoryMaxAgeMode": "1.0",
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sequence_Switch"
+      },
+      "tooltip": {
+        "bindType": "parameter",
+        "binding": "{Description}"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Units}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.01,
+      "historicalDeadbandMode": "Absolute",
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "documentation": "",
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.##",
+      "tagGroup": "Leased 1000",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Boolean",
+      "name": "Sequence_Switch",
+      "historyEnabled": true,
+      "deadband": 0.01,
+      "value": false,
+      "HistoryMaxAgeMode": "1.0",
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.PV"
+      },
+      "tooltip": {
+        "bindType": "parameter",
+        "binding": "{Description}"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Units}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.01,
+      "historicalDeadbandMode": "Absolute",
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "documentation": "",
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.##",
+      "tagGroup": "Leased 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Float4",
+      "name": "PV",
+      "historyEnabled": true,
+      "deadband": 0.01,
+      "value": 0.0,
+      "HistoryMaxAgeMode": "1.0",
+      "opcServer": "KEPServerEX_CHP01"
+    }
+  ]
+}

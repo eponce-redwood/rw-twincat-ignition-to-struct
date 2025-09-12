@@ -1,0 +1,3106 @@
+{
+  "typeColor": -10719104,
+  "name": "RW_Analog_In_V2",
+  "typeId": "",
+  "parameters": {
+    "Node": {
+      "dataType": "String",
+      "value": "CCF01-TestPLC"
+    },
+    "TIA_PLC_Name": {
+      "dataType": "String",
+      "value": "PLC_1"
+    },
+    "Description": {
+      "dataType": "String",
+      "value": ""
+    },
+    "Units": {
+      "dataType": "String"
+    },
+    "Datablock_Name": {
+      "dataType": "String",
+      "value": {
+        "bindType": "parameter",
+        "binding": "{TagName}"
+      }
+    }
+  },
+  "tagType": "UdtType",
+  "tags": [
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_LoLoResetReqd"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003dReset required to clear Low-Low Alarm",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Boolean",
+      "name": "HMI_Cfg_LoLoResetReqd",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_FailLoPct"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Out-of-Range (fail) Lo Limit (% of scale)",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Float4",
+      "name": "HMI_Cfg_FailLoPct",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sts_HiHi"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{Node}"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}\u00268",
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003dAnalog Input is above High-High limit",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Boolean",
+      "name": "S_HiHi",
+      "historyEnabled": false
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Cfg_InpRawMax"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Input (unscaled) Maximum for Scaling",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Float4",
+      "name": "Cfg_InpRawMax",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Cfg_InpRawMin"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Input (unscaled) Minimum for Scaling ",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Float4",
+      "name": "Cfg_InpRawMin",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_C_ManAuto"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Maintenance",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Operator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Supervisor",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003d Manual Command to use Substitute PV (override input) ",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Boolean",
+      "name": "HMI_C_ManAuto",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.S_ValInPV"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 24,
+      "readOnly": true,
+      "historyProvider": "Historian_CHP01",
+      "historicalDeadband": 1.0,
+      "dataType": "Float4",
+      "name": "S_ValInPV",
+      "historyEnabled": false,
+      "tagGroup": "Leased 5000",
+      "tagType": "AtomicTag",
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Inp_EnHiHiAlm"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}\u0026256",
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Engineer",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CHP01_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CHP01_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003d HiHi threshold monitoring Enabled 0\u003d Disabled ",
+      "tagGroup": "Leased 10000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Boolean",
+      "name": "I_EnHiHiAlm",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_LoOffDly"
+      },
+      "valueSource": "opc",
+      "rawHigh": 1000.0,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.###",
+      "tagGroup": "Leased 0",
+      "engUnit": "sec",
+      "tagType": "AtomicTag",
+      "scaledHigh": 1.0,
+      "scaleMode": "Linear",
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Float4",
+      "name": "HMI_Cfg_LoOffDly",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_HiDB"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Units}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Float4",
+      "name": "HMI_Cfg_HiDB",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_HiHiOnDly"
+      },
+      "valueSource": "opc",
+      "rawHigh": 1000.0,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.###",
+      "tagGroup": "Leased 0",
+      "engUnit": "sec",
+      "tagType": "AtomicTag",
+      "scaledHigh": 1.0,
+      "scaleMode": "Linear",
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Float4",
+      "name": "HMI_Cfg_HiHiOnDly",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Inp_EnLoAlm"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}\u00261024",
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Engineer",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CHP01_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CHP01_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003d Lo threshold monitoring Enabled 0\u003d Disabled ",
+      "tagGroup": "Leased 10000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Boolean",
+      "name": "I_EnLoAlm",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sts_Lo"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{Node}"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}\u002632",
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003dAnalog Input is below Low limit",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Boolean",
+      "name": "S_Lo",
+      "historyEnabled": false
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Cfg_PVEUMin"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 24,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Leased 60000",
+      "tagType": "AtomicTag",
+      "historyProvider": "Historian_CAM1",
+      "dataType": "Float4",
+      "name": "Cfg_PVEUMin",
+      "historyEnabled": true,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sts_HiHi"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{Node}"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_AlmNotify}\u002616",
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003dAnalog Input is above High-High limit",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "Historian_CAM1",
+      "dataType": "Boolean",
+      "name": "A_HiHi",
+      "historyEnabled": true
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_FailOffDly"
+      },
+      "valueSource": "opc",
+      "rawHigh": 1000.0,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.###",
+      "tagGroup": "Leased 0",
+      "engUnit": "sec",
+      "tagType": "AtomicTag",
+      "scaledHigh": 1.0,
+      "scaleMode": "Linear",
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Float4",
+      "name": "HMI_Cfg_FailOffDly",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_LoResetReqd"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003dReset required to clear Low Alarm",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Boolean",
+      "name": "HMI_Cfg_LoResetReqd",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_LoLoOnDly"
+      },
+      "valueSource": "opc",
+      "rawHigh": 1000.0,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.###",
+      "tagGroup": "Leased 0",
+      "engUnit": "sec",
+      "tagType": "AtomicTag",
+      "scaledHigh": 1.0,
+      "scaleMode": "Linear",
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Float4",
+      "name": "HMI_Cfg_LoLoOnDly",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sts_Lo"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{Node}"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_AlmNotify}\u00264",
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003dAnalog Input is below Low limit",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "Historian_CAM1",
+      "dataType": "Boolean",
+      "name": "A_Lo",
+      "historyEnabled": true
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.S_HMISts"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "engHigh": 12.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Packed bits to HMI",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Int4",
+      "historyProvider": "Historian_RC1",
+      "name": "S_HMISts",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_HasLoLoAlm"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003dLow-Low Alarm exists and will be checked ",
+      "tagGroup": "Leased 60000",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Boolean",
+      "name": "HMI_Cfg_HasLoLoAlm",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_HiHiResetReqd"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003dReset required to clear High-High Alarm ",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Boolean",
+      "name": "HMI_Cfg_HiHiResetReqd",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_HasLoAlm"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003dLow Alarm exists and will be checked ",
+      "tagGroup": "Leased 60000",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Boolean",
+      "name": "HMI_Cfg_HasLoAlm",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_LoLoDB"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Units}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Float4",
+      "name": "HMI_Cfg_LoLoDB",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_HiHiLim"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Units}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 24,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "historyProvider": "Historian_CAM1",
+      "dataType": "Float4",
+      "name": "HMI_Cfg_HiHiLim",
+      "historyEnabled": true,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_C_Oos"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Maintenance",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Supervisor",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003d Maintenance Command to select Device OutOfService",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Boolean",
+      "name": "HMI_C_Oos",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sts_Hand"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}\u00261",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Val is limited Lo or Hi ",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "Historian_RC1",
+      "dataType": "Boolean",
+      "name": "S_ValClamped",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_HiHiOffDly"
+      },
+      "valueSource": "opc",
+      "rawHigh": 1000.0,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.###",
+      "tagGroup": "Leased 0",
+      "engUnit": "sec",
+      "tagType": "AtomicTag",
+      "scaledHigh": 1.0,
+      "scaleMode": "Linear",
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Float4",
+      "name": "HMI_Cfg_HiHiOffDly",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_C_ManSet"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Units}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Maintenance",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Operator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Supervisor",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Float4",
+      "name": "HMI_C_ManSet",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_HiResetReqd"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003dReset required to clear High Alarm",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Boolean",
+      "name": "HMI_Cfg_HiResetReqd",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_HiLim"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Units}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 24,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "historyProvider": "Historian_CAM1",
+      "dataType": "Float4",
+      "name": "HMI_Cfg_HiLim",
+      "historyEnabled": true,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "valueSource": "memory",
+      "name": "UDT_mem_NumDec",
+      "value": 1,
+      "tagGroup": "Leased 60000",
+      "tagType": "AtomicTag"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_FailOnDly"
+      },
+      "valueSource": "opc",
+      "rawHigh": 1000.0,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.###",
+      "tagGroup": "Leased 0",
+      "engUnit": "sec",
+      "tagType": "AtomicTag",
+      "scaledHigh": 1.0,
+      "scaleMode": "Linear",
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Float4",
+      "name": "HMI_Cfg_FailOnDly",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_HasHiHiAlm"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003dHigh-High Alarm exists and will be checked ",
+      "tagGroup": "Leased 60000",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Boolean",
+      "name": "HMI_Cfg_HasHiHiAlm",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_LoOnDly"
+      },
+      "valueSource": "opc",
+      "rawHigh": 1000.0,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.###",
+      "tagGroup": "Leased 0",
+      "engUnit": "sec",
+      "tagType": "AtomicTag",
+      "scaledHigh": 1.0,
+      "scaleMode": "Linear",
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Float4",
+      "name": "HMI_Cfg_LoOnDly",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Cfg_PVEUMax"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 24,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Leased 60000",
+      "tagType": "AtomicTag",
+      "historyProvider": "Historian_CAM1",
+      "dataType": "Float4",
+      "name": "Cfg_PVEUMax",
+      "historyEnabled": true,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sts_LoLo"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{Node}"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_AlmNotify}\u00262",
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003dAnalog Input is below Low-Low limit",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "Historian_CAM1",
+      "dataType": "Boolean",
+      "name": "A_LoLo",
+      "historyEnabled": true
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_HasHiAlm"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003dHigh Alarm exists and will be checked ",
+      "tagGroup": "Leased 60000",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Boolean",
+      "name": "HMI_Cfg_HasHiAlm",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_FailHiPct"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Out-of-Range (fail) High Limit (% of scale) ",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Float4",
+      "name": "HMI_Cfg_FailHiPct",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.S_ValPct"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadbandMode": "Absolute",
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Analog Value in Percent % ",
+      "tagGroup": "Leased 0",
+      "engUnit": "%",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Float4",
+      "name": "S_ValPct",
+      "historyEnabled": false,
+      "sampleMode": "OnChange",
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "valueSource": "expr",
+      "eventScripts": [
+        {
+          "eventid": "valueChanged",
+          "script": "\tpath \u003d [\"[.]S_Val.HistoricalDeadband\"]\n\tvalue \u003d [currentValue.value]\n\tsystem.tag.writeBlocking(path, value)"
+        }
+      ],
+      "expression": "abs(tag({PathToParentFolder}+\u0027/Cfg_PVEUMax.value\u0027) - tag({PathToParentFolder}+\u0027/Cfg_PVEUMin.value\u0027))*0.002",
+      "dataType": "Float4",
+      "name": "HistoricalDeadband",
+      "historyEnabled": false,
+      "tagGroup": "Leased 60000",
+      "sampleMode": "TagGroup",
+      "tagType": "AtomicTag"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sts_LoLo"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{Node}"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}\u002664",
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003dAnalog Input is below Low-Low limit",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Boolean",
+      "name": "S_LoLo",
+      "historyEnabled": false
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sts_Hi"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{Node}"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_AlmNotify}\u00268",
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003dAnalog Input is above High limit",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "Historian_CAM1",
+      "dataType": "Boolean",
+      "name": "A_Hi",
+      "historyEnabled": true
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.S_AlmNotify"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 24,
+      "historicalDeadband": 1.0,
+      "engHigh": 4.0,
+      "alarms": [
+        {
+          "mode": "Bit",
+          "AlarmType": "Process",
+          "bitPosition": 1,
+          "name": "{Datablock_Name}_Alm_LoLo",
+          "priority": "Critical",
+          "setpointA": {
+            "bindType": "Expression",
+            "value": "getBit({[.]Val_Notify},1)"
+          },
+          "label": {
+            "bindType": "Expression",
+            "value": "{Datablock_Name}+\": LoLo - \"+{Description}"
+          },
+          "displayPath": {
+            "bindType": "Expression",
+            "value": "{Node}+\": \"+{Datablock_Name}"
+          },
+          "enabled": {
+            "bindType": "Tag",
+            "value": "[.]HMI_Cfg_HasLoLoAlm"
+          }
+        },
+        {
+          "mode": "Bit",
+          "AlarmType": "Process",
+          "bitPosition": 3,
+          "name": "{Datablock_Name}_Alm_Hi",
+          "priority": "Medium",
+          "ackMode": "Auto",
+          "setpointA": {
+            "bindType": "Expression",
+            "value": "getBit({[.]Val_Notify},3)"
+          },
+          "label": {
+            "bindType": "Expression",
+            "value": "{Datablock_Name}+\": Hi - \"+{Description}"
+          },
+          "displayPath": {
+            "bindType": "Expression",
+            "value": "{Node}+\": \"+{Datablock_Name}"
+          },
+          "enabled": {
+            "bindType": "Tag",
+            "value": "[.]HMI_Cfg_HasHiAlm"
+          }
+        },
+        {
+          "mode": "Bit",
+          "AlarmType": "Process",
+          "bitPosition": 2,
+          "name": "{Datablock_Name}_Alm_Lo",
+          "priority": "Medium",
+          "ackMode": "Auto",
+          "setpointA": {
+            "bindType": "Expression",
+            "value": "getBit({[.]Val_Notify},2)"
+          },
+          "label": {
+            "bindType": "Expression",
+            "value": "{Datablock_Name}+\": Lo - \"+{Description}"
+          },
+          "displayPath": {
+            "bindType": "Expression",
+            "value": "{Node}+\": \"+{Datablock_Name}"
+          },
+          "enabled": {
+            "bindType": "Tag",
+            "value": "[.]HMI_Cfg_HasLoAlm"
+          }
+        },
+        {
+          "mode": "Bit",
+          "AlarmType": "Process",
+          "bitPosition": 4,
+          "name": "{Datablock_Name}_Alm_HiHi",
+          "priority": "Critical",
+          "setpointA": {
+            "bindType": "Expression",
+            "value": "getBit({[.]Val_Notify},4)"
+          },
+          "label": {
+            "bindType": "Expression",
+            "value": "{Datablock_Name}+\": HiHi - \"+{Description}"
+          },
+          "displayPath": {
+            "bindType": "Expression",
+            "value": "{Node}+\": \"+{Datablock_Name}"
+          },
+          "enabled": {
+            "bindType": "Tag",
+            "value": "[.]HMI_Cfg_HasHiHiAlm"
+          }
+        },
+        {
+          "mode": "Bit",
+          "AlarmType": "Process",
+          "name": "{Datablock_Name}_Alm_Fail",
+          "priority": "Low",
+          "ackMode": "Auto",
+          "setpointA": {
+            "bindType": "Expression",
+            "value": "getBit({[.]Val_Notify},0)"
+          },
+          "label": {
+            "bindType": "Expression",
+            "value": "{Datablock_Name}+\": Ch Failure - \"+{Description}"
+          },
+          "displayPath": {
+            "bindType": "Expression",
+            "value": "{Node}+\": \"+{Datablock_Name}"
+          },
+          "enabled": {
+            "bindType": "Tag",
+            "value": "[.]HMI_Cfg_HasFailAlm"
+          }
+        }
+      ],
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Int4",
+      "name": "S_AlmNotify",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.S_Val"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Units}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadbandMode": "Absolute",
+      "historicalDeadband": 0.1,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "Historian_CAM1",
+      "dataType": "Float4",
+      "name": "S_Val",
+      "historyEnabled": true,
+      "sampleMode": "OnChange",
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_HiHiDB"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Units}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Float4",
+      "name": "HMI_Cfg_HiHiDB",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_HiOffDly"
+      },
+      "valueSource": "opc",
+      "rawHigh": 1000.0,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.###",
+      "tagGroup": "Leased 0",
+      "engUnit": "sec",
+      "tagType": "AtomicTag",
+      "scaledHigh": 1.0,
+      "scaleMode": "Linear",
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Float4",
+      "name": "HMI_Cfg_HiOffDly",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_LoDB"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Units}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Float4",
+      "name": "HMI_Cfg_LoDB",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "valueSource": "expr",
+      "expression": "if(tag(\u0027[.]S_AlmNotify\u0027+\u0027/Alarms.HasActive\u0027)\u003d true,\r\n\tif(tag(\u0027[.]S_AlmNotify\u0027+\u0027/Alarms.HasUnacknowledged\u0027) \u003d true,\r\n\t\ttag(\u0027[.]S_AlmNotify\u0027+\u0027/Alarms.HighestActivePriority\u0027)+4,\r\n\t\ttag(\u0027[.]S_AlmNotify\u0027+\u0027/Alarms.HighestActivePriority\u0027)),\r\nif(tag(\u0027[.]S_AlmNotify\u0027+\u0027/Alarms.HasUnacknowledged\u0027) \u003d true,\r\n\t9,\r\n0))",
+      "name": "UDT_Exp_Alarms",
+      "executionMode": "EventDriven",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sts_OoS"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 24,
+      "expression": "{[.]S_HMISts}\u00262",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003dOut of Service is selected (supersedes Maint, Ovrd, Ext, Prog, Oper) ",
+      "tagGroup": "Leased 5000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "Historian_CAM1",
+      "dataType": "Boolean",
+      "name": "S_OoS",
+      "historyEnabled": true,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sts_Hi"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{Node}"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}\u002616",
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003dAnalog Input is above High limit",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Boolean",
+      "name": "S_Hi",
+      "historyEnabled": false
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_FailResetReqd"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003dReset required to clear Analog Input Failure Alarm",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Boolean",
+      "name": "HMI_Cfg_FailResetReqd",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_C_Reset"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Maintenance",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Operator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Supervisor",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Operator Command to Reset all Alarms requiring Reset ",
+      "tagGroup": "Leased 60000",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Boolean",
+      "name": "HMI_C_Reset",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Cfg_AllowMan"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}\u0026 16384",
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003dAllow Man selection of Substitute PV ",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Boolean",
+      "name": "Cfg_AllowMan",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_HasFailAlm"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003dAnalog Input Failure Alarm exists and will be checked ",
+      "tagGroup": "Leased 60000",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Boolean",
+      "name": "HMI_Cfg_HasFailAlm",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Inp_EnHiAlm"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}\u00264096",
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Engineer",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CHP01_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CHP01_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1 \u003d Bad Signal Quality/Communication Status of InputPV ",
+      "tagGroup": "Leased 5000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Boolean",
+      "name": "I_PVBad",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_LoLim"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Units}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 24,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "historyProvider": "Historian_CAM1",
+      "dataType": "Float4",
+      "name": "HMI_Cfg_LoLim",
+      "historyEnabled": true,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Cfg_HasOos"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}\u0026 8192",
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003dMaintenance Out of Service exists, can be selected ",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Boolean",
+      "name": "Cfg_HasOos",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sts_Fail"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{Node}"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_AlmNotify}\u00261",
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003dAnalog Input is below Low-Low limit",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "Historian_CAM1",
+      "dataType": "Boolean",
+      "name": "A_Fail",
+      "historyEnabled": true
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sts_Maint"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 24,
+      "expression": "{[.]S_HMISts}\u00264",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003dUsing Substitute PV (overrides input), 0\u003dUsing live Input PV from device",
+      "tagGroup": "Leased 5000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "Historian_CAM1",
+      "dataType": "Boolean",
+      "name": "S_ManAuto",
+      "historyEnabled": true,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Inp_EnLoLoAlm"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}\u00262048",
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Engineer",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CHP01_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CHP01_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003d LoLo threshold monitoring Enabled 0\u003d Disabled ",
+      "tagGroup": "Leased 10000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Boolean",
+      "name": "I_EnLoLoAlm",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_HiOnDly"
+      },
+      "valueSource": "opc",
+      "rawHigh": 1000.0,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.###",
+      "tagGroup": "Leased 0",
+      "engUnit": "sec",
+      "tagType": "AtomicTag",
+      "scaledHigh": 1.0,
+      "scaleMode": "Linear",
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Float4",
+      "name": "HMI_Cfg_HiOnDly",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_LoLoLim"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Units}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 24,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "historyProvider": "Historian_CAM1",
+      "dataType": "Float4",
+      "name": "HMI_Cfg_LoLoLim",
+      "historyEnabled": true,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sts_Fail"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{Node}"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}\u0026128",
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003dAnalog Input is below Low-Low limit",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Boolean",
+      "name": "S_Fail",
+      "historyEnabled": false
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_LoLoOffDly"
+      },
+      "valueSource": "opc",
+      "rawHigh": 1000.0,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.###",
+      "tagGroup": "Leased 0",
+      "engUnit": "sec",
+      "tagType": "AtomicTag",
+      "scaledHigh": 1.0,
+      "scaleMode": "Linear",
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Float4",
+      "name": "HMI_Cfg_LoLoOffDly",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu\u003dKEPServerEX;s\u003d{Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Inp_EnHiAlm"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}\u0026512",
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Engineer",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CHP01_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CHP01_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1\u003d Hi threshold monitoring Enabled 0\u003d Disabled ",
+      "tagGroup": "Leased 10000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "Historian_CHP01",
+      "dataType": "Boolean",
+      "name": "I_EnHiAlm",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CuF1"
+    }
+  ]
+}
