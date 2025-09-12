@@ -1,0 +1,138 @@
+UDT Extraction Report
+==================================================
+Generated on: 2025-09-12 15:20:09
+Source file: RW_Ignition_Big_Export.json
+Total UDTs in source: 42
+UDT groups processed: 33
+UDTs extracted: 33
+
+EXTRACTED UDTs (Latest Versions Only):
+----------------------------------------
+RW_Analog_In_V2
+RW_Analog_Out
+RW_Bool
+RW_Bool_MB
+RW_Bool_Memory
+RW_DeadbandControl_V2
+RW_Digital_In
+RW_Digital_Out_V2
+RW_Digital_Valve
+RW_Equipment_Status
+RW_Int_MB
+RW_Interlock_Equipment_Map
+RW_Interlock_MX
+RW_Interlock_V2
+RW_KEPServerEX_Debug_Info
+RW_KW_Device_Info_Generic
+RW_MeterPump
+RW_Motor_Starter_Hybrid_New
+RW_Motor_VFD
+RW_PID
+RW_PID_Compact_V2
+RW_PLC_Device_Status
+RW_PLC_Info
+RW_PLC_Info_S71200
+RW_Real
+RW_Real_ALM
+RW_Real_ALM_Vendor
+RW_Real_MB
+RW_Real_Memory
+RW_Soft_Starter_Siemens
+RW_Time
+RW_ToPLC
+RW_Valve_Digital_V2
+
+VERSION SELECTION DETAILS:
+----------------------------------------
+
+Base: RW_Analog_In
+  Available versions:
+    RW_Analog_In_V2 (priority: 1002) ✓ SELECTED
+    RW_Analog_In (priority: 50)   skipped
+RW_Analog_Out: RW_Analog_Out (single version)
+RW_Bool: RW_Bool (single version)
+RW_Bool_MB: RW_Bool_MB (single version)
+RW_Bool_Memory: RW_Bool_Memory (single version)
+
+Base: RW_DeadbandControl
+  Available versions:
+    RW_DeadbandControl_V2 (priority: 1002) ✓ SELECTED
+    RW_DeadbandControl (priority: 50)   skipped
+RW_Digital_In: RW_Digital_In (single version)
+
+Base: RW_Digital_Out
+  Available versions:
+    RW_Digital_Out_V2 (priority: 1002) ✓ SELECTED
+    RW_Digital_Out (priority: 50)   skipped
+RW_Digital_Valve: RW_Digital_Valve (single version)
+RW_Equipment_Status: RW_Equipment_Status (single version)
+RW_Int_MB: RW_Int_MB (single version)
+
+Base: RW_Interlock
+  Available versions:
+    RW_Interlock_V2 (priority: 1002) ✓ SELECTED
+    RW_Interlock (priority: 50)   skipped
+RW_Interlock_Equipment_Map: RW_Interlock_Equipment_Map (single version)
+RW_Interlock_MX: RW_Interlock_MX (single version)
+RW_KEPServerEX_Debug_Info: RW_KEPServerEX_Debug_Info (single version)
+RW_KW_Device_Info_Generic: RW_KW_Device_Info_Generic (single version)
+RW_MeterPump: RW_MeterPump (single version)
+
+Base: RW_Motor_Starter
+  Available versions:
+    RW_Motor_Starter_Hybrid_New (priority: 100) ✓ SELECTED
+    RW_Motor_Starter_Hybrid_Reverse (priority: 90)   skipped
+    RW_Motor_Starter_Hybrid (priority: 80)   skipped
+    RW_Motor_Starter (priority: 50)   skipped
+    RW_Motor_Starter_Hybrid TEST (priority: 0)   skipped
+RW_Motor_VFD: RW_Motor_VFD (single version)
+RW_PID: RW_PID (single version)
+RW_PID_Compact: RW_PID_Compact_V2 (single version)
+RW_PLC_Device_Status: RW_PLC_Device_Status (single version)
+RW_PLC_Info: RW_PLC_Info (single version)
+RW_PLC_Info_S71200: RW_PLC_Info_S71200 (single version)
+RW_Real: RW_Real (single version)
+RW_Real_ALM: RW_Real_ALM (single version)
+RW_Real_ALM_Vendor: RW_Real_ALM_Vendor (single version)
+RW_Real_MB: RW_Real_MB (single version)
+RW_Real_Memory: RW_Real_Memory (single version)
+RW_Soft_Starter_Siemens: RW_Soft_Starter_Siemens (single version)
+RW_Time: RW_Time (single version)
+RW_ToPLC: RW_ToPLC (single version)
+RW_Valve_Digital: RW_Valve_Digital_V2 (single version)
+
+FILES CREATED:
+----------------------------------------
+RW_Analog_In_V2.json
+RW_Analog_Out.json
+RW_Bool.json
+RW_Bool_MB.json
+RW_Bool_Memory.json
+RW_DeadbandControl_V2.json
+RW_Digital_In.json
+RW_Digital_Out_V2.json
+RW_Digital_Valve.json
+RW_Equipment_Status.json
+RW_Int_MB.json
+RW_Interlock_Equipment_Map.json
+RW_Interlock_MX.json
+RW_Interlock_V2.json
+RW_KEPServerEX_Debug_Info.json
+RW_KW_Device_Info_Generic.json
+RW_MeterPump.json
+RW_Motor_Starter_Hybrid_New.json
+RW_Motor_VFD.json
+RW_PID.json
+RW_PID_Compact_V2.json
+RW_PLC_Device_Status.json
+RW_PLC_Info.json
+RW_PLC_Info_S71200.json
+RW_Real.json
+RW_Real_ALM.json
+RW_Real_ALM_Vendor.json
+RW_Real_MB.json
+RW_Real_Memory.json
+RW_Soft_Starter_Siemens.json
+RW_Time.json
+RW_ToPLC.json
+RW_Valve_Digital_V2.json

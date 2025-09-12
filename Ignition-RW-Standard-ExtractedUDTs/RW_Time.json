@@ -1,0 +1,149 @@
+{
+  "dataType": "Int4",
+  "name": "RW_Time",
+  "value": 0,
+  "parameters": {
+    "Node": {
+      "dataType": "String",
+      "value": "LiConv-PLC1"
+    },
+    "TIA_PLC_Name": {
+      "dataType": "String",
+      "value": "Hydromet_Pilot_LH1"
+    },
+    "TagName": {
+      "dataType": "String",
+      "value": {
+        "bindType": "parameter",
+        "binding": "{InstanceName}"
+      }
+    },
+    "Description": {
+      "dataType": "String"
+    },
+    "Units": {
+      "dataType": "String"
+    },
+    "Datablock_Name": {
+      "dataType": "String"
+    },
+    "ScalingFactor": {
+      "dataType": "Integer",
+      "value": 1000
+    }
+  },
+  "tagType": "UdtType",
+  "tags": [
+    {
+      "rawHigh": {
+        "bindType": "parameter",
+        "binding": "{ScalingFactor}"
+      },
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.{TagName}@Long"
+      },
+      "tooltip": {
+        "bindType": "parameter",
+        "binding": "{Description}"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Units}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "historicalDeadbandMode": "Absolute",
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Engineer",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "documentation": "",
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.##",
+      "tagGroup": "Leased 1000",
+      "tagType": "AtomicTag",
+      "scaledHigh": 1.0,
+      "scaleMode": "Linear",
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Float4",
+      "name": "Value",
+      "historyEnabled": true,
+      "value": 0.0,
+      "HistoryMaxAgeMode": "1.0",
+      "opcServer": "KEPServerEX_CHP01"
+    }
+  ]
+}

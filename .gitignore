@@ -199,3 +199,4 @@ logs/
 # Test output
 test_output/
 output/
+secrets.json

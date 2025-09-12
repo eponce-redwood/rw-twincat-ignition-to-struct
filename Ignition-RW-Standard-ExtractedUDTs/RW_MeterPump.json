@@ -1,0 +1,2202 @@
+{
+  "name": "RW_MeterPump",
+  "typeId": "",
+  "parameters": {
+    "Node": {
+      "dataType": "String",
+      "value": "LiConv-PLC2"
+    },
+    "TIA_PLC_Name": {
+      "dataType": "String",
+      "value": "PLC2"
+    },
+    "Unit": {
+      "dataType": "String",
+      "value": ""
+    },
+    "Enum_Opened": {
+      "dataType": "String",
+      "value": "Opened"
+    },
+    "Description": {
+      "dataType": "String"
+    },
+    "Datablock_Name": {
+      "dataType": "String",
+      "value": {
+        "bindType": "parameter",
+        "binding": "{TagName}"
+      }
+    },
+    "Enum_Closed": {
+      "dataType": "String",
+      "value": "Closed"
+    }
+  },
+  "tagType": "UdtType",
+  "tags": [
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sts_StoppingFwd"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_AlmNotify}&512",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "I/O Fault Status",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "S_IntlkTrip",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sts_StoppingFwd"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_AlmNotify}&64\r\n",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1 = Motor Failed to Start",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "S_FailToStart",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sts_OoS"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMIBits}&128",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1= Auto; Program cmd to overide HMI selection of Manual Mode ",
+      "tagGroup": "Leased 5000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Boolean",
+      "name": "C_AutoOvrd",
+      "historyEnabled": true,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_C_Oos@Boolean"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1= Maintenance Command to select Device OutOfService",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "historyProvider": "TagSplitter_CAM1",
+      "dataType": "Boolean",
+      "name": "HMI_C_Oos",
+      "historyEnabled": false,
+      "value": false,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sts_RunningFwd"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}=2",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "S_Running",
+      "historyEnabled": true,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Cfg_HasOos"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMIBits}&4",
+      "engHigh": 2.0,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CAM1_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1=Maintenance Out of Service exists, can be selected",
+      "tagGroup": "Leased 0",
+      "enabled": true,
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "Cfg_HasOos",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_C_ManAuto@Boolean"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1= Select Manual/HMI control, 0= Auto/Program control ",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "historyProvider": "TagSplitter_CAM1",
+      "dataType": "Boolean",
+      "name": "HMI_C_ManAuto",
+      "historyEnabled": false,
+      "value": false,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_FailToStopOnDly@Long"
+      },
+      "valueSource": "opc",
+      "rawHigh": 1000.0,
+      "historyMaxAge": 12,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Alarm On Delay Timer ",
+      "formatString": "#,##0.###",
+      "tagGroup": "Leased 0",
+      "engUnit": "sec",
+      "enabled": true,
+      "tagType": "AtomicTag",
+      "scaledHigh": 1.0,
+      "scaleMode": "Linear",
+      "historyProvider": "TagSplitter_CAM1",
+      "dataType": "Float4",
+      "name": "HMI_Cfg_FailToStopOnDly",
+      "historyEnabled": false,
+      "value": 0.0,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sts_OoS"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMIBits}&2",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1=Out of Service is selected (supersedes Maint, Ovrd, Ext, Prog, Oper) ",
+      "tagGroup": "Leased 5000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Boolean",
+      "name": "S_OoS",
+      "historyEnabled": true,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "valueSource": "expr",
+      "expression": "if(tag('[.]S_AlmNotify'+'/Alarms.HasActive')= true,\r\n\tif(tag('[.]S_AlmNotify'+'/Alarms.HasUnacknowledged') = true,\r\n\t\ttag('[.]S_AlmNotify'+'/Alarms.HighestActivePriority')+4,\r\n\t\ttag('[.]S_AlmNotify'+'/Alarms.HighestActivePriority')),\r\nif(tag('[.]S_AlmNotify'+'/Alarms.HasUnacknowledged') = true,\r\n\t9,\r\n0))",
+      "readOnly": true,
+      "name": "UDT_Exp_Alarms",
+      "executionMode": "EventDriven",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.S_HMISts"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "engHigh": 12.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Device Confirmed Sts 0=? 1=Closed 2=Open 5=Closing, 6=Opening",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Int4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "S_HMISts",
+      "historyEnabled": false,
+      "value": 1,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.S_AlmNotify"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "engHigh": 18.0,
+      "historicalDeadbandStyle": "Discrete",
+      "alarms": [
+        {
+          "mode": "Bit",
+          "bitPosition": 0,
+          "name": "{Datablock_Name}_Alm_FailToOpen",
+          "priority": "Medium",
+          "label": {
+            "bindType": "Expression",
+            "value": "{Datablock_Name}+\": Valve Failed to Open - \"+{Description}"
+          },
+          "displayPath": {
+            "bindType": "Expression",
+            "value": "{Node}+\": \"+{Datablock_Name}"
+          },
+          "enabled": {
+            "bindType": "Tag",
+            "value": "[.]HMI_Cfg_HasFailToOpenAlm"
+          }
+        },
+        {
+          "mode": "Bit",
+          "bitPosition": 3,
+          "name": "{Datablock_Name}_Alm_IntlkTrip",
+          "priority": "Critical",
+          "label": {
+            "bindType": "Expression",
+            "value": "{Datablock_Name}+\": Interlock Trip - \"+{Description}"
+          },
+          "displayPath": {
+            "bindType": "Expression",
+            "value": "{Node}+\": \"+{Datablock_Name}"
+          }
+        },
+        {
+          "mode": "Bit",
+          "bitPosition": 2,
+          "name": "{Datablock_Name}_Alm_LSFail",
+          "priority": "Medium",
+          "label": {
+            "bindType": "Expression",
+            "value": "{Datablock_Name}+\": Valve LimitSw Failure - \"+{Description}"
+          },
+          "displayPath": {
+            "bindType": "Expression",
+            "value": "{Node}+\": \"+{Datablock_Name}"
+          },
+          "enabled": {
+            "bindType": "Tag",
+            "value": "[.]HMI_Cfg_HasLSFailAlm"
+          }
+        },
+        {
+          "mode": "Bit",
+          "bitPosition": 1,
+          "name": "{Datablock_Name}_Alm_FailToClose",
+          "priority": "Medium",
+          "label": {
+            "bindType": "Expression",
+            "value": "{Datablock_Name}+\": Valve Failed to Close - \"+{Description}"
+          },
+          "displayPath": {
+            "bindType": "Expression",
+            "value": "{Node}+\": \"+{Datablock_Name}"
+          },
+          "enabled": {
+            "bindType": "Tag",
+            "value": "[.]HMI_Cfg_HasFailToCloseAlm"
+          }
+        }
+      ],
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "dataType": "Int4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "S_AlmNotify",
+      "historyEnabled": false,
+      "value": 0,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "valueSource": "memory",
+      "dataType": "Boolean",
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "name": "UDT_mem_HasPermNav",
+      "tooltip": "True if Permissive has navigation to a Perm Popup",
+      "value": true,
+      "tagGroup": "Leased 60000",
+      "tagType": "AtomicTag"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sts_StoppingFwd"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_AlmNotify}&128",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1 = Motor Failed to Stop ",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "S_FailToStop",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sts_NotRdy"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMIBits}&8",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1= Allow Manual Control ",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_CAM1",
+      "dataType": "Boolean",
+      "name": "Cfg_AllowMan",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sts_StoppingFwd"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_AlmNotify}&8",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "I/O Fault Status",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "A_IntlkTrip",
+      "historyEnabled": true,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.S_Output"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMIBits}&256",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1=Energize Valve Solenoid",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Boolean",
+      "name": "S_Output",
+      "historyEnabled": true,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_FailToStartOnDly@Long"
+      },
+      "valueSource": "opc",
+      "rawHigh": 1000.0,
+      "historyMaxAge": 12,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Alarm On Delay Timer ",
+      "formatString": "#,##0.###",
+      "tagGroup": "Leased 0",
+      "engUnit": "sec",
+      "enabled": true,
+      "tagType": "AtomicTag",
+      "scaledHigh": 1.0,
+      "scaleMode": "Linear",
+      "historyProvider": "TagSplitter_CAM1",
+      "dataType": "Float4",
+      "name": "HMI_Cfg_FailToStartOnDly",
+      "historyEnabled": false,
+      "value": 0.0,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Cfg_SpeedMax"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Unit}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "engHigh": 12.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Max Speed of speed SP/feedback Scale",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Float4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "Cfg_SpeedMax",
+      "historyEnabled": false,
+      "value": 0.0,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_C_Man_Run@Boolean"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "engHigh": 2.0,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Manual Command to Open Valve ",
+      "tagGroup": "Leased 60000",
+      "tagType": "AtomicTag",
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "HMI_C_Man_Run",
+      "historyEnabled": false,
+      "value": false,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sts_FwdPermOK"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMIBits}&16",
+      "engHigh": 2.0,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CAM1_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CAM1_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CAM1_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CAM1_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CAM1_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CAM1_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CAM1_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Start  Permissives OK  ",
+      "tagGroup": "Leased 5000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "S_PermOK",
+      "historyEnabled": true,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_C_Man_SpeedSP"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Unit}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "engHigh": 12.0,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Manual Speed SP",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "dataType": "Float4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "HMI_C_Man_SpeedSP",
+      "historyEnabled": false,
+      "value": 0.0,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "valueSource": "memory",
+      "readOnly": true,
+      "dataType": "Boolean",
+      "name": "UDT_mem_AlwaysTrue",
+      "tooltip": "Always true used for Sub_AlarmConfig object",
+      "tagGroup": "Leased 60000",
+      "value": true,
+      "tagType": "AtomicTag"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Cfg_SpeedMin"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Unit}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "engHigh": 12.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Min Speed of speed SP/feedback Scale",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Float4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "Cfg_SpeedMin",
+      "historyEnabled": false,
+      "value": 0.0,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_C_Man_Stop@Boolean"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "engHigh": 2.0,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Manual Command to Open Valve ",
+      "tagGroup": "Leased 60000",
+      "tagType": "AtomicTag",
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "HMI_C_Man_Stop",
+      "historyEnabled": false,
+      "value": false,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.S_Val_Speed"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Unit}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "engHigh": 12.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Speed feedback from device, if no speed feedback, will equal to speed command. ",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Float4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "S_Val_Speed",
+      "historyEnabled": false,
+      "value": 0.0,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_C_Reset@Boolean"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Operator Command to Reset all Alarms requiring Reset ",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "historyProvider": "TagSplitter_CAM1",
+      "dataType": "Boolean",
+      "name": "HMI_C_Reset",
+      "historyEnabled": false,
+      "value": false,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.I_IntlkTrip"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMIBits} < 0",
+      "engHigh": 2.0,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CAM1_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CAM1_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CAM1_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CAM1_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CAM1_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CAM1_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CAM1_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1 = Bypassable Interlocks are OK, motor can start/run.",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "I_IntlkTrip",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.S_HMIBits"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "engHigh": 12.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Packed bits to HMI CmdSrc and ORdys  ",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Int4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "S_HMIBits",
+      "historyEnabled": false,
+      "value": 0,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Cfg_HasOos"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMIBits}&2048",
+      "engHigh": 2.0,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CAM1_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1=Device Has Speed feedback",
+      "tagGroup": "Leased 0",
+      "enabled": true,
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "Cfg_HasSpeedFdbk",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sts_OoS"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMIBits}&1",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1= Manaul Mode from HMI , 0=Auto Program commands ",
+      "tagGroup": "Leased 5000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Boolean",
+      "name": "S_ManAuto",
+      "historyEnabled": true,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sts_StoppingFwd"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_AlmNotify}&1",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1 = Motor Failed to Start ",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "A_FailToOpen",
+      "historyEnabled": true,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "name": "Interlocks",
+      "tagType": "Folder",
+      "tags": [
+        {
+          "name": "Interlock 8",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 8
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 24",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 24
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 28",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 28
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 7",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 7
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 5",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 5
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 12",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 12
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 9",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 9
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 10",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 10
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 3",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 3
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 27",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 27
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 26",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 26
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 30",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 30
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 22",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 22
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 13",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 13
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 29",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 29
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 16",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 16
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 31",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 31
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 17",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 17
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 19",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 19
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 14",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 14
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 1",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 1
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 11",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 11
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 18",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 18
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 20",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 20
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 15",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 15
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 4",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 4
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 2",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 2
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 6",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 6
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 25",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 25
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 21",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 21
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 23",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "FolderPath": {
+              "dataType": "String",
+              "value": "[CAM1]CAM1/Interlock/"
+            },
+            "Index": {
+              "dataType": "Integer",
+              "value": 23
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sts_StoppingFwd"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_AlmNotify}&2",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1 = Motor Failed to Stop ",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "A_FailToClose",
+      "historyEnabled": true,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_C_Bypass@Boolean"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Internal Bypassable Permissives and Interlocks are Bypassed flag ",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "historyProvider": "TagSplitter_CAM1",
+      "dataType": "Boolean",
+      "name": "HMI_C_Bypass",
+      "historyEnabled": false,
+      "value": false,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Sts_RunningFwd"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}=1",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "S_Stopped",
+      "historyEnabled": true,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.C_SpeedSP"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Unit}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "engHigh": 12.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Speed SP From Auto Function",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Float4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "C_SpeedSP",
+      "historyEnabled": false,
+      "value": 0.0,
+      "opcServer": "KEPServerEX_CHP01"
+    }
+  ]
+}

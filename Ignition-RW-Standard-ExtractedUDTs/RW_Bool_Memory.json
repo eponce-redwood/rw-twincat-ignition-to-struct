@@ -1,0 +1,118 @@
+{
+  "dataType": "Int4",
+  "name": "RW_Bool_Memory",
+  "value": 0,
+  "parameters": {
+    "Description": {
+      "dataType": "String"
+    }
+  },
+  "tagType": "UdtType",
+  "tags": [
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=http://www.siemens.com/simatic-s7-opcua;s=\"{Datablock_Name}\".\"{TagName}\""
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{Node}"
+      },
+      "valueSource": "memory",
+      "historyMaxAge": 12,
+      "historicalDeadband": 1.0,
+      "engHigh": 1.0,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CuFoil_Engineer",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CuFoil_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CuFoil_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CuFoil_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CuFoil_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CuFoil_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CuFoil_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CuFoil_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "documentation": "",
+      "tooltip": "",
+      "formatString": "#,##0.##",
+      "historyTagGroup": "history_realtime3",
+      "tagGroup": "Leased 1000",
+      "engLow": 0.0,
+      "engUnit": "",
+      "tagType": "AtomicTag",
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Boolean",
+      "name": "Value",
+      "historyEnabled": true,
+      "value": false,
+      "HistoryMaxAgeMode": "1.0",
+      "sampleMode": "OnChange"
+    }
+  ]
+}

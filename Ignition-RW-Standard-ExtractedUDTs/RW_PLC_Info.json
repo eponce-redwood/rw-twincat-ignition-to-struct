@@ -1,0 +1,481 @@
+{
+  "name": "RW_PLC_Info",
+  "typeId": "",
+  "parameters": {
+    "TIA_PLC_Name": {
+      "dataType": "String",
+      "value": ""
+    },
+    "Node": {
+      "dataType": "String",
+      "value": ""
+    },
+    "Datablock_Name": {
+      "dataType": "String",
+      "value": "RW_PLC_Cycle_Info_DB"
+    },
+    "OPC_Server": {
+      "dataType": "String",
+      "value": "KEPServerEX_CHP01"
+    }
+  },
+  "tagType": "UdtType",
+  "tags": [
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}._System._SecondsInError"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 500,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.001,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Int8",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "KW_Device_SecondsInError",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "MS"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.S_FirmwareVersion"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 500,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.001,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Leased 60000",
+      "enabled": true,
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "String",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "FirmwareVersion",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "MS"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.S_CurrentCycleTime"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "rawHigh": 1000000.0,
+      "historyMaxAge": 12,
+      "historyTimeDeadband": 500,
+      "historicalDeadband": 1.5,
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.###",
+      "tagGroup": "Direct 1000",
+      "engUnit": "sec",
+      "tagType": "AtomicTag",
+      "scaledHigh": 1.0,
+      "scaleMode": "Linear",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Float4",
+      "name": "CurrentCycleTime",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "MS"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.S_CycleTimeLimit"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "rawHigh": 1000000.0,
+      "historyMaxAge": 12,
+      "historyTimeDeadband": 500,
+      "historicalDeadband": 0.001,
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.###",
+      "tagGroup": "Leased 60000",
+      "engUnit": "sec",
+      "tagType": "AtomicTag",
+      "scaledHigh": 1.0,
+      "scaleMode": "Linear",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Float4",
+      "name": "CycleTimeLimit",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "MS"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}._System._ForceSymbolReload"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 500,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.001,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Designer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "KW_ForceSymbolReload",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "MS"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}._System._ScanRateMs"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 500,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.001,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Int4",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "KW_Device_ScanRateMs",
+      "historyEnabled": false,
+      "historyTimeDeadbandUnits": "MS"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}._System._Error"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 500,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.001,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "KW_Device_Error",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "MS"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}._System._Enabled"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 500,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.001,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "KW_Device_Enabled",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "MS"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}._System._ScanMode"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 500,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.001,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "String",
+      "historyProvider": "Historian_CHP01",
+      "name": "KW_Device_ScanMode",
+      "historyEnabled": false,
+      "historyTimeDeadbandUnits": "MS"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.S_HigherPriorityOBRuntimePercent"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historyTimeDeadband": 500,
+      "historicalDeadband": 0.001,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "HigherPriorityOBRuntimePercent",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "MS"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.S_MinimumCycleTime"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "rawHigh": 1000000.0,
+      "historyMaxAge": 12,
+      "historyTimeDeadband": 500,
+      "historicalDeadband": 0.001,
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.###",
+      "tagGroup": "Direct 1000",
+      "engUnit": "sec",
+      "tagType": "AtomicTag",
+      "scaledHigh": 1.0,
+      "scaleMode": "Linear",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Float4",
+      "name": "MinimumCycleTime",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "MS"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}._System._DeviceId"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 500,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.001,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "String",
+      "historyProvider": "Historian_CHP01",
+      "name": "IPAddress",
+      "historyEnabled": false,
+      "historyTimeDeadbandUnits": "MS"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}._System._Description"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 500,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.001,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "String",
+      "historyProvider": "Historian_CHP01",
+      "name": "KW_Device_Description",
+      "historyEnabled": false,
+      "historyTimeDeadbandUnits": "MS"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.S_PLC_PartNumber"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 500,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.001,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Leased 60000",
+      "enabled": true,
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "String",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "Model",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "MS"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.S_MeanCommunicationPercent"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historyTimeDeadband": 500,
+      "historicalDeadband": 2.5,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "MeanCommunicationPercent",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "MS"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.S_OB1Runtime"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "rawHigh": 1000000.0,
+      "historyMaxAge": 12,
+      "historyTimeDeadband": 500,
+      "historicalDeadband": 0.6,
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.###",
+      "tagGroup": "Direct 1000",
+      "engUnit": "sec",
+      "tagType": "AtomicTag",
+      "scaledHigh": 1.0,
+      "scaleMode": "Linear",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Float4",
+      "name": "OB1Runtime",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "MS"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.S_MaxCommunicationLoadPercent"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historyTimeDeadband": 500,
+      "historicalDeadband": 0.001,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "MaxCommunicationLoadPercent",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "MS"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}._System._ActiveTagCount"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 500,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.001,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Int4",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "KW_Device_ActiveTagCount",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "MS"
+    }
+  ]
+}

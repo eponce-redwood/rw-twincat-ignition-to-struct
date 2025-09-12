@@ -1,0 +1,469 @@
+{
+  "name": "RW_Interlock_V2",
+  "typeId": "",
+  "parameters": {
+    "Action6": {
+      "dataType": "String"
+    },
+    "Action7": {
+      "dataType": "String"
+    },
+    "Action8": {
+      "dataType": "String"
+    },
+    "Action9": {
+      "dataType": "String"
+    },
+    "Interlock_Condition": {
+      "dataType": "String"
+    },
+    "Interlock_Action_Count": {
+      "dataType": "Integer",
+      "value": 1
+    },
+    "Description": {
+      "dataType": "String"
+    },
+    "Node": {
+      "dataType": "String",
+      "value": "LiConv-PLC1"
+    },
+    "TIA_PLC_Name": {
+      "dataType": "String",
+      "value": "Hydromet_Pilot_LH1"
+    },
+    "Action1": {
+      "dataType": "String"
+    },
+    "Datablock_Name": {
+      "dataType": "String",
+      "value": {
+        "bindType": "parameter",
+        "binding": "{TagName}"
+      }
+    },
+    "Action2": {
+      "dataType": "String"
+    },
+    "Action3": {
+      "dataType": "String"
+    },
+    "Action10": {
+      "dataType": "String"
+    },
+    "Action4": {
+      "dataType": "String"
+    },
+    "Action5": {
+      "dataType": "String"
+    }
+  },
+  "tagType": "UdtType",
+  "tags": [
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_IntlkOnDly@Long"
+      },
+      "valueSource": "opc",
+      "rawHigh": 1000.0,
+      "historyMaxAge": 12,
+      "historicalDeadband": 1.0,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Time delay before interlock trip is active ",
+      "formatString": "#,##0.###",
+      "tagGroup": "Leased 0",
+      "engUnit": "sec",
+      "tagType": "AtomicTag",
+      "scaledHigh": 1.0,
+      "scaleMode": "Linear",
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Float4",
+      "name": "HMI_Cfg_IntlkOnDly",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.S_HMIBits"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "engHigh": 12.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Packed bits to HMI",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Int4",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "S_HMIBits",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Cfg_MaintOnlyReset"
+      },
+      "valueSource": "memory",
+      "historyMaxAge": 24,
+      "historicalDeadband": 1.0,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "tooltip": "1=Only Maint can reset this Interlock ",
+      "tagGroup": "Leased 60000",
+      "tagType": "AtomicTag",
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Boolean",
+      "name": "UDT_mem_MaintOnlyReset",
+      "historyEnabled": false,
+      "value": false,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.S_NBIntlkTripped"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMIBits}&16",
+      "historicalDeadband": 1.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "NonBypassable Interlock Status (1=Tripped, 0=OK to run) ",
+      "tagGroup": "Leased 5000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Boolean",
+      "name": "S_NBIntlkTripped",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.S_Tripped"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMIBits}&8",
+      "historicalDeadband": 1.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Interlock Status (1=Tripped, 0=OK to run) ",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Boolean",
+      "name": "S_Tripped",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_Cfg_IntlkOffDly@Long"
+      },
+      "valueSource": "opc",
+      "rawHigh": 1000.0,
+      "historyMaxAge": 12,
+      "historicalDeadband": 1.0,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Minimum time for the output to be held true to verify HMI receives status ",
+      "formatString": "#,##0.###",
+      "tagGroup": "Leased 0",
+      "engUnit": "sec",
+      "tagType": "AtomicTag",
+      "scaledHigh": 1.0,
+      "scaleMode": "Linear",
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Float4",
+      "name": "HMI_Cfg_IntlkOffDly",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_C_Bypass"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 1.0,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Maintenance",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Supervisor",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1= Bypass Interlocked Tripped condition, Enabled ",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Boolean",
+      "name": "HMI_C_Bypass",
+      "historyEnabled": true,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.HMI_C_Reset"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 24,
+      "historicalDeadband": 1.0,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Maintenance",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Operator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Supervisor",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "tooltip": "Reset Command ",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Boolean",
+      "name": "HMI_C_Reset",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Cfg_Bypassable"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 24,
+      "expression": "{[.]S_HMIBits}&2",
+      "historicalDeadband": 1.0,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "tooltip": "1=Interlock condition can be bypassed ",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Boolean",
+      "name": "Cfg_Bypassable",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.S_BypEnabled"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMIBits}&32",
+      "historicalDeadband": 1.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Bypass function is enabled by Maint/Eng ",
+      "tagGroup": "Leased 5000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Boolean",
+      "name": "S_BypEnabled",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Cfg_Latched"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 24,
+      "expression": "{[.]S_HMIBits}&1",
+      "historicalDeadband": 1.0,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "tooltip": "1= Interlock is latched (sealed in) and requires reset ",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Boolean",
+      "name": "Cfg_Latched",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.C_Trip_Condition"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMIBits}&4",
+      "historicalDeadband": 1.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1=Tripped or Interlock Condition, 0=OK to run ",
+      "tagGroup": "Leased 5000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Boolean",
+      "name": "C_Trip_Condition",
+      "historyEnabled": false,
+      "opcServer": "KEPServerEX_CHP01"
+    }
+  ]
+}

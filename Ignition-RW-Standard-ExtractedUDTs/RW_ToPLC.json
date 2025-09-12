@@ -1,0 +1,95 @@
+{
+  "dataType": "Int4",
+  "name": "RW_ToPLC",
+  "value": 0,
+  "parameters": {
+    "Node": {
+      "dataType": "String"
+    },
+    "TIA_PLC_Name": {
+      "dataType": "String"
+    },
+    "Unit": {
+      "dataType": "String"
+    },
+    "TagName": {
+      "dataType": "String",
+      "value": ""
+    },
+    "ReferenceTagPath": {
+      "dataType": "String"
+    },
+    "Description": {
+      "dataType": "String"
+    }
+  },
+  "tagType": "UdtType",
+  "tags": [
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Tags.Table.\"{TagName}\""
+      },
+      "tooltip": {
+        "bindType": "parameter",
+        "binding": "{Description}"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Unit}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "historicalDeadbandMode": "Absolute",
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "documentation": "",
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.##",
+      "tagGroup": "Leased 1000",
+      "tagType": "AtomicTag",
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Float4",
+      "name": "Value",
+      "historyEnabled": true,
+      "value": 0.0,
+      "HistoryMaxAgeMode": "1.0",
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "sourceTagPath": {
+        "bindType": "parameter",
+        "binding": "{ReferenceTagPath}"
+      },
+      "valueSource": "reference",
+      "eventScripts": [
+        {
+          "eventid": "valueChanged",
+          "script": "\tsystem.tag.write(\"[.]Value\",currentValue.value)"
+        }
+      ],
+      "readOnly": true,
+      "dataType": "Float4",
+      "name": "Reference",
+      "tagType": "AtomicTag"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "window.mode": null,
+  "timeout": 30,
+  "screen": null,
+  "retries": -1,
+  "init.heap": null,
+  "max.heap": null,
+  "sun.java2d.d3d": null,
+  "sun.java2d.noddraw": null,
+  "jvm.arguments": [
+    ""
+  ],
+  "client.tag.overrides": {},
+  "fallback.application": "",
+  "use.custom.jre": false,
+  "custom.jre.path": "${JAVA_HOME}/bin/java",
+  "signature.verification.suppress.legacy": false,
+  "name": "BMC1-Controller",
+  "description": null,
+  "gateway.info": {
+    "gateway.name": "BMC1-Controller",
+    "gateway.address": "https://rno08-eam.redwoodmaterials.com:8043",
+    "redundant.gateways": []
+  },
+  "last.updated": 1757713619761,
+  "image.path": null,
+  "favorite": false
+}

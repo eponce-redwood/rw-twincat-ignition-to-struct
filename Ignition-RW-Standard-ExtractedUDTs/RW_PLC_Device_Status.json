@@ -1,0 +1,132 @@
+{
+  "name": "RW_PLC_Device_Status",
+  "typeId": "",
+  "parameters": {
+    "TIA_PLC_Name": {
+      "dataType": "String",
+      "value": "Hydromet_Pilot_LH1"
+    },
+    "Node": {
+      "dataType": "String",
+      "value": "LiConv-PLC1"
+    },
+    "Datablock_Name": {
+      "dataType": "String",
+      "value": "HMI_UserDiag"
+    },
+    "OPC_Server": {
+      "dataType": "String",
+      "value": "KEPServerEX_CHP01"
+    },
+    "DeviceIndex": {
+      "dataType": "Integer"
+    }
+  },
+  "tagType": "UdtType",
+  "tags": [
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.device[{DeviceIndex}].Name"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "rawHigh": 1000000.0,
+      "historyMaxAge": 12,
+      "historyTimeDeadband": 1,
+      "historicalDeadband": 1.5,
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.###",
+      "tagGroup": "Leased 60000",
+      "engUnit": "sec",
+      "tagType": "AtomicTag",
+      "scaledHigh": 1.0,
+      "scaleMode": "Off",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "String",
+      "name": "Name",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "SEC"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.device[{DeviceIndex}].IPAddress"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "rawHigh": 1000000.0,
+      "historyMaxAge": 12,
+      "historyTimeDeadband": 1,
+      "historicalDeadband": 1.5,
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.###",
+      "tagGroup": "Leased 60000",
+      "engUnit": "sec",
+      "tagType": "AtomicTag",
+      "scaledHigh": 1.0,
+      "scaleMode": "Off",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "String",
+      "name": "IPAddress",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "SEC"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.device[{DeviceIndex}].State"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "rawHigh": 1000000.0,
+      "historyMaxAge": 12,
+      "historyTimeDeadband": 1,
+      "historicalDeadband": 1.5,
+      "historicalDeadbandStyle": "Discrete",
+      "alarms": [
+        {
+          "mode": "OnCondition",
+          "name": "Device Error",
+          "priority": "Critical",
+          "activeCondition": {
+            "bindType": "Expression",
+            "value": "({[.]State} = 2) || ({[.]State} = 3)"
+          },
+          "label": {
+            "bindType": "Expression",
+            "value": "Concat(\"Connection Error: \",{Node},\" to \",{[.]Name},\" with IP: \",{[.]IPAddress})"
+          },
+          "displayPath": {
+            "bindType": "UDTParameter",
+            "value": "{PathToParentFolder}"
+          }
+        }
+      ],
+      "formatString": "#,##0.###",
+      "tagGroup": "Direct 1000",
+      "engUnit": "sec",
+      "tagType": "AtomicTag",
+      "scaledHigh": 1.0,
+      "scaleMode": "Off",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Int4",
+      "name": "State",
+      "historyEnabled": true,
+      "alarmEvalEnabled": true,
+      "historyTimeDeadbandUnits": "SEC"
+    }
+  ]
+}

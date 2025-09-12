@@ -1,0 +1,24 @@
+{
+  "name": "RW_Interlock_Equipment_Map",
+  "typeId": "",
+  "parameters": {
+    "FolderPath": {
+      "dataType": "String",
+      "value": "[RC1]RC1/Interlock/"
+    },
+    "Index": {
+      "dataType": "Integer",
+      "value": 1
+    }
+  },
+  "tagType": "UdtType",
+  "tags": [
+    {
+      "valueSource": "expr",
+      "expression": "If(\r\n    lookup({[RC1]RC1/Interlock/Equipment Mapping Dataset},{RootInstanceName},\"\",\"Equipment\",'Interlock'+{Index})=\"\",\r\n    \"\",\r\n    {FolderPath}+lookup({[RC1]RC1/Interlock/Equipment Mapping Dataset},{RootInstanceName},\"\",\"Equipment\",'Interlock'+{Index})\r\n    )",
+      "dataType": "String",
+      "name": "Interlock Path",
+      "tagType": "AtomicTag"
+    }
+  ]
+}
