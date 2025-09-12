@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_RW_EquipmentStatus_HMI_IgnitionExp" Id="{79e482da-19a5-4e7d-9ecd-0bdde26c3219}">
+    <Declaration><![CDATA[// No tags found to convert
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -20,18 +20,45 @@ from pathlib import Path
 class IgnitionToTwinCATConverter:
     """Converts Ignition tag definitions to TwinCAT struct format."""
     
-    # Data type mapping from Ignition to TwinCAT
+    # Data type mapping from Ignition to TwinCAT based on official documentation
+    # Reference: https://docs.inductiveautomation.com/docs/8.1/platform/tags/tag-data-types
+    # and TwinCAT IEC 61131-3 data types
     DATA_TYPE_MAPPING = {
+        # Standard Ignition primitives to TwinCAT
         'Boolean': 'BOOL',
-        'Float4': 'REAL',
-        'String': 'STRING',
-        'Int16': 'INT',
-        'Int32': 'DINT',
-        'Int4': 'INT',  # Added mapping for Int4
-        'UInt16': 'UINT',
-        'UInt32': 'UDINT',
-        'Double': 'LREAL',
-        'Byte': 'BYTE'
+        'Byte': 'USINT',           # Ignition Byte (0-255) -> TwinCAT USINT (0-255)
+        'Short': 'INT',            # Ignition Short (16-bit signed) -> TwinCAT INT
+        'Integer': 'DINT',         # Ignition Integer (32-bit signed) -> TwinCAT DINT
+        'Long': 'LINT',            # Ignition Long (64-bit signed) -> TwinCAT LINT
+        'Float': 'REAL',           # Ignition Float (32-bit) -> TwinCAT REAL
+        'Double': 'LREAL',         # Ignition Double (64-bit) -> TwinCAT LREAL
+        'String': 'STRING',        # Ignition String -> TwinCAT STRING
+        'DateTime': 'DT',          # Ignition DateTime -> TwinCAT DATE_AND_TIME (DT)
+        
+        # Legacy/alternate naming found in exports
+        'Boolean': 'BOOL',
+        'Float4': 'REAL',          # 4-byte float = REAL
+        'Float8': 'LREAL',         # 8-byte float = LREAL (double precision)
+        'Int4': 'DINT',            # 4-byte int = DINT
+        'Int8': 'SINT',            # 8-bit signed int = SINT
+        'Int16': 'INT',            # 16-bit signed int = INT
+        'Int32': 'DINT',           # 32-bit signed int = DINT
+        'UInt16': 'UINT',          # 16-bit unsigned int = UINT
+        'UInt32': 'UDINT',         # 32-bit unsigned int = UDINT
+        
+        # Array types (Ignition -> TwinCAT arrays)
+        'Byte Array': 'ARRAY[0..255] OF USINT',
+        'Short Array': 'ARRAY[0..255] OF INT',
+        'Integer Array': 'ARRAY[0..255] OF DINT',
+        'Long Array': 'ARRAY[0..255] OF LINT',
+        'Float Array': 'ARRAY[0..255] OF REAL',
+        'Double Array': 'ARRAY[0..255] OF LREAL',
+        'Boolean Array': 'ARRAY[0..255] OF BOOL',
+        'String Array': 'ARRAY[0..255] OF STRING',
+        'DateTime Array': 'ARRAY[0..255] OF DT',
+        
+        # Shorthand array names sometimes found in exports
+        'StringArray': 'ARRAY[0..255] OF STRING',
     }
     
     def __init__(self):
@@ -85,7 +112,17 @@ class IgnitionToTwinCATConverter:
         
         tag_info['name'] = name
         tag_info['dataType'] = data_type
-        tag_info['tooltip'] = tag.get('tooltip', '').strip()
+        
+        # Handle tooltip - can be string or dict with binding info
+        tooltip_raw = tag.get('tooltip', '')
+        if isinstance(tooltip_raw, dict):
+            # If tooltip is a dict with binding info, extract the binding or use empty string
+            tag_info['tooltip'] = tooltip_raw.get('binding', '').strip()
+        elif isinstance(tooltip_raw, str):
+            tag_info['tooltip'] = tooltip_raw.strip()
+        else:
+            tag_info['tooltip'] = str(tooltip_raw).strip()
+        
         tag_info['readOnly'] = tag.get('readOnly', False)
         
         # Clean up tooltip - remove unicode escape sequences and extra whitespace
@@ -226,15 +263,23 @@ class IgnitionToTwinCATConverter:
             # Add variable declaration with proper spacing
             var_line = f"        {var_name} : {twincat_type}"
             
-            # Add default value based on type
+            # Add default value based on TwinCAT type
             if twincat_type == 'BOOL':
                 var_line += " := FALSE"
             elif twincat_type in ['REAL', 'LREAL']:
                 var_line += " := 0.0"
-            elif twincat_type in ['INT', 'DINT', 'UINT', 'UDINT', 'BYTE']:
+            elif twincat_type in ['SINT', 'INT', 'DINT', 'LINT', 'USINT', 'UINT', 'UDINT', 'ULINT', 'BYTE', 'WORD', 'DWORD', 'LWORD']:
                 var_line += " := 0"
-            elif twincat_type == 'STRING':
+            elif twincat_type in ['STRING', 'WSTRING']:
                 var_line += " := ''"
+            elif twincat_type == 'DT':  # DATE_AND_TIME
+                var_line += " := DT#1970-01-01-00:00:00"
+            elif twincat_type.startswith('ARRAY'):
+                # For arrays, no default initialization needed (TwinCAT handles this)
+                pass
+            else:
+                # For any unmapped types, don't add default value
+                pass
             
             var_line += ";"
             

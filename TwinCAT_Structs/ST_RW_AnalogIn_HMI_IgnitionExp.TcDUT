@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_RW_AnalogIn_HMI_IgnitionExp" Id="{231d85a7-29b6-47fb-a4e3-751e30335749}">
+    <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
+    {attribute 'OPC.UA.DA' := '1'}
+    {attribute 'OPC.UA.DA.StructuredType' := '1'}
+    (*
+    ST_RW_AnalogIn_HMI_IgnitionExp
+    ==================================================
+    Generated from Ignition UDT: RW_Analog_In_V2
+    Total tags: 64
+    Generated on: 2025-09-12 15:49:02
+    *)
+    TYPE ST_RW_AnalogIn_HMI_IgnitionExp :
+    STRUCT
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'Out-of-Range (fail) Lo Limit (% of scale)'}
+        // Out-of-Range (fail) Lo Limit (% of scale)
+        HMI_Cfg_FailLoPct : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        HMI_Cfg_LoLim : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        HMI_Cfg_LoLoDB : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=High-High Alarm exists and will be checked'}
+        // 1=High-High Alarm exists and will be checked
+        HMI_Cfg_HasHiHiAlm : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Low Alarm exists and will be checked'}
+        // 1=Low Alarm exists and will be checked
+        HMI_Cfg_HasLoAlm : BOOL := FALSE;
+
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Out of Service is selected (supersedes Maint, Ovrd, Ext, Prog, Oper)'}
+        // 1=Out of Service is selected (supersedes Maint, Ovrd, Ext, Prog, Oper)
+        S_OoS : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Low-Low Alarm exists and will be checked'}
+        // 1=Low-Low Alarm exists and will be checked
+        HMI_Cfg_HasLoLoAlm : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1= Hi threshold monitoring Enabled 0= Disabled'}
+        // 1= Hi threshold monitoring Enabled 0= Disabled
+        I_EnHiAlm : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        HMI_Cfg_LoLoOnDly : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1= Lo threshold monitoring Enabled 0= Disabled'}
+        // 1= Lo threshold monitoring Enabled 0= Disabled
+        I_EnLoAlm : BOOL := FALSE;		// Read-only tag
+
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'Input (unscaled) Maximum for Scaling'}
+        // Input (unscaled) Maximum for Scaling
+        Cfg_InpRawMax : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        HMI_Cfg_HiHiDB : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Analog Input is below Low-Low limit'}
+        // 1=Analog Input is below Low-Low limit
+        S_Fail : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Reset required to clear High-High Alarm'}
+        // 1=Reset required to clear High-High Alarm
+        HMI_Cfg_HiHiResetReqd : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        HMI_Cfg_LoDB : REAL := 0.0;
+
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Maintenance Out of Service exists, can be selected'}
+        // 1=Maintenance Out of Service exists, can be selected
+        Cfg_HasOos : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'Packed bits to HMI'}
+        // Packed bits to HMI
+        S_HMISts : DINT := 0;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        HMI_Cfg_HiHiOffDly : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        HMI_Cfg_LoOnDly : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Analog Input is below Low limit'}
+        // 1=Analog Input is below Low limit
+        S_Lo : BOOL := FALSE;		// Read-only tag
+
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Analog Input Failure Alarm exists and will be checked'}
+        // 1=Analog Input Failure Alarm exists and will be checked
+        HMI_Cfg_HasFailAlm : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Reset required to clear Low-Low Alarm'}
+        // 1=Reset required to clear Low-Low Alarm
+        HMI_Cfg_LoLoResetReqd : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Analog Input is above High limit'}
+        // 1=Analog Input is above High limit
+        A_Hi : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        HMI_Cfg_HiHiLim : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Analog Input is below Low-Low limit'}
+        // 1=Analog Input is below Low-Low limit
+        S_LoLo : BOOL := FALSE;		// Read-only tag
+
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Analog Input is above High-High limit'}
+        // 1=Analog Input is above High-High limit
+        S_HiHi : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        HMI_Cfg_HiHiOnDly : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Allow Man selection of Substitute PV'}
+        // 1=Allow Man selection of Substitute PV
+        Cfg_AllowMan : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        HMI_Cfg_HiOffDly : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        Cfg_PVEUMax : REAL := 0.0;
+
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1= LoLo threshold monitoring Enabled 0= Disabled'}
+        // 1= LoLo threshold monitoring Enabled 0= Disabled
+        I_EnLoLoAlm : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Reset required to clear Low Alarm'}
+        // 1=Reset required to clear Low Alarm
+        HMI_Cfg_LoResetReqd : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Analog Input is below Low-Low limit'}
+        // 1=Analog Input is below Low-Low limit
+        A_LoLo : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1 = Bad Signal Quality/Communication Status of InputPV'}
+        // 1 = Bad Signal Quality/Communication Status of InputPV
+        I_PVBad : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Analog Input is above High-High limit'}
+        // 1=Analog Input is above High-High limit
+        A_HiHi : BOOL := FALSE;		// Read-only tag
+
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Analog Input is below Low-Low limit'}
+        // 1=Analog Input is below Low-Low limit
+        A_Fail : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        S_Val : REAL := 0.0;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'Operator Command to Reset all Alarms requiring Reset'}
+        // Operator Command to Reset all Alarms requiring Reset
+        HMI_C_Reset : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        HMI_Cfg_HiOnDly : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Analog Input is below Low limit'}
+        // 1=Analog Input is below Low limit
+        A_Lo : BOOL := FALSE;		// Read-only tag
+
+        {attribute 'OPC.UA.DA' := '1'}
+        HMI_Cfg_HiDB : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1= HiHi threshold monitoring Enabled 0= Disabled'}
+        // 1= HiHi threshold monitoring Enabled 0= Disabled
+        I_EnHiHiAlm : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Reset required to clear High Alarm'}
+        // 1=Reset required to clear High Alarm
+        HMI_Cfg_HiResetReqd : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        HMI_Cfg_LoLoOffDly : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        HistoricalDeadband : REAL := 0.0;
+
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Analog Input is above High limit'}
+        // 1=Analog Input is above High limit
+        S_Hi : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        HMI_Cfg_HiLim : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        HMI_Cfg_FailOffDly : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        S_ValInPV : REAL := 0.0;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1= Manual Command to use Substitute PV (override input)'}
+        // 1= Manual Command to use Substitute PV (override input)
+        HMI_C_ManAuto : BOOL := FALSE;
+
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'Input (unscaled) Minimum for Scaling'}
+        // Input (unscaled) Minimum for Scaling
+        Cfg_InpRawMin : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'Val is limited Lo or Hi'}
+        // Val is limited Lo or Hi
+        S_ValClamped : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        HMI_Cfg_FailOnDly : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        HMI_C_ManSet : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        HMI_Cfg_LoOffDly : REAL := 0.0;
+
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Reset required to clear Analog Input Failure Alarm'}
+        // 1=Reset required to clear Analog Input Failure Alarm
+        HMI_Cfg_FailResetReqd : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        Cfg_PVEUMin : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Using Substitute PV (overrides input), 0=Using live Input PV from device'}
+        // 1=Using Substitute PV (overrides input), 0=Using live Input PV from...
+        S_ManAuto : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'Analog Value in Percent %'}
+        // Analog Value in Percent %
+        S_ValPct : REAL := 0.0;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        HMI_Cfg_LoLoLim : REAL := 0.0;
+
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1= Maintenance Command to select Device OutOfService'}
+        // 1= Maintenance Command to select Device OutOfService
+        HMI_C_Oos : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'Out-of-Range (fail) High Limit (% of scale)'}
+        // Out-of-Range (fail) High Limit (% of scale)
+        HMI_Cfg_FailHiPct : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=High Alarm exists and will be checked'}
+        // 1=High Alarm exists and will be checked
+        HMI_Cfg_HasHiAlm : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        S_AlmNotify : DINT := 0;		// Read-only tag
+    END_STRUCT
+    END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

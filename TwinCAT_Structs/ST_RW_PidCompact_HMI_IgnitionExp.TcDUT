@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_RW_PidCompact_HMI_IgnitionExp" Id="{ab248c82-d355-490e-9788-bbc1daaaff51}">
+    <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
+    {attribute 'OPC.UA.DA' := '1'}
+    {attribute 'OPC.UA.DA.StructuredType' := '1'}
+    (*
+    ST_RW_PidCompact_HMI_IgnitionExp
+    ==================================================
+    Generated from Ignition UDT: RW_PID_Compact_V2
+    Total tags: 37
+    Generated on: 2025-09-12 15:49:03
+    *)
+    TYPE ST_RW_PidCompact_HMI_IgnitionExp :
+    STRUCT
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'Current Setpoint input value to PID block'}
+        // Current Setpoint input value to PID block
+        S_SP : REAL := 0.0;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'PID Proportional Gain'}
+        // PID Proportional Gain
+        Cfg_Kp : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1= SP is from the HMI; 0= SP from program'}
+        // 1= SP is from the HMI; 0= SP from program
+        S_SPFromHMI : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'PID Integral Action Time'}
+        // PID Integral Action Time
+        Cfg_Ki : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'PV Engineering Units Maximum Value (PVEU)'}
+        // PV Engineering Units Maximum Value (PVEU)
+        Cfg_PVEUMax : REAL := 0.0;		// Read-only tag
+
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'CV Engineering Units Minimum Value (CVEU)'}
+        // CV Engineering Units Minimum Value (CVEU)
+        Cfg_CVEUMin : REAL := 0.0;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1= Maintenance Command to select Device OutOfService'}
+        // 1= Maintenance Command to select Device OutOfService
+        HMI_C_Oos : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1= Select Manual/HMI control, 0= Auto/Program control'}
+        // 1= Select Manual/HMI control, 0= Auto/Program control
+        HMI_C_ManAuto : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Allow SP change from HMI'}
+        // 1=Allow SP change from HMI
+        Cfg_AllowSPFromHMI : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1= Manaul Mode from HMI , 0=Auto Program commands'}
+        // 1= Manaul Mode from HMI , 0=Auto Program commands
+        S_ManAuto : BOOL := FALSE;		// Read-only tag
+
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1= PID not in control of process device and will track C_TrackValue Input'}
+        // 1= PID not in control of process device and will track C_TrackValue...
+        C_Track : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'Setting for Setpoint Rate of Change Limit Increasing (EU/sec)'}
+        // Setting for Setpoint Rate of Change Limit Increasing (EU/sec)
+        HMI_Cfg_SPRisingROC : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'Setting for Setpoint Rate of Change Limit Decreasing (EU/sec)'}
+        // Setting for Setpoint Rate of Change Limit Decreasing (EU/sec)
+        HMI_Cfg_SPFallingROC : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Direct acting (E=PV-SP), 0=Reverse acting (E=SP-PV)'}
+        // 1=Direct acting (E=PV-SP), 0=Reverse acting (E=SP-PV)
+        Cfg_CtrlAction : REAL := 0.0;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'SP Engineering Units Minimum Value (EU)'}
+        // SP Engineering Units Minimum Value (EU)
+        HMI_Cfg_SPEUMin : REAL := 0.0;
+
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'Setting for Manual Rate of Change Limit Decreasing (CVEU/sec)'}
+        // Setting for Manual Rate of Change Limit Decreasing (CVEU/sec)
+        HMI_Cfg_ManCVFallingROC : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        S_CVOut : REAL := 0.0;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1= Auto; Program cmd to overide HMI selection of Manual Mode'}
+        // 1= Auto; Program cmd to overide HMI selection of Manual Mode
+        C_AutoOvrd : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'Setting for Manual Rate of Change Limit Increasing (CVEU/sec)'}
+        // Setting for Manual Rate of Change Limit Increasing (CVEU/sec)
+        HMI_Cfg_ManCVRisingROC : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'I/O Fault Status'}
+        // I/O Fault Status
+        I_IntlkTrip : BOOL := FALSE;		// Read-only tag
+
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'PID Derivative Time'}
+        // PID Derivative Time
+        Cfg_Kd : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Out of Service is selected (supersedes Maint, Ovrd, Ext, Prog, Oper)'}
+        // 1=Out of Service is selected (supersedes Maint, Ovrd, Ext, Prog, Oper)
+        S_OoS : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        HistoricalDeadband : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'SP Engineering Units Maximum Value (EU)'}
+        // SP Engineering Units Maximum Value (EU)
+        HMI_Cfg_SPEUMax : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'Packed bits to HMI CmdSrc and ORdys'}
+        // Packed bits to HMI CmdSrc and ORdys
+        S_HMIBits : DINT := 0;		// Read-only tag
+
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'CV Value to use with Interlock / Bad Value CV action (CVEU)'}
+        // CV Value to use with Interlock / Bad Value CV action (CVEU)
+        HMI_Cfg_IntlkCV : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1= SP is from the HMI; 0= SP from program'}
+        // 1= SP is from the HMI; 0= SP from program
+        HMI_C_SPFromHMI : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'Position above which valve is assumed open for the HMI object'}
+        // Position above which valve is assumed open for the HMI object
+        HMI_Cfg_MaxClosedPos : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'CV Engineering Units Maximum Value (CVEU)'}
+        // CV Engineering Units Maximum Value (CVEU)
+        Cfg_CVEUMax : REAL := 0.0;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'CV Value to use with Interlock / Bad Value CV action (CVEU)'}
+        // CV Value to use with Interlock / Bad Value CV action (CVEU)
+        HMI_Cfg_SetPointTrack : REAL := 0.0;
+
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'PID Active Mode: 4=Man, 3=Auto, 2=FineTune, 1=PreTune, 0=Inactive'}
+        // PID Active Mode: 4=Man, 3=Auto, 2=FineTune, 1=PreTune, 0=Inactive
+        S_State : DINT := 0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        I_PV : REAL := 0.0;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Allow Man control of motor from HMI'}
+        // 1=Allow Man control of motor from HMI
+        Cfg_AllowMan : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'Operator Setpoint Entry (Rate Limited)'}
+        // Operator Setpoint Entry (Rate Limited)
+        HMI_C_SP : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'Operator Manual CV output (Rate Limited)'}
+        // Operator Manual CV output (Rate Limited)
+        HMI_C_ManCV : REAL := 0.0;
+
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '1=Maintenance Out of Service exists, can be selected'}
+        // 1=Maintenance Out of Service exists, can be selected
+        Cfg_HasOos : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := 'PV Engineering Units Mimimum Value (PVEU)'}
+        // PV Engineering Units Mimimum Value (PVEU)
+        Cfg_PVEUMin : REAL := 0.0;		// Read-only tag
+    END_STRUCT
+    END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

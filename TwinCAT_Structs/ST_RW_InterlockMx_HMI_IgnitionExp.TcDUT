@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_RW_InterlockMx_HMI_IgnitionExp" Id="{53f1689b-cf35-490e-97c1-3524d1dd1d50}">
+    <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
+    {attribute 'OPC.UA.DA' := '1'}
+    {attribute 'OPC.UA.DA.StructuredType' := '1'}
+    (*
+    ST_RW_InterlockMx_HMI_IgnitionExp
+    ==================================================
+    Generated from Ignition UDT: RW_Interlock_MX
+    Total tags: 8
+    Generated on: 2025-09-12 15:49:02
+    *)
+    TYPE ST_RW_InterlockMx_HMI_IgnitionExp :
+    STRUCT
+        {attribute 'OPC.UA.DA' := '1'}
+        AllowAutomaticReset : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        Tripped : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        Clear_Condition : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        Trip_Condition : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        Reset : BOOL := FALSE;
+
+        {attribute 'OPC.UA.DA' := '1'}
+        Clear_TimeDelay : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        Trip_TimeDelay : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        Bypass : BOOL := FALSE;
+    END_STRUCT
+    END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
