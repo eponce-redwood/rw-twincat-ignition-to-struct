@@ -162,14 +162,14 @@ class IgnitionToTwinCATConverter:
             tag_name = tag.get('name', 'Unknown')
             
             if tag_type == 'Folder':
-                # For folders, flatten contents with prefix and use OPC UA pragmas for hierarchy
+                # For folders, process contents and track folder path for organization
                 folder_name = self._sanitize_name(tag_name)
                 nested_tags = tag.get('tags', [])
                 
-                # Create folder prefix for nested tags
+                # Create folder prefix for tracking hierarchy (for comments/organization)
                 new_prefix = f"{folder_prefix}{folder_name}_" if folder_prefix else f"{folder_name}_"
                 
-                # Recursively process folder contents with the prefix
+                # Recursively process folder contents with the prefix for tracking only
                 self._extract_tags_with_nested_structs(nested_tags, new_prefix)
                     
             elif tag_type == 'UdtInstance':
@@ -177,7 +177,7 @@ class IgnitionToTwinCATConverter:
                 type_id = tag.get('typeId', '')
                 instance_name = self._sanitize_name(tag_name)
                 
-                # Apply folder prefix if we're inside a folder
+                # Apply folder prefix for UDT instances to avoid naming conflicts
                 prefixed_name = f"{folder_prefix}{instance_name}" if folder_prefix else instance_name
                 
                 if type_id in self.udt_mapping:
@@ -196,10 +196,10 @@ class IgnitionToTwinCATConverter:
                     print(f"Warning: Unknown UDT type '{type_id}' for instance '{tag_name}'")
                     
             elif tag_type == 'AtomicTag' or tag.get('dataType'):
-                # Regular atomic tag - apply folder prefix and store folder path for OPC UA pragmas
-                tag_info = self._extract_tag_info(tag, folder_prefix)
+                # Regular atomic tag - use original name, store folder path for organization
+                tag_info = self._extract_tag_info(tag)  # Don't pass folder_prefix
                 if tag_info:
-                    # Store folder path for OPC UA pragma generation
+                    # Store folder path for OPC UA pragma generation and comments
                     tag_info['folder_path'] = folder_prefix.rstrip('_') if folder_prefix else None
                     self.tags.append(tag_info)
     
@@ -271,7 +271,7 @@ class IgnitionToTwinCATConverter:
         sanitized = sanitized.strip('_')
         return sanitized
     
-    def _extract_tag_info(self, tag, folder_prefix=""):
+    def _extract_tag_info(self, tag):
         """Extract relevant information from a single tag."""
         tag_info = {}
         
@@ -282,9 +282,8 @@ class IgnitionToTwinCATConverter:
         if not name or not data_type:
             return None
         
-        # Apply folder prefix to maintain hierarchy in flattened TwinCAT struct
-        prefixed_name = f"{folder_prefix}{name}" if folder_prefix else name
-        tag_info['name'] = self._sanitize_name(prefixed_name)
+        # Use original tag name without folder prefix
+        tag_info['name'] = self._sanitize_name(name)
         tag_info['dataType'] = data_type
         
         # Handle tooltip - can be string or dict with binding info

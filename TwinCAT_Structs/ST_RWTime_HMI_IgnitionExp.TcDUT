@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="ST_RWTime_HMI_IgnitionExp" Id="{a69c3f16-e097-4385-9a05-b62b9e05a888}">
+  <DUT Name="ST_RWTime_HMI_IgnitionExp" Id="{cd9f8a0c-c0b6-4ca7-b0b2-9b1f99c24a2d}">
     <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
     {attribute 'OPC.UA.DA' := '1'}
     {attribute 'OPC.UA.DA.StructuredType' := '1'}
@@ -9,7 +9,7 @@
     ==================================================
     Generated from Ignition UDT: RW_Time
     Total tags: 1
-    Generated on: 2025-09-15 12:47:19
+    Generated on: 2025-09-15 12:56:43
     *)
     TYPE ST_RWTime_HMI_IgnitionExp :
     STRUCT

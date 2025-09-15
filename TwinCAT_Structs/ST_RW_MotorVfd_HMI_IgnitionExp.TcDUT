@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="ST_RW_MotorVfd_HMI_IgnitionExp" Id="{4a9a16f8-db2d-4b4d-846a-3bcd7a2fca47}">
+  <DUT Name="ST_RW_MotorVfd_HMI_IgnitionExp" Id="{1e99475f-04a2-4fed-9afd-f18c8a78f1a7}">
     <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
     {attribute 'OPC.UA.DA' := '1'}
     {attribute 'OPC.UA.DA.StructuredType' := '1'}
@@ -9,54 +9,54 @@
     ==================================================
     Generated from Ignition UDT: RW_Motor_VFD
     Total tags: 20
-    Generated on: 2025-09-15 12:47:18
+    Generated on: 2025-09-15 12:56:43
     *)
     TYPE ST_RW_MotorVfd_HMI_IgnitionExp :
     STRUCT
         {attribute 'OPC.UA.DA' := '1'}
-        Command_Runtime_Counter_Reset : BOOL := FALSE;		// Folder: Command
+        Runtime_Counter_Reset : BOOL := FALSE;		// Folder: Command
         {attribute 'OPC.UA.DA' := '1'}
-        Command_Manual_Speed_Cmd : REAL := 0.0;		// Folder: Command
+        Manual_Speed_Cmd : REAL := 0.0;		// Folder: Command
         {attribute 'OPC.UA.DA' := '1'}
-        Command_Run_Command : BOOL := FALSE;		// Folder: Command
+        Run_Command : BOOL := FALSE;		// Folder: Command
         {attribute 'OPC.UA.DA' := '1'}
-        Command_Speed_SP : REAL := 0.0;		// Folder: Command
+        Speed_SP : REAL := 0.0;		// Folder: Command
         {attribute 'OPC.UA.DA' := '1'}
-        Command_Manual_Mode : BOOL := FALSE;		// Folder: Command
+        Manual_Mode : BOOL := FALSE;		// Folder: Command
 
         {attribute 'OPC.UA.DA' := '1'}
-        Command_Manual_Run : BOOL := FALSE;		// Folder: Command
+        Manual_Run : BOOL := FALSE;		// Folder: Command
         {attribute 'OPC.UA.DA' := '1'}
-        Command_Reverse_Direction : BOOL := FALSE;		// Folder: Command
+        Reverse_Direction : BOOL := FALSE;		// Folder: Command
         {attribute 'OPC.UA.DA' := '1'}
-        Command_Fault_Reset : BOOL := FALSE;		// Folder: Command
+        Fault_Reset : BOOL := FALSE;		// Folder: Command
         {attribute 'OPC.UA.DA' := '1'}
-        Status_Speed_Feedback_Hz : REAL := 0.0;		// Folder: Status
+        Speed_Feedback_Hz : REAL := 0.0;		// Folder: Status
         {attribute 'OPC.UA.DA' := '1'}
-        Status_Warning : BOOL := FALSE;		// Folder: Status
+        Warning : BOOL := FALSE;		// Folder: Status
 
         {attribute 'OPC.UA.DA' := '1'}
-        Status_Faulted : BOOL := FALSE;		// Folder: Status
+        Faulted : BOOL := FALSE;		// Folder: Status
         {attribute 'OPC.UA.DA' := '1'}
-        Status_Speed_Feedback_RPM : REAL := 0.0;		// Folder: Status
+        Speed_Feedback_RPM : REAL := 0.0;		// Folder: Status
         {attribute 'OPC.UA.DA' := '1'}
-        Status_Running : BOOL := FALSE;		// Folder: Status
+        Running : BOOL := FALSE;		// Folder: Status
         {attribute 'OPC.UA.DA' := '1'}
-        Status_Runtime_Counter : SINT := 0;		// Folder: Status
+        Runtime_Counter : SINT := 0;		// Folder: Status
         {attribute 'OPC.UA.DA' := '1'}
-        Status_Disconnect_Alarm : BOOL := FALSE;		// Folder: Status
+        Disconnect_Alarm : BOOL := FALSE;		// Folder: Status
 
         {attribute 'OPC.UA.DA' := '1'}
-        Status_Communication_Error : BOOL := FALSE;		// Folder: Status
+        Communication_Error : BOOL := FALSE;		// Folder: Status
         {attribute 'OPC.UA.DA' := '1'}
-        Status_Disconnect_Status : BOOL := FALSE;		// Folder: Status
+        Disconnect_Status : BOOL := FALSE;		// Folder: Status
         {attribute 'OPC.UA.DA' := '1'}
-        Status_Motor_Torque : REAL := 0.0;		// Folder: Status
+        Motor_Torque : REAL := 0.0;		// Folder: Status
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Access' := '1'}
-        Status_Interlock_Tripped : BOOL := FALSE;		// Read-only tag, // Folder: Status
+        Interlock_Tripped : BOOL := FALSE;		// Read-only tag, // Folder: Status
         {attribute 'OPC.UA.DA' := '1'}
-        Status_Motor_Current : REAL := 0.0;		// Folder: Status
+        Motor_Current : REAL := 0.0;		// Folder: Status
     END_STRUCT
     END_TYPE
 ]]></Declaration>

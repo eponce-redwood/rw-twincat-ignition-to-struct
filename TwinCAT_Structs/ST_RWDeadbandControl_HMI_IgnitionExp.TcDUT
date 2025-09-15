@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="ST_RWDeadbandControl_HMI_IgnitionExp" Id="{7b4da647-c98f-4aa0-978b-c3919477daba}">
+  <DUT Name="ST_RWDeadbandControl_HMI_IgnitionExp" Id="{15b3d308-a351-4299-a38a-ec411dee1d53}">
     <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
     {attribute 'OPC.UA.DA' := '1'}
     {attribute 'OPC.UA.DA.StructuredType' := '1'}
@@ -9,7 +9,7 @@
     ==================================================
     Generated from Ignition UDT: RW_DeadbandControl_V2
     Total tags: 10
-    Generated on: 2025-09-15 12:47:18
+    Generated on: 2025-09-15 12:56:43
     *)
     TYPE ST_RWDeadbandControl_HMI_IgnitionExp :
     STRUCT

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="ST_RW_MotorStarterHybridNew_HMI_IgnitionExp" Id="{2ec1486b-4666-45c2-98df-3f7677665389}">
+  <DUT Name="ST_RW_MotorStarterHybridNew_HMI_IgnitionExp" Id="{47e7df1a-0726-40ec-a99c-d0641b067fff}">
     <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
     {attribute 'OPC.UA.DA' := '1'}
     {attribute 'OPC.UA.DA.StructuredType' := '1'}
@@ -9,7 +9,7 @@
     ==================================================
     Generated from Ignition UDT: RW_Motor_Starter_Hybrid_New
     Total tags: 52
-    Generated on: 2025-09-15 12:47:18
+    Generated on: 2025-09-15 12:56:43
     *)
     TYPE ST_RW_MotorStarterHybridNew_HMI_IgnitionExp :
     STRUCT

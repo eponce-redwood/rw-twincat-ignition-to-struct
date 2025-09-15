@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="ST_RW_InterlockEquipmentMap_HMI_IgnitionExp" Id="{940f3a32-247e-48a0-aff3-63db75acdd64}">
+  <DUT Name="ST_RW_InterlockEquipmentMap_HMI_IgnitionExp" Id="{58238e8a-6e68-47d8-a508-aeb84bcdf8e3}">
     <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
     {attribute 'OPC.UA.DA' := '1'}
     {attribute 'OPC.UA.DA.StructuredType' := '1'}
@@ -9,7 +9,7 @@
     ==================================================
     Generated from Ignition UDT: RW_Interlock_Equipment_Map
     Total tags: 1
-    Generated on: 2025-09-15 12:47:18
+    Generated on: 2025-09-15 12:56:43
     *)
     TYPE ST_RW_InterlockEquipmentMap_HMI_IgnitionExp :
     STRUCT

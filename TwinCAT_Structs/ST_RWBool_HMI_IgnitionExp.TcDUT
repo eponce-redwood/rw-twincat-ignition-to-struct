@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="ST_RWBool_HMI_IgnitionExp" Id="{b1ac0e5b-30d7-4b46-830e-0853e7e72e21}">
+  <DUT Name="ST_RWBool_HMI_IgnitionExp" Id="{8da78447-5e8b-4862-bcff-9c1c857ead5a}">
     <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
     {attribute 'OPC.UA.DA' := '1'}
     {attribute 'OPC.UA.DA.StructuredType' := '1'}
@@ -9,7 +9,7 @@
     ==================================================
     Generated from Ignition UDT: RW_Bool
     Total tags: 1
-    Generated on: 2025-09-15 12:47:18
+    Generated on: 2025-09-15 12:56:43
     *)
     TYPE ST_RWBool_HMI_IgnitionExp :
     STRUCT
