@@ -61,11 +61,67 @@ class IgnitionToTwinCATConverter:
         'StringArray': 'ARRAY[0..255] OF STRING',
     }
     
-    def __init__(self):
+    def __init__(self, udt_mapping=None):
         self.tags = []
         self.struct_name = ""
         self.parameters = {}
         self.output_folder = "TwinCAT_Structs"
+        self.udt_mapping = udt_mapping or self._build_udt_mapping()
+        self.nested_structs = {}  # For tracking folder structures
+    
+    def _build_udt_mapping(self):
+        """Build mapping from Ignition UDT type IDs to TwinCAT struct names."""
+        import os
+        import glob
+        
+        udt_mapping = {}
+        
+        # Scan all JSON files in the UDT directory to build the mapping
+        udt_folder = "Ignition-RW-Standard-ExtractedUDTs"
+        if os.path.exists(udt_folder):
+            json_files = glob.glob(os.path.join(udt_folder, "*.json"))
+            
+            for json_file in json_files:
+                try:
+                    with open(json_file, 'r', encoding='utf-8') as file:
+                        data = json.load(file)
+                    
+                    # Extract the UDT name from the file
+                    udt_name = data.get('name', '')
+                    if udt_name:
+                        # Create the type ID pattern (assuming Redwood namespace)
+                        type_id = f"Redwood/{udt_name}"
+                        
+                        # Generate TwinCAT struct name using the same logic as generate_twincat_name
+                        twincat_name = self._generate_twincat_struct_name(udt_name)
+                        
+                        udt_mapping[type_id] = twincat_name
+                        
+                except Exception as e:
+                    print(f"Warning: Could not process {json_file} for UDT mapping: {e}")
+        
+        return udt_mapping
+    
+    def _generate_twincat_struct_name(self, ignition_name):
+        """Generate TwinCAT struct name from Ignition UDT name."""
+        # Convert name to TwinCAT naming convention
+        name_parts = []
+        current_part = ""
+        
+        for char in ignition_name:
+            if char == '_':
+                if current_part:
+                    name_parts.append(current_part.capitalize())
+                    current_part = ""
+            else:
+                current_part += char
+        
+        if current_part:
+            name_parts.append(current_part.capitalize())
+        
+        # Join parts and add prefix/suffix
+        converted_name = ''.join(name_parts)
+        return f"ST_{converted_name}_HMI_IgnitionExp"
     
     def load_ignition_json(self, json_file_path):
         """Load and parse the Ignition JSON file."""
@@ -77,16 +133,16 @@ class IgnitionToTwinCATConverter:
             self.struct_name = data.get('name', 'UnknownStruct')
             self.parameters = data.get('parameters', {})
             
-            # Extract tags
+            # Extract tags (recursively handle folders and nested structures)
             raw_tags = data.get('tags', [])
             self.tags = []
+            self.nested_structs = {}
             
-            for tag in raw_tags:
-                tag_info = self._extract_tag_info(tag)
-                if tag_info:
-                    self.tags.append(tag_info)
+            self._extract_tags_with_nested_structs(raw_tags)
             
             print(f"Loaded {len(self.tags)} tags from {json_file_path}")
+            if self.nested_structs:
+                print(f"Found {len(self.nested_structs)} nested structures")
             return True
             
         except FileNotFoundError:
@@ -99,7 +155,123 @@ class IgnitionToTwinCATConverter:
             print(f"Error loading file: {e}")
             return False
     
-    def _extract_tag_info(self, tag):
+    def _extract_tags_with_nested_structs(self, tags_array, folder_prefix=""):
+        """Extract tags while preserving folder hierarchy via OPC UA pragmas and handling UDT instances."""
+        for tag in tags_array:
+            tag_type = tag.get('tagType', '')
+            tag_name = tag.get('name', 'Unknown')
+            
+            if tag_type == 'Folder':
+                # For folders, flatten contents with prefix and use OPC UA pragmas for hierarchy
+                folder_name = self._sanitize_name(tag_name)
+                nested_tags = tag.get('tags', [])
+                
+                # Create folder prefix for nested tags
+                new_prefix = f"{folder_prefix}{folder_name}_" if folder_prefix else f"{folder_name}_"
+                
+                # Recursively process folder contents with the prefix
+                self._extract_tags_with_nested_structs(nested_tags, new_prefix)
+                    
+            elif tag_type == 'UdtInstance':
+                # Reference an existing UDT struct - this creates an actual struct reference
+                type_id = tag.get('typeId', '')
+                instance_name = self._sanitize_name(tag_name)
+                
+                # Apply folder prefix if we're inside a folder
+                prefixed_name = f"{folder_prefix}{instance_name}" if folder_prefix else instance_name
+                
+                if type_id in self.udt_mapping:
+                    twincat_struct_name = self.udt_mapping[type_id]
+                    
+                    udt_ref = {
+                        'name': prefixed_name,
+                        'twincat_type': twincat_struct_name,
+                        'access_rights': 'ReadWrite',
+                        'tooltip': f'UDT Instance: {tag_name} ({type_id})',
+                        'is_udt_reference': True,
+                        'folder_path': folder_prefix.rstrip('_') if folder_prefix else None
+                    }
+                    self.tags.append(udt_ref)
+                else:
+                    print(f"Warning: Unknown UDT type '{type_id}' for instance '{tag_name}'")
+                    
+            elif tag_type == 'AtomicTag' or tag.get('dataType'):
+                # Regular atomic tag - apply folder prefix and store folder path for OPC UA pragmas
+                tag_info = self._extract_tag_info(tag, folder_prefix)
+                if tag_info:
+                    # Store folder path for OPC UA pragma generation
+                    tag_info['folder_path'] = folder_prefix.rstrip('_') if folder_prefix else None
+                    self.tags.append(tag_info)
+    
+    def _extract_folder_contents(self, tags_array, folder_tags, folder_nested_structs):
+        """Extract contents of a folder into separate lists."""
+        for tag in tags_array:
+            tag_type = tag.get('tagType', '')
+            tag_name = tag.get('name', 'Unknown')
+            
+            if tag_type == 'Folder':
+                # Nested folder within folder
+                subfolder_name = self._sanitize_name(tag_name)
+                nested_tags = tag.get('tags', [])
+                
+                if nested_tags:
+                    subfolder_struct_name = f"ST_{subfolder_name}"
+                    subfolder_tags = []
+                    subfolder_nested_structs = {}
+                    
+                    self._extract_folder_contents(nested_tags, subfolder_tags, subfolder_nested_structs)
+                    
+                    folder_nested_structs[subfolder_struct_name] = {
+                        'tags': subfolder_tags,
+                        'nested_structs': subfolder_nested_structs
+                    }
+                    
+                    folder_ref = {
+                        'name': subfolder_name,
+                        'twincat_type': subfolder_struct_name,
+                        'access_rights': 'ReadWrite',
+                        'tooltip': f'Subfolder: {tag_name}',
+                        'is_nested_struct': True
+                    }
+                    folder_tags.append(folder_ref)
+                    
+            elif tag_type == 'UdtInstance':
+                # UDT instance within folder
+                type_id = tag.get('typeId', '')
+                instance_name = self._sanitize_name(tag_name)
+                
+                if type_id in self.udt_mapping:
+                    twincat_struct_name = self.udt_mapping[type_id]
+                    
+                    udt_ref = {
+                        'name': instance_name,
+                        'twincat_type': twincat_struct_name,
+                        'access_rights': 'ReadWrite',
+                        'tooltip': f'UDT Instance: {tag_name} ({type_id})',
+                        'is_udt_reference': True
+                    }
+                    folder_tags.append(udt_ref)
+                else:
+                    print(f"Warning: Unknown UDT type '{type_id}' for instance '{tag_name}'")
+                    
+            elif tag_type == 'AtomicTag' or tag.get('dataType'):
+                # Atomic tag within folder
+                tag_info = self._extract_tag_info(tag)
+                if tag_info:
+                    folder_tags.append(tag_info)
+    
+    def _sanitize_name(self, name):
+        """Sanitize name for TwinCAT compatibility."""
+        # Remove spaces and special characters, replace with underscores
+        import re
+        sanitized = re.sub(r'[^\w]', '_', name)
+        # Remove multiple consecutive underscores
+        sanitized = re.sub(r'_+', '_', sanitized)
+        # Remove leading/trailing underscores
+        sanitized = sanitized.strip('_')
+        return sanitized
+    
+    def _extract_tag_info(self, tag, folder_prefix=""):
         """Extract relevant information from a single tag."""
         tag_info = {}
         
@@ -110,7 +282,9 @@ class IgnitionToTwinCATConverter:
         if not name or not data_type:
             return None
         
-        tag_info['name'] = name
+        # Apply folder prefix to maintain hierarchy in flattened TwinCAT struct
+        prefixed_name = f"{folder_prefix}{name}" if folder_prefix else name
+        tag_info['name'] = self._sanitize_name(prefixed_name)
         tag_info['dataType'] = data_type
         
         # Handle tooltip - can be string or dict with binding info
@@ -195,23 +369,38 @@ class IgnitionToTwinCATConverter:
         return sanitized
     
     def _generate_opc_pragmas(self, tag):
-        """Generate OPC UA pragmas for a tag based on its properties."""
+        """Generate OPC UA pragmas for a tag, using actual tag descriptions."""
         pragmas = []
         
         # Basic OPC UA exposure (always enabled)
         pragmas.append("        {attribute 'OPC.UA.DA' := '1'}")
         
+        # For UDT references, enable StructuredType
+        if tag.get('is_udt_reference'):
+            pragmas.append("        {attribute 'OPC.UA.DA.StructuredType' := '1'}")
+        
         # Access rights - read-only if specified
-        if tag['readOnly']:
+        if tag.get('readOnly'):
             pragmas.append("        {attribute 'OPC.UA.DA.Access' := '1'}")
         
-        # Description from tooltip
-        if tag['tooltip']:
-            # Escape quotes in description
+        # Description from actual tag tooltip (not folder path)
+        if tag.get('tooltip'):
+            # Use the actual description from the Ignition tag
             description = tag['tooltip'].replace("'", "''")
             pragmas.append(f"        {{attribute 'OPC.UA.DA.Description' := '{description}'}}")
         
         return pragmas
+    
+    def _sanitize_name(self, name):
+        """Sanitize name for TwinCAT compatibility."""
+        # Remove spaces and special characters, replace with underscores
+        import re
+        sanitized = re.sub(r'[^\w]', '_', name)
+        # Remove multiple consecutive underscores
+        sanitized = re.sub(r'_+', '_', sanitized)
+        # Remove leading/trailing underscores
+        sanitized = sanitized.strip('_')
+        return sanitized
     
     def generate_twincat_struct(self):
         """Generate the TwinCAT struct definition (just the struct content)."""
@@ -243,25 +432,49 @@ class IgnitionToTwinCATConverter:
             if i > 0 and i % 5 == 0:
                 lines.append("")
             
-            # Generate OPC UA pragmas for this tag
-            opc_pragmas = self._generate_opc_pragmas(tag)
-            lines.extend(opc_pragmas)
+            # Generate OPC UA pragmas for atomic tags (not UDT references)
+            if not tag.get('is_udt_reference'):
+                opc_pragmas = self._generate_opc_pragmas(tag)
+                lines.extend(opc_pragmas)
+                
+                # Format comment if tooltip exists (for atomic tags only)
+                if tag.get('tooltip') and not tag.get('folder_path'):
+                    comment = tag['tooltip'].strip()
+                    if len(comment) > 70:
+                        comment = comment[:67] + "..."
+                    lines.append(f"        // {comment}")
             
-            # Format comment if tooltip exists (already included in pragma description, but keep as comment too)
-            if tag['tooltip']:
-                comment = tag['tooltip'].strip()
-                if len(comment) > 70:
-                    comment = comment[:67] + "..."
-                lines.append(f"        // {comment}")
+            line = self._generate_tag_line(tag)
+            if line:
+                lines.append(f"        {line}")
+        
+        lines.append("    END_STRUCT")
+        lines.append("    END_TYPE")
+        
+        return "\n".join(lines)
+    
+    def _generate_tag_line(self, tag):
+        """Generate a single tag line for TwinCAT struct."""
+        var_name = self._sanitize_variable_name(tag['name'])
+        
+        # Handle different tag types
+        if tag.get('is_udt_reference'):
+            # Reference to another UDT struct
+            twincat_type = tag['twincat_type']
+            var_line = f"{var_name} : {twincat_type};"
             
-            # Sanitize variable name
-            var_name = self._sanitize_variable_name(tag['name'])
+            # Add tooltip as comment
+            if tag.get('tooltip'):
+                var_line += f"\t\t// {tag['tooltip']}"
+                
+        else:
+            # Regular atomic tag - generate pragmas and variable declaration
             
             # Map data type
             twincat_type = self._map_data_type(tag['dataType'])
             
             # Add variable declaration with proper spacing
-            var_line = f"        {var_name} : {twincat_type}"
+            var_line = f"{var_name} : {twincat_type}"
             
             # Add default value based on TwinCAT type
             if twincat_type == 'BOOL':
@@ -284,13 +497,18 @@ class IgnitionToTwinCATConverter:
             var_line += ";"
             
             # Add read-only comment if applicable
-            if tag['readOnly']:
+            if tag.get('readOnly'):
                 var_line += "\t\t// Read-only tag"
             
-            lines.append(var_line)
+            # Add folder path comment if applicable
+            if tag.get('folder_path'):
+                folder_comment = f"\t\t// Folder: {tag['folder_path'].replace('_', '/')}"
+                if not tag.get('readOnly'):
+                    var_line += folder_comment
+                else:
+                    var_line += f", {folder_comment.strip()}"
         
-        lines.append("    END_STRUCT")
-        lines.append("    END_TYPE")
+        return var_line
         
         return "\n".join(lines)
     
@@ -352,21 +570,46 @@ class IgnitionToTwinCATConverter:
         print(f"TwinCAT Struct Name: {twincat_name}")
         print(f"Total Tags: {len(self.tags)}")
         
-        # Count data types
+        if self.nested_structs:
+            print(f"Nested Structures: {len(self.nested_structs)}")
+        
+        # Count different tag types
+        atomic_tags = 0
+        nested_struct_refs = 0
+        udt_refs = 0
         type_counts = {}
+        
         for tag in self.tags:
-            dt = tag['dataType']
-            type_counts[dt] = type_counts.get(dt, 0) + 1
+            if tag.get('is_nested_struct'):
+                nested_struct_refs += 1
+            elif tag.get('is_udt_reference'):
+                udt_refs += 1
+            else:
+                # Regular atomic tag
+                atomic_tags += 1
+                dt = tag.get('dataType', 'Unknown')
+                type_counts[dt] = type_counts.get(dt, 0) + 1
         
-        print("\nData Type Distribution:")
-        for dt, count in type_counts.items():
-            twincat_type = self._map_data_type(dt)
-            print(f"  {dt} -> {twincat_type}: {count} tags")
+        print(f"\nTag Composition:")
+        print(f"  Atomic tags: {atomic_tags}")
+        print(f"  Nested struct references: {nested_struct_refs}")
+        print(f"  UDT references: {udt_refs}")
         
-        # Count read-only tags
-        readonly_count = sum(1 for tag in self.tags if tag['readOnly'])
-        print(f"\nRead-only tags: {readonly_count}")
-        print(f"Read-write tags: {len(self.tags) - readonly_count}")
+        if type_counts:
+            print("\nAtomic Data Type Distribution:")
+            for dt, count in type_counts.items():
+                twincat_type = self._map_data_type(dt)
+                print(f"  {dt} -> {twincat_type}: {count} tags")
+        
+        # Count read-only tags (only for atomic tags)
+        readonly_count = sum(1 for tag in self.tags if tag.get('readOnly') and not tag.get('is_nested_struct') and not tag.get('is_udt_reference'))
+        readwrite_count = atomic_tags - readonly_count
+        
+        if atomic_tags > 0:
+            print(f"\nAtomic Tag Access:")
+            print(f"  Read-only: {readonly_count}")
+            print(f"  Read-write: {readwrite_count}")
+        
         print("="*60)
 
 

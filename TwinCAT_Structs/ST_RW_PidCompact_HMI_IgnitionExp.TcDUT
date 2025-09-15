@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="ST_RW_PidCompact_HMI_IgnitionExp" Id="{ab248c82-d355-490e-9788-bbc1daaaff51}">
+  <DUT Name="ST_RW_PidCompact_HMI_IgnitionExp" Id="{b00776ec-f5c0-463e-a4b7-d6069e266a7b}">
     <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
     {attribute 'OPC.UA.DA' := '1'}
     {attribute 'OPC.UA.DA.StructuredType' := '1'}
@@ -9,7 +9,7 @@
     ==================================================
     Generated from Ignition UDT: RW_PID_Compact_V2
     Total tags: 37
-    Generated on: 2025-09-12 15:49:03
+    Generated on: 2025-09-15 12:47:18
     *)
     TYPE ST_RW_PidCompact_HMI_IgnitionExp :
     STRUCT

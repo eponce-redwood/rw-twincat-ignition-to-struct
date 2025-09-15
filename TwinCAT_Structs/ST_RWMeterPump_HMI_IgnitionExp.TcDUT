@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="ST_RWMeterPump_HMI_IgnitionExp" Id="{0ae32db9-f878-4109-82d0-34dd8885fbc6}">
+  <DUT Name="ST_RWMeterPump_HMI_IgnitionExp" Id="{368223c4-84e7-40b6-81b4-298a58c4fcbc}">
     <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
     {attribute 'OPC.UA.DA' := '1'}
     {attribute 'OPC.UA.DA.StructuredType' := '1'}
@@ -8,8 +8,8 @@
     ST_RWMeterPump_HMI_IgnitionExp
     ==================================================
     Generated from Ignition UDT: RW_MeterPump
-    Total tags: 35
-    Generated on: 2025-09-12 15:49:02
+    Total tags: 66
+    Generated on: 2025-09-15 12:47:18
     *)
     TYPE ST_RWMeterPump_HMI_IgnitionExp :
     STRUCT
@@ -160,6 +160,43 @@
         {attribute 'OPC.UA.DA.Description' := '1 = Motor Failed to Start'}
         // 1 = Motor Failed to Start
         A_FailToOpen : BOOL := FALSE;		// Read-only tag
+        Interlocks_Interlock_8 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 8 (Redwood/RW_Interlock_Equipment_Map)
+        Interlocks_Interlock_24 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 24 (Redwood/RW_Interlock_Equipment_Map)
+        Interlocks_Interlock_28 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 28 (Redwood/RW_Interlock_Equipment_Map)
+        Interlocks_Interlock_7 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 7 (Redwood/RW_Interlock_Equipment_Map)
+
+        Interlocks_Interlock_5 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 5 (Redwood/RW_Interlock_Equipment_Map)
+        Interlocks_Interlock_12 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 12 (Redwood/RW_Interlock_Equipment_Map)
+        Interlocks_Interlock_9 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 9 (Redwood/RW_Interlock_Equipment_Map)
+        Interlocks_Interlock_10 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 10 (Redwood/RW_Interlock_Equipment_Map)
+        Interlocks_Interlock_3 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 3 (Redwood/RW_Interlock_Equipment_Map)
+
+        Interlocks_Interlock_27 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 27 (Redwood/RW_Interlock_Equipment_Map)
+        Interlocks_Interlock_26 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 26 (Redwood/RW_Interlock_Equipment_Map)
+        Interlocks_Interlock_30 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 30 (Redwood/RW_Interlock_Equipment_Map)
+        Interlocks_Interlock_22 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 22 (Redwood/RW_Interlock_Equipment_Map)
+        Interlocks_Interlock_13 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 13 (Redwood/RW_Interlock_Equipment_Map)
+
+        Interlocks_Interlock_29 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 29 (Redwood/RW_Interlock_Equipment_Map)
+        Interlocks_Interlock_16 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 16 (Redwood/RW_Interlock_Equipment_Map)
+        Interlocks_Interlock_31 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 31 (Redwood/RW_Interlock_Equipment_Map)
+        Interlocks_Interlock_17 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 17 (Redwood/RW_Interlock_Equipment_Map)
+        Interlocks_Interlock_19 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 19 (Redwood/RW_Interlock_Equipment_Map)
+
+        Interlocks_Interlock_14 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 14 (Redwood/RW_Interlock_Equipment_Map)
+        Interlocks_Interlock_1 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 1 (Redwood/RW_Interlock_Equipment_Map)
+        Interlocks_Interlock_11 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 11 (Redwood/RW_Interlock_Equipment_Map)
+        Interlocks_Interlock_18 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 18 (Redwood/RW_Interlock_Equipment_Map)
+        Interlocks_Interlock_20 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 20 (Redwood/RW_Interlock_Equipment_Map)
+
+        Interlocks_Interlock_15 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 15 (Redwood/RW_Interlock_Equipment_Map)
+        Interlocks_Interlock_4 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 4 (Redwood/RW_Interlock_Equipment_Map)
+        Interlocks_Interlock_2 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 2 (Redwood/RW_Interlock_Equipment_Map)
+        Interlocks_Interlock_6 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 6 (Redwood/RW_Interlock_Equipment_Map)
+        Interlocks_Interlock_25 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 25 (Redwood/RW_Interlock_Equipment_Map)
+
+        Interlocks_Interlock_21 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 21 (Redwood/RW_Interlock_Equipment_Map)
+        Interlocks_Interlock_23 : ST_RwInterlockEquipmentMap_HMI_IgnitionExp;		// UDT Instance: Interlock 23 (Redwood/RW_Interlock_Equipment_Map)
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Access' := '1'}
         {attribute 'OPC.UA.DA.Description' := '1 = Motor Failed to Stop'}
@@ -172,6 +209,7 @@
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Access' := '1'}
         S_Stopped : BOOL := FALSE;		// Read-only tag
+
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Access' := '1'}
         {attribute 'OPC.UA.DA.Description' := 'Speed SP From Auto Function'}
