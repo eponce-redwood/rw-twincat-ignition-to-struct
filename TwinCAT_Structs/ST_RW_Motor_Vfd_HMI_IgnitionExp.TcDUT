@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_RW_Motor_Vfd_HMI_IgnitionExp" Id="{7c46196c-b1e2-4c66-aa8b-e314d0e0e3d9}">
+    <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
+    {attribute 'OPC.UA.DA' := '1'}
+    {attribute 'OPC.UA.DA.StructuredType' := '1'}
+    (*
+    ST_RW_Motor_Vfd_HMI_IgnitionExp
+    ==================================================
+    Generated from Ignition UDT: RW_Motor_VFD
+    Total tags: 20
+    Generated on: 2025-09-15 13:03:45
+    *)
+    TYPE ST_RW_Motor_Vfd_HMI_IgnitionExp :
+    STRUCT
+        {attribute 'OPC.UA.DA' := '1'}
+        Runtime_Counter_Reset : BOOL := FALSE;		// Folder: Command
+        {attribute 'OPC.UA.DA' := '1'}
+        Manual_Speed_Cmd : REAL := 0.0;		// Folder: Command
+        {attribute 'OPC.UA.DA' := '1'}
+        Run_Command : BOOL := FALSE;		// Folder: Command
+        {attribute 'OPC.UA.DA' := '1'}
+        Speed_SP : REAL := 0.0;		// Folder: Command
+        {attribute 'OPC.UA.DA' := '1'}
+        Manual_Mode : BOOL := FALSE;		// Folder: Command
+
+        {attribute 'OPC.UA.DA' := '1'}
+        Manual_Run : BOOL := FALSE;		// Folder: Command
+        {attribute 'OPC.UA.DA' := '1'}
+        Reverse_Direction : BOOL := FALSE;		// Folder: Command
+        {attribute 'OPC.UA.DA' := '1'}
+        Fault_Reset : BOOL := FALSE;		// Folder: Command
+        {attribute 'OPC.UA.DA' := '1'}
+        Speed_Feedback_Hz : REAL := 0.0;		// Folder: Status
+        {attribute 'OPC.UA.DA' := '1'}
+        Warning : BOOL := FALSE;		// Folder: Status
+
+        {attribute 'OPC.UA.DA' := '1'}
+        Faulted : BOOL := FALSE;		// Folder: Status
+        {attribute 'OPC.UA.DA' := '1'}
+        Speed_Feedback_RPM : REAL := 0.0;		// Folder: Status
+        {attribute 'OPC.UA.DA' := '1'}
+        Running : BOOL := FALSE;		// Folder: Status
+        {attribute 'OPC.UA.DA' := '1'}
+        Runtime_Counter : SINT := 0;		// Folder: Status
+        {attribute 'OPC.UA.DA' := '1'}
+        Disconnect_Alarm : BOOL := FALSE;		// Folder: Status
+
+        {attribute 'OPC.UA.DA' := '1'}
+        Communication_Error : BOOL := FALSE;		// Folder: Status
+        {attribute 'OPC.UA.DA' := '1'}
+        Disconnect_Status : BOOL := FALSE;		// Folder: Status
+        {attribute 'OPC.UA.DA' := '1'}
+        Motor_Torque : REAL := 0.0;		// Folder: Status
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        Interlock_Tripped : BOOL := FALSE;		// Read-only tag, // Folder: Status
+        {attribute 'OPC.UA.DA' := '1'}
+        Motor_Current : REAL := 0.0;		// Folder: Status
+    END_STRUCT
+    END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

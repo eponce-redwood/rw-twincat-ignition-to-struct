@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_RW_Digital_Valve_HMI_IgnitionExp" Id="{d9549bc7-7d9a-4e38-a2e1-f632cdfa4903}">
+    <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
+    {attribute 'OPC.UA.DA' := '1'}
+    {attribute 'OPC.UA.DA.StructuredType' := '1'}
+    (*
+    ST_RW_Digital_Valve_HMI_IgnitionExp
+    ==================================================
+    Generated from Ignition UDT: RW_Digital_Valve
+    Total tags: 17
+    Generated on: 2025-09-15 13:03:45
+    *)
+    TYPE ST_RW_Digital_Valve_HMI_IgnitionExp :
+    STRUCT
+        {attribute 'OPC.UA.DA' := '1'}
+        Fail_to_Open_Alarm_Time : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        Open_Feedback : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        Manual_Open_Command : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        Manual_Mode : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        Fail_to_Close_Alarm : BOOL := FALSE;
+
+        {attribute 'OPC.UA.DA' := '1'}
+        Stuck_Sensor_Alarm : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        Evaluate_Open_Feedback : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        Fail_to_Open_Alarm : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        Active_Alarm : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        NO_Valve : BOOL := FALSE;		// Read-only tag
+
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        Open_Command : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        Interlock_Tripped : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        Stuck_Sensor_Alarm_Time : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        Evaluate_Closed_Feedback : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        Fail_to_Close_Alarm_Time : REAL := 0.0;
+
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        Closed_Feedback : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        Valve_Open : BOOL := FALSE;
+    END_STRUCT
+    END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

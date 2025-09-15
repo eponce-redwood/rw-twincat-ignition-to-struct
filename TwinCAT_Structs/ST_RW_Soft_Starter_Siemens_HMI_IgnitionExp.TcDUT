@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_RW_Soft_Starter_Siemens_HMI_IgnitionExp" Id="{d44bf869-df8d-4442-908b-c53a29d91cd5}">
+    <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
+    {attribute 'OPC.UA.DA' := '1'}
+    {attribute 'OPC.UA.DA.StructuredType' := '1'}
+    (*
+    ST_RW_Soft_Starter_Siemens_HMI_IgnitionExp
+    ==================================================
+    Generated from Ignition UDT: RW_Soft_Starter_Siemens
+    Total tags: 17
+    Generated on: 2025-09-15 13:03:45
+    *)
+    TYPE ST_RW_Soft_Starter_Siemens_HMI_IgnitionExp :
+    STRUCT
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        Interlock_Tripped : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        Manual_Cmd : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        Runtime_Counter : SINT := 0;
+        {attribute 'OPC.UA.DA' := '1'}
+        Starter_Faulted : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        Fault_Reset : BOOL := FALSE;
+
+        {attribute 'OPC.UA.DA' := '1'}
+        Communication_Error : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        Running : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        Feedback_Mismatch_Alarm_Timer : LREAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        Manual_Mode : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        Disconnect_Enable : BOOL := FALSE;
+
+        {attribute 'OPC.UA.DA' := '1'}
+        Run_Feedback_Enable : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        Runtime_Counter_Reset : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        Run_Feedback : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        Command : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        Disconnect : BOOL := FALSE;
+
+        {attribute 'OPC.UA.DA' := '1'}
+        Feedback_Mismatch_Alarm : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        Disconnect_Alarm : BOOL := FALSE;
+    END_STRUCT
+    END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

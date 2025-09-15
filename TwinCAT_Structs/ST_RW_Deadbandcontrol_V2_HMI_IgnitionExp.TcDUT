@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_RW_Deadbandcontrol_V2_HMI_IgnitionExp" Id="{9b70709d-78d0-4370-b2c9-5c4b526cbdc0}">
+    <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
+    {attribute 'OPC.UA.DA' := '1'}
+    {attribute 'OPC.UA.DA.StructuredType' := '1'}
+    (*
+    ST_RW_Deadbandcontrol_V2_HMI_IgnitionExp
+    ==================================================
+    Generated from Ignition UDT: RW_DeadbandControl_V2
+    Total tags: 10
+    Generated on: 2025-09-15 13:03:45
+    *)
+    TYPE ST_RW_Deadbandcontrol_V2_HMI_IgnitionExp :
+    STRUCT
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '{Description}'}
+        // {Description}
+        SP : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '{Description}'}
+        // {Description}
+        On_Delay : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '{Description}'}
+        // {Description}
+        Off_Delay : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '{Description}'}
+        // {Description}
+        Batch_Duration : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '{Description}'}
+        // {Description}
+        Batch_Loop_Status : BOOL := FALSE;
+
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '{Description}'}
+        // {Description}
+        Output : BOOL := FALSE;		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '{Description}'}
+        // {Description}
+        Range : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '{Description}'}
+        // {Description}
+        Batch_Gap : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '{Description}'}
+        // {Description}
+        Sequence_Switch : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        {attribute 'OPC.UA.DA.Description' := '{Description}'}
+        // {Description}
+        PV : REAL := 0.0;		// Read-only tag
+    END_STRUCT
+    END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

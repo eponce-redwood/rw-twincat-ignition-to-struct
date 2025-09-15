@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_RW_Bool_HMI_IgnitionExp" Id="{5d95204e-b454-4fcb-b0a0-25633c4144cd}">
+    <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
+    {attribute 'OPC.UA.DA' := '1'}
+    {attribute 'OPC.UA.DA.StructuredType' := '1'}
+    (*
+    ST_RW_Bool_HMI_IgnitionExp
+    ==================================================
+    Generated from Ignition UDT: RW_Bool
+    Total tags: 1
+    Generated on: 2025-09-15 13:03:45
+    *)
+    TYPE ST_RW_Bool_HMI_IgnitionExp :
+    STRUCT
+        {attribute 'OPC.UA.DA' := '1'}
+        Value : BOOL := FALSE;
+    END_STRUCT
+    END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

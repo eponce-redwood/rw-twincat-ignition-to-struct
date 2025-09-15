@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_RW_Plc_Device_Status_HMI_IgnitionExp" Id="{e8cbd7ed-96bf-4374-81bf-c3d02d5d42db}">
+    <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
+    {attribute 'OPC.UA.DA' := '1'}
+    {attribute 'OPC.UA.DA.StructuredType' := '1'}
+    (*
+    ST_RW_Plc_Device_Status_HMI_IgnitionExp
+    ==================================================
+    Generated from Ignition UDT: RW_PLC_Device_Status
+    Total tags: 3
+    Generated on: 2025-09-15 13:03:45
+    *)
+    TYPE ST_RW_Plc_Device_Status_HMI_IgnitionExp :
+    STRUCT
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        Name : STRING := '';		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        IPAddress : STRING := '';		// Read-only tag
+        {attribute 'OPC.UA.DA' := '1'}
+        {attribute 'OPC.UA.DA.Access' := '1'}
+        State : DINT := 0;		// Read-only tag
+    END_STRUCT
+    END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

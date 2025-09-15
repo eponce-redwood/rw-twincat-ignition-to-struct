@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_RW_Analog_Out_HMI_IgnitionExp" Id="{a851200c-914a-4552-9c75-4e575029d1ca}">
+    <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
+    {attribute 'OPC.UA.DA' := '1'}
+    {attribute 'OPC.UA.DA.StructuredType' := '1'}
+    (*
+    ST_RW_Analog_Out_HMI_IgnitionExp
+    ==================================================
+    Generated from Ignition UDT: RW_Analog_Out
+    Total tags: 7
+    Generated on: 2025-09-15 13:03:45
+    *)
+    TYPE ST_RW_Analog_Out_HMI_IgnitionExp :
+    STRUCT
+        {attribute 'OPC.UA.DA' := '1'}
+        Process_Scale_Min : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        HistoricalDeadband : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        Output_Scaled : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        AllowManualOverride : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        Process_Scale_Max : REAL := 0.0;
+
+        {attribute 'OPC.UA.DA' := '1'}
+        Manual_Output : REAL := 0.0;
+        {attribute 'OPC.UA.DA' := '1'}
+        Manual_Mode : BOOL := FALSE;
+    END_STRUCT
+    END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

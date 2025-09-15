@@ -104,23 +104,31 @@ class IgnitionToTwinCATConverter:
     
     def _generate_twincat_struct_name(self, ignition_name):
         """Generate TwinCAT struct name from Ignition UDT name."""
-        # Convert name to TwinCAT naming convention
+        # Convert name to TwinCAT naming convention - preserve underscores for consistency
         name_parts = []
         current_part = ""
         
         for char in ignition_name:
             if char == '_':
                 if current_part:
-                    name_parts.append(current_part.capitalize())
+                    # Keep original case for short parts (like "RW", "V2"), capitalize longer parts
+                    if len(current_part) <= 2 and current_part.isupper():
+                        name_parts.append(current_part)
+                    else:
+                        name_parts.append(current_part.capitalize())
                     current_part = ""
             else:
                 current_part += char
         
         if current_part:
-            name_parts.append(current_part.capitalize())
+            # Keep original case for short parts (like "RW", "V2"), capitalize longer parts
+            if len(current_part) <= 2 and current_part.isupper():
+                name_parts.append(current_part)
+            else:
+                name_parts.append(current_part.capitalize())
         
-        # Join parts and add prefix/suffix
-        converted_name = ''.join(name_parts)
+        # Join parts with underscores and add prefix/suffix
+        converted_name = '_'.join(name_parts)
         return f"ST_{converted_name}_HMI_IgnitionExp"
     
     def load_ignition_json(self, json_file_path):
@@ -407,7 +415,7 @@ class IgnitionToTwinCATConverter:
             return "// No tags found to convert"
         
         # Convert struct name to TwinCAT convention
-        twincat_struct_name = self._convert_to_twincat_name(self.struct_name)
+        twincat_struct_name = self._generate_twincat_struct_name(self.struct_name)
         
         lines = []
         
@@ -513,7 +521,7 @@ class IgnitionToTwinCATConverter:
     
     def generate_twincat_xml(self):
         """Generate the complete TwinCAT XML file content."""
-        twincat_struct_name = self._convert_to_twincat_name(self.struct_name)
+        twincat_struct_name = self._generate_twincat_struct_name(self.struct_name)
         struct_content = self.generate_twincat_struct()
         
         # Generate a unique GUID for this DUT
@@ -543,7 +551,7 @@ class IgnitionToTwinCATConverter:
         
         if output_path is None:
             # Generate filename with TwinCAT naming convention and .TcDUT extension
-            twincat_struct_name = self._convert_to_twincat_name(self.struct_name)
+            twincat_struct_name = self._generate_twincat_struct_name(self.struct_name)
             output_path = os.path.join(self.output_folder, f"{twincat_struct_name}.TcDUT")
         
         # Generate XML content
@@ -560,7 +568,7 @@ class IgnitionToTwinCATConverter:
     
     def print_summary(self):
         """Print conversion summary."""
-        twincat_name = self._convert_to_twincat_name(self.struct_name)
+        twincat_name = self._generate_twincat_struct_name(self.struct_name)
         
         print("\n" + "="*60)
         print("CONVERSION SUMMARY")
@@ -637,7 +645,7 @@ def main():
             converter.print_summary()
             
             # Show the TwinCAT struct name conversion
-            twincat_name = converter._convert_to_twincat_name(converter.struct_name)
+            twincat_name = converter._generate_twincat_struct_name(converter.struct_name)
             print(f"\n🔄 Name Conversion:")
             print(f"   Ignition UDT: {converter.struct_name}")
             print(f"   TwinCAT Struct: {twincat_name}")

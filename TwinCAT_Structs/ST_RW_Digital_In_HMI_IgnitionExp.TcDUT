@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="ST_RW_Digital_In_HMI_IgnitionExp" Id="{e76f71e0-2d08-40cb-9d2e-cc17fc300d4a}">
+    <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
+    {attribute 'OPC.UA.DA' := '1'}
+    {attribute 'OPC.UA.DA.StructuredType' := '1'}
+    (*
+    ST_RW_Digital_In_HMI_IgnitionExp
+    ==================================================
+    Generated from Ignition UDT: RW_Digital_In
+    Total tags: 7
+    Generated on: 2025-09-15 13:03:45
+    *)
+    TYPE ST_RW_Digital_In_HMI_IgnitionExp :
+    STRUCT
+        {attribute 'OPC.UA.DA' := '1'}
+        Highest_Active_Property : DINT := 0;
+        {attribute 'OPC.UA.DA' := '1'}
+        Manual_Input : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        AllowManualOverride : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        Manual_Mode : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        Input_Raw : BOOL := FALSE;
+
+        {attribute 'OPC.UA.DA' := '1'}
+        Alarm_Active : BOOL := FALSE;
+        {attribute 'OPC.UA.DA' := '1'}
+        Input : BOOL := FALSE;
+    END_STRUCT
+    END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
