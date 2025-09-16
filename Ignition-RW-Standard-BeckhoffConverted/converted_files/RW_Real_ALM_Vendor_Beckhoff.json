@@ -431,7 +431,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Process_Alm_Time_HiHi@Long"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Process_Alm_Time_HiHi"
       },
       "valueSource": "opc",
       "rawHigh": 1000.0,
@@ -503,7 +503,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Process_Alm_Time_Lo@Long"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Process_Alm_Time_Lo"
       },
       "valueSource": "opc",
       "rawHigh": 1000.0,
@@ -575,7 +575,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Process_Alm_Time_Hi@Long"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Process_Alm_Time_Hi"
       },
       "valueSource": "opc",
       "rawHigh": 1000.0,
@@ -762,7 +762,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Process_Alm_Time_LoLo@Long"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Process_Alm_Time_LoLo"
       },
       "valueSource": "opc",
       "rawHigh": 1000.0,

@@ -259,8 +259,9 @@
         "bindType": "parameter",
         "binding": "{OPCTagPath}.hmiIgnition.Sts_OoS"
       },
-      "valueSource": "opc",
+      "valueSource": "expr",
       "historyMaxAge": 24,
+      "expression": "{[.]S_HMISts}&2",
       "engHigh": 2.0,
       "historicalDeadbandStyle": "Discrete",
       "tooltip": "1=Out of Service is selected (supersedes Maint, Ovrd, Ext, Prog, Oper) ",
@@ -334,8 +335,9 @@
         "bindType": "parameter",
         "binding": "{OPCTagPath}.hmiIgnition.Inp_EnHiAlm"
       },
-      "valueSource": "opc",
+      "valueSource": "expr",
       "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}&512",
       "historicalDeadband": 0.1,
       "writePermissions": {
         "type": "AnyOf",
@@ -415,7 +417,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_LoLoOnDly@Long"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_LoLoOnDly"
       },
       "valueSource": "opc",
       "rawHigh": 1000.0,
@@ -466,8 +468,9 @@
         "bindType": "parameter",
         "binding": "{OPCTagPath}.hmiIgnition.Inp_EnLoAlm"
       },
-      "valueSource": "opc",
+      "valueSource": "expr",
       "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}&1024",
       "historicalDeadband": 0.1,
       "writePermissions": {
         "type": "AnyOf",
@@ -642,8 +645,9 @@
         "bindType": "parameter",
         "binding": "{Node}"
       },
-      "valueSource": "opc",
+      "valueSource": "expr",
       "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}&128",
       "historicalDeadband": 0.1,
       "writePermissions": {
         "type": "AnyOf",
@@ -791,8 +795,9 @@
         "bindType": "parameter",
         "binding": "{OPCTagPath}.hmiIgnition.Cfg_HasOos"
       },
-      "valueSource": "opc",
+      "valueSource": "expr",
       "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}& 8192",
       "historicalDeadband": 0.1,
       "writePermissions": {
         "type": "AnyOf",
@@ -853,7 +858,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_HiHiOffDly@Long"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_HiHiOffDly"
       },
       "valueSource": "opc",
       "rawHigh": 1000.0,
@@ -902,7 +907,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_LoOnDly@Long"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_LoOnDly"
       },
       "valueSource": "opc",
       "rawHigh": 1000.0,
@@ -957,8 +962,9 @@
         "bindType": "parameter",
         "binding": "{Node}"
       },
-      "valueSource": "opc",
+      "valueSource": "expr",
       "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}&32",
       "historicalDeadband": 0.1,
       "writePermissions": {
         "type": "AnyOf",
@@ -1224,8 +1230,9 @@
         "bindType": "parameter",
         "binding": "{Node}"
       },
-      "valueSource": "opc",
+      "valueSource": "expr",
       "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}&64",
       "historicalDeadband": 0.1,
       "writePermissions": {
         "type": "AnyOf",
@@ -1283,8 +1290,9 @@
         "bindType": "parameter",
         "binding": "{Node}"
       },
-      "valueSource": "opc",
+      "valueSource": "expr",
       "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}&8",
       "historicalDeadband": 0.1,
       "writePermissions": {
         "type": "AnyOf",
@@ -1336,7 +1344,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_HiHiOnDly@Long"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_HiHiOnDly"
       },
       "valueSource": "opc",
       "rawHigh": 1000.0,
@@ -1387,8 +1395,9 @@
         "bindType": "parameter",
         "binding": "{OPCTagPath}.hmiIgnition.Cfg_AllowMan"
       },
-      "valueSource": "opc",
+      "valueSource": "expr",
       "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}& 16384",
       "historicalDeadband": 0.1,
       "writePermissions": {
         "type": "AnyOf",
@@ -1444,7 +1453,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_HiOffDly@Long"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_HiOffDly"
       },
       "valueSource": "opc",
       "rawHigh": 1000.0,
@@ -1535,8 +1544,9 @@
         "bindType": "parameter",
         "binding": "{OPCTagPath}.hmiIgnition.Inp_EnLoLoAlm"
       },
-      "valueSource": "opc",
+      "valueSource": "expr",
       "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}&2048",
       "historicalDeadband": 0.1,
       "writePermissions": {
         "type": "AnyOf",
@@ -1724,8 +1734,9 @@
         "bindType": "parameter",
         "binding": "{OPCTagPath}.hmiIgnition.Inp_EnHiAlm"
       },
-      "valueSource": "opc",
+      "valueSource": "expr",
       "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}&4096",
       "historicalDeadband": 0.1,
       "writePermissions": {
         "type": "AnyOf",
@@ -2011,7 +2022,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_HiOnDly@Long"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_HiOnDly"
       },
       "valueSource": "opc",
       "rawHigh": 1000.0,
@@ -2170,8 +2181,9 @@
         "bindType": "parameter",
         "binding": "{OPCTagPath}.hmiIgnition.Inp_EnHiHiAlm"
       },
-      "valueSource": "opc",
+      "valueSource": "expr",
       "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}&256",
       "historicalDeadband": 0.1,
       "writePermissions": {
         "type": "AnyOf",
@@ -2297,7 +2309,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_LoLoOffDly@Long"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_LoLoOffDly"
       },
       "valueSource": "opc",
       "rawHigh": 1000.0,
@@ -2368,8 +2380,9 @@
         "bindType": "parameter",
         "binding": "{Node}"
       },
-      "valueSource": "opc",
+      "valueSource": "expr",
       "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}&16",
       "historicalDeadband": 0.1,
       "writePermissions": {
         "type": "AnyOf",
@@ -2469,7 +2482,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_FailOffDly@Long"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_FailOffDly"
       },
       "valueSource": "opc",
       "rawHigh": 1000.0,
@@ -2640,8 +2653,9 @@
         "bindType": "parameter",
         "binding": "{OPCTagPath}.hmiIgnition.Sts_Hand"
       },
-      "valueSource": "opc",
+      "valueSource": "expr",
       "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}&1",
       "engHigh": 2.0,
       "historicalDeadbandStyle": "Discrete",
       "tooltip": "Val is limited Lo or Hi ",
@@ -2660,7 +2674,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_FailOnDly@Long"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_FailOnDly"
       },
       "valueSource": "opc",
       "rawHigh": 1000.0,
@@ -2769,7 +2783,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_LoOffDly@Long"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_LoOffDly"
       },
       "valueSource": "opc",
       "rawHigh": 1000.0,
@@ -2906,8 +2920,9 @@
         "bindType": "parameter",
         "binding": "{OPCTagPath}.hmiIgnition.Sts_Maint"
       },
-      "valueSource": "opc",
+      "valueSource": "expr",
       "historyMaxAge": 24,
+      "expression": "{[.]S_HMISts}&4",
       "engHigh": 2.0,
       "historicalDeadbandStyle": "Discrete",
       "tooltip": "1=Using Substitute PV (overrides input), 0=Using live Input PV from device",

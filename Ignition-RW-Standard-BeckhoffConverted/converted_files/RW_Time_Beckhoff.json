@@ -38,7 +38,7 @@
       },
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.@Long"
+        "binding": "{OPCTagPath}.hmiIgnition.Value"
       },
       "tooltip": {
         "bindType": "parameter",

@@ -13,9 +13,9 @@ If output.json is not specified, it will append '_Beckhoff' to the input filenam
 Changes made during conversion:
 1. Updates parameters: Node/TIA_PLC_Name/Datablock_Name -> OPCTagPath/OPCServer
 2. Converts opcItemPath bindings from KEPware to Beckhoff format
-3. Changes valueSource from 'expr' to 'opc' for Boolean tags using bit extraction
-4. Removes expression properties for converted Boolean tags
-5. Updates opcServer references to use parameter binding
+3. Preserves expression tags (bit extraction) as-is since they reference local UDT tags
+4. Updates opcServer references to use parameter binding
+5. Skips Ignition-internal tags (memory, pure expressions without OPC)
 
 Author: Automated conversion based on manual conversion patterns
 Date: September 2025
@@ -36,9 +36,9 @@ class KEPwareToBeckhoffConverter:
         self.conversion_stats = {
             'parameters_updated': 0,
             'opcItemPath_updated': 0,
-            'valueSource_updated': 0,
             'opcServer_updated': 0,
-            'expressions_removed': 0,
+            'expressions_preserved': 0,
+            'kepware_suffixes_removed': 0,
             'tags_skipped': 0
         }
     
@@ -185,6 +185,12 @@ class KEPwareToBeckhoffConverter:
                     # Remove any parameter bindings from the suffix
                     tag_suffix = re.sub(r'\{.*?\}', '', tag_suffix)
                     
+                    # Check if there's a KEPware data type suffix to remove
+                    original_suffix = tag_suffix
+                    tag_suffix = re.sub(r'@\w+$', '', tag_suffix)
+                    if original_suffix != tag_suffix:
+                        self.conversion_stats['kepware_suffixes_removed'] += 1
+                    
                     if tag_suffix:
                         new_binding = f"{{OPCTagPath}}.hmiIgnition.{tag_suffix}"
                     else:
@@ -197,17 +203,15 @@ class KEPwareToBeckhoffConverter:
                 print(f"    ✓ Updated opcItemPath: {tag_suffix}")
     
     def _convert_boolean_tag(self, tag: Dict[str, Any], tag_name: str) -> None:
-        """Convert Boolean tags from expression-based to direct OPC."""
+        """Convert Boolean tags - but keep expression tags as expressions."""
+        # Expression tags with bit extraction should REMAIN as expressions
+        # They reference other tags in the same UDT (like {[.]S_HMISts})
+        # No conversion needed for expression tags since they work with any OPC server
+        
         if tag.get('valueSource') == 'expr' and 'expression' in tag:
-            # Check if expression is doing bit extraction (contains & operator)
-            expression = tag['expression']
-            if '&' in expression and '{[.]S_HMISts}' in expression:
-                # This is bit extraction, convert to direct OPC
-                tag['valueSource'] = 'opc'
-                del tag['expression']
-                self.conversion_stats['valueSource_updated'] += 1
-                self.conversion_stats['expressions_removed'] += 1
-                print(f"    ✓ Converted from expression to direct OPC (was bit extraction)")
+            self.conversion_stats['expressions_preserved'] += 1
+            print(f"    ✓ Expression tag preserved (references other UDT tags)")
+            # Don't change valueSource or remove expression - they should stay as-is
     
     def _convert_opc_server(self, tag: Dict[str, Any], tag_name: str) -> None:
         """Convert hardcoded opcServer to parameter binding."""

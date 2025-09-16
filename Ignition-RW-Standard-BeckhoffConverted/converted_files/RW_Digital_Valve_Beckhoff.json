@@ -29,7 +29,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Fail_to_Open_Time@Long"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Fail_to_Open_Time"
       },
       "valueSource": "opc",
       "rawHigh": 1000.0,
@@ -498,7 +498,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Stuck_Sensor_Time@Long"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Stuck_Sensor_Time"
       },
       "valueSource": "opc",
       "rawHigh": 1000.0,
@@ -619,7 +619,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Fail_to_Close_Time@Long"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Fail_to_Close_Time"
       },
       "valueSource": "opc",
       "rawHigh": 1000.0,

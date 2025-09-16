@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="ST_RW_Soft_Starter_Siemens_HMI_IgnitionExp" Id="{1c0b1b7e-9c33-4ae8-9ce2-a8aa09d8b924}">
+  <DUT Name="ST_RW_Soft_Starter_Siemens_HMI_IgnitionExp" Id="{eb80acdf-f0d0-4c69-ad87-728bb6353dff}">
     <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
     {attribute 'OPC.UA.DA' := '1'}
     {attribute 'OPC.UA.DA.StructuredType' := '1'}
@@ -9,7 +9,7 @@
     ==================================================
     Generated from Ignition UDT: RW_Soft_Starter_Siemens
     Total tags: 16
-    Generated on: 2025-09-16 11:33:46
+    Generated on: 2025-09-16 12:06:04
     *)
     TYPE ST_RW_Soft_Starter_Siemens_HMI_IgnitionExp :
     STRUCT

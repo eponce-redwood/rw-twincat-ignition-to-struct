@@ -51,8 +51,9 @@
         "bindType": "parameter",
         "binding": "{OPCTagPath}.hmiIgnition.Cfg_HasOos"
       },
-      "valueSource": "opc",
+      "valueSource": "expr",
       "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}&64",
       "engHigh": 2.0,
       "writePermissions": {
         "type": "AnyOf",
@@ -93,8 +94,9 @@
         "bindType": "parameter",
         "binding": "{OPCTagPath}.hmiIgnition.Sts_Hand"
       },
-      "valueSource": "opc",
+      "valueSource": "expr",
       "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}&1",
       "historicalDeadband": 0.1,
       "engHigh": 2.0,
       "historicalDeadbandStyle": "Discrete",
@@ -338,8 +340,9 @@
         "bindType": "parameter",
         "binding": "{OPCTagPath}.hmiIgnition.Cfg_AllowMan"
       },
-      "valueSource": "opc",
+      "valueSource": "expr",
       "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}&32",
       "engHigh": 2.0,
       "writePermissions": {
         "type": "AnyOf",
@@ -380,8 +383,9 @@
         "bindType": "parameter",
         "binding": "{OPCTagPath}.hmiIgnition.Sts_Maint"
       },
-      "valueSource": "opc",
+      "valueSource": "expr",
       "historyMaxAge": 24,
+      "expression": "{[.]S_HMISts}&4",
       "historicalDeadband": 0.1,
       "engHigh": 2.0,
       "historicalDeadbandStyle": "Discrete",
@@ -403,8 +407,9 @@
         "bindType": "parameter",
         "binding": "{OPCTagPath}.hmiIgnition.Cfg_OosSet"
       },
-      "valueSource": "opc",
+      "valueSource": "expr",
       "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}&128",
       "engHigh": 2.0,
       "writePermissions": {
         "type": "AnyOf",
@@ -445,8 +450,9 @@
         "bindType": "parameter",
         "binding": "{OPCTagPath}.hmiIgnition.Sts_OoS"
       },
-      "valueSource": "opc",
+      "valueSource": "expr",
       "historyMaxAge": 24,
+      "expression": "{[.]S_HMISts}&2",
       "historicalDeadband": 0.1,
       "engHigh": 2.0,
       "historicalDeadbandStyle": "Discrete",
@@ -468,8 +474,9 @@
         "bindType": "parameter",
         "binding": "{OPCTagPath}.hmiIgnition.Sts_Maint"
       },
-      "valueSource": "opc",
+      "valueSource": "expr",
       "historyMaxAge": 12,
+      "expression": "{[.]S_HMISts}&8",
       "engHigh": 2.0,
       "historicalDeadbandStyle": "Discrete",
       "tooltip": "Command from the program to drive the S_Output",

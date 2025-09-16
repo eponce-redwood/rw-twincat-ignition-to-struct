@@ -107,7 +107,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_ManAuto@Boolean"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_ManAuto"
       },
       "valueSource": "opc",
       "historyMaxAge": 12,
@@ -458,7 +458,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_FailToOpenOnDly@Long"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_FailToOpenOnDly"
       },
       "valueSource": "opc",
       "rawHigh": 1000.0,
@@ -531,7 +531,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Man_Open@Boolean"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Man_Open"
       },
       "valueSource": "opc",
       "historyMaxAge": 12,
@@ -588,7 +588,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Reset@Boolean"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Reset"
       },
       "valueSource": "opc",
       "historyMaxAge": 12,
@@ -646,7 +646,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Man_Close@Boolean"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Man_Close"
       },
       "valueSource": "opc",
       "historyMaxAge": 12,
@@ -806,7 +806,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Bypass@Boolean"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Bypass"
       },
       "valueSource": "opc",
       "historyMaxAge": 12,
@@ -974,7 +974,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_LSFailOnDly@Long"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_LSFailOnDly"
       },
       "valueSource": "opc",
       "rawHigh": 1000.0,
@@ -2104,7 +2104,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_FailToCloseOnDly@Long"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_FailToCloseOnDly"
       },
       "valueSource": "opc",
       "rawHigh": 1000.0,
@@ -2154,7 +2154,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Oos@Boolean"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Oos"
       },
       "valueSource": "opc",
       "historyMaxAge": 12,

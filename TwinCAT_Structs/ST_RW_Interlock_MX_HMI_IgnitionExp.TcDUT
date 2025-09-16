@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="ST_RW_Interlock_MX_HMI_IgnitionExp" Id="{2e98a5dc-0b49-4abc-aa49-b8bd6183fbe6}">
+  <DUT Name="ST_RW_Interlock_MX_HMI_IgnitionExp" Id="{db320222-08fa-4234-8243-20bc9ebef759}">
     <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
     {attribute 'OPC.UA.DA' := '1'}
     {attribute 'OPC.UA.DA.StructuredType' := '1'}
@@ -9,7 +9,7 @@
     ==================================================
     Generated from Ignition UDT: RW_Interlock_MX
     Total tags: 8
-    Generated on: 2025-09-16 11:33:46
+    Generated on: 2025-09-16 12:06:03
     *)
     TYPE ST_RW_Interlock_MX_HMI_IgnitionExp :
     STRUCT

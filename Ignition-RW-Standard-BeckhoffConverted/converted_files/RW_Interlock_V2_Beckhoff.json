@@ -56,7 +56,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_IntlkOnDly@Long"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_IntlkOnDly"
       },
       "valueSource": "opc",
       "rawHigh": 1000.0,
@@ -210,7 +210,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_IntlkOffDly@Long"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_IntlkOffDly"
       },
       "valueSource": "opc",
       "rawHigh": 1000.0,
