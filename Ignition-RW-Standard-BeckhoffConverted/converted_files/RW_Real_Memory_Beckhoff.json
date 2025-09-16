@@ -1,0 +1,136 @@
+{
+  "dataType": "Int4",
+  "name": "RW_Real_Memory",
+  "value": 0,
+  "parameters": {
+    "OPCTagPath": {
+      "dataType": "String",
+      "value": "nsu=urn:BeckhoffAutomation:Ua:PLC1;s=MAIN.YourTagNameHere"
+    },
+    "OPCServer": {
+      "dataType": "String",
+      "value": "Beckhoff@YourComputerName"
+    },
+    "Unit": {
+      "dataType": "String"
+    },
+    "TagName": {
+      "dataType": "String",
+      "value": ""
+    },
+    "Description": {
+      "dataType": "String"
+    }
+  },
+  "tagType": "UdtType",
+  "tags": [
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=http://www.siemens.com/simatic-s7-opcua;s=\"{Datablock_Name}\".\"{TagName}\""
+      },
+      "tooltip": {
+        "bindType": "parameter",
+        "binding": "{Description}"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Unit}"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{Node}"
+      },
+      "valueSource": "memory",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "historicalDeadbandMode": "Absolute",
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CuFoil_Engineer",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CuFoil_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CuFoil_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CuFoil_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CuFoil_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CuFoil_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CuFoil_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CuFoil_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "documentation": "",
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.##",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "historyProvider": "historian",
+      "dataType": "Float4",
+      "name": "Value",
+      "historyEnabled": true,
+      "value": 0.0,
+      "HistoryMaxAgeMode": "1.0"
+    }
+  ]
+}

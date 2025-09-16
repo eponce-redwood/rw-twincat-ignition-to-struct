@@ -38,7 +38,8 @@ class KEPwareToBeckhoffConverter:
             'opcItemPath_updated': 0,
             'valueSource_updated': 0,
             'opcServer_updated': 0,
-            'expressions_removed': 0
+            'expressions_removed': 0,
+            'tags_skipped': 0
         }
     
     def convert_udt(self, input_file: str, output_file: str = None) -> bool:
@@ -118,19 +119,54 @@ class KEPwareToBeckhoffConverter:
         """Convert all tags in the UDT."""
         for i, tag in enumerate(tags):
             tag_name = tag.get('name', f'Tag_{i}')
-            print(f"  Processing tag: {tag_name}")
+            value_source = tag.get('valueSource', '')
             
-            # Convert opcItemPath
-            if 'opcItemPath' in tag:
-                self._convert_opc_item_path(tag, tag_name)
+            print(f"  Processing tag: {tag_name} (valueSource: {value_source})")
             
-            # Convert valueSource and expressions for Boolean tags
-            if tag.get('dataType') == 'Boolean' and 'expression' in tag:
-                self._convert_boolean_tag(tag, tag_name)
-            
-            # Convert opcServer
-            if 'opcServer' in tag and isinstance(tag['opcServer'], str):
-                self._convert_opc_server(tag, tag_name)
+            # Only process tags that have OPC connections
+            if self._should_convert_tag(tag):
+                # Convert opcItemPath
+                if 'opcItemPath' in tag:
+                    self._convert_opc_item_path(tag, tag_name)
+                
+                # Convert valueSource and expressions for Boolean tags
+                if tag.get('dataType') == 'Boolean' and 'expression' in tag:
+                    self._convert_boolean_tag(tag, tag_name)
+                
+                # Convert opcServer
+                if 'opcServer' in tag and isinstance(tag['opcServer'], str):
+                    self._convert_opc_server(tag, tag_name)
+            else:
+                self.conversion_stats['tags_skipped'] += 1
+                print(f"    ⏭️ Skipping (Ignition-internal tag)")
+    
+    def _should_convert_tag(self, tag: Dict[str, Any]) -> bool:
+        """
+        Determine if a tag should be converted from KEPware to Beckhoff format.
+        
+        Convert only tags that represent actual PLC variables:
+        1. valueSource: "opc" - Direct OPC mapping
+        2. valueSource: "expr" with opcItemPath - Calculated from OPC data (bit extraction)
+        
+        Skip Ignition-internal tags:
+        1. valueSource: "expr" without opcItemPath - Pure Ignition calculations
+        2. valueSource: "memory" - Ignition memory variables
+        """
+        value_source = tag.get('valueSource', '')
+        has_opc_item_path = 'opcItemPath' in tag
+        
+        if value_source == 'opc':
+            # Direct OPC mapping - always convert
+            return True
+        elif value_source == 'expr':
+            # Expression - convert only if it references OPC data
+            return has_opc_item_path
+        elif value_source == 'memory':
+            # Memory tags are Ignition-internal - skip
+            return False
+        else:
+            # Unknown valueSource - be conservative and convert only if it has OPC connection
+            return has_opc_item_path
     
     def _convert_opc_item_path(self, tag: Dict[str, Any], tag_name: str) -> None:
         """Convert opcItemPath from KEPware to Beckhoff format."""

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="ST_RW_Soft_Starter_Siemens_HMI_IgnitionExp" Id="{d44bf869-df8d-4442-908b-c53a29d91cd5}">
+  <DUT Name="ST_RW_Soft_Starter_Siemens_HMI_IgnitionExp" Id="{1c0b1b7e-9c33-4ae8-9ce2-a8aa09d8b924}">
     <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
     {attribute 'OPC.UA.DA' := '1'}
     {attribute 'OPC.UA.DA.StructuredType' := '1'}
@@ -8,8 +8,8 @@
     ST_RW_Soft_Starter_Siemens_HMI_IgnitionExp
     ==================================================
     Generated from Ignition UDT: RW_Soft_Starter_Siemens
-    Total tags: 17
-    Generated on: 2025-09-15 13:03:45
+    Total tags: 16
+    Generated on: 2025-09-16 11:33:46
     *)
     TYPE ST_RW_Soft_Starter_Siemens_HMI_IgnitionExp :
     STRUCT
@@ -37,8 +37,6 @@
         Disconnect_Enable : BOOL := FALSE;
 
         {attribute 'OPC.UA.DA' := '1'}
-        Run_Feedback_Enable : BOOL := FALSE;
-        {attribute 'OPC.UA.DA' := '1'}
         Runtime_Counter_Reset : BOOL := FALSE;
         {attribute 'OPC.UA.DA' := '1'}
         Run_Feedback : BOOL := FALSE;
@@ -46,9 +44,9 @@
         Command : BOOL := FALSE;
         {attribute 'OPC.UA.DA' := '1'}
         Disconnect : BOOL := FALSE;
-
         {attribute 'OPC.UA.DA' := '1'}
         Feedback_Mismatch_Alarm : BOOL := FALSE;
+
         {attribute 'OPC.UA.DA' := '1'}
         Disconnect_Alarm : BOOL := FALSE;
     END_STRUCT

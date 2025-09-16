@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="ST_RW_Pid_Compact_V2_HMI_IgnitionExp" Id="{cd6cee10-ac42-408d-8398-bbe3d8eff0a4}">
+  <DUT Name="ST_RW_Pid_Compact_V2_HMI_IgnitionExp" Id="{8ac22f36-acb4-4003-b6b8-23f5611d3ef6}">
     <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
     {attribute 'OPC.UA.DA' := '1'}
     {attribute 'OPC.UA.DA.StructuredType' := '1'}
@@ -8,8 +8,8 @@
     ST_RW_Pid_Compact_V2_HMI_IgnitionExp
     ==================================================
     Generated from Ignition UDT: RW_PID_Compact_V2
-    Total tags: 37
-    Generated on: 2025-09-15 13:03:45
+    Total tags: 35
+    Generated on: 2025-09-16 11:33:46
     *)
     TYPE ST_RW_Pid_Compact_V2_HMI_IgnitionExp :
     STRUCT
@@ -116,8 +116,6 @@
         // 1=Out of Service is selected (supersedes Maint, Ovrd, Ext, Prog, Oper)
         S_OoS : BOOL := FALSE;		// Read-only tag
         {attribute 'OPC.UA.DA' := '1'}
-        HistoricalDeadband : REAL := 0.0;
-        {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Description' := 'SP Engineering Units Maximum Value (EU)'}
         // SP Engineering Units Maximum Value (EU)
         HMI_Cfg_SPEUMax : REAL := 0.0;
@@ -126,19 +124,15 @@
         {attribute 'OPC.UA.DA.Description' := 'Packed bits to HMI CmdSrc and ORdys'}
         // Packed bits to HMI CmdSrc and ORdys
         S_HMIBits : DINT := 0;		// Read-only tag
-
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Description' := 'CV Value to use with Interlock / Bad Value CV action (CVEU)'}
         // CV Value to use with Interlock / Bad Value CV action (CVEU)
         HMI_Cfg_IntlkCV : REAL := 0.0;
+
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Description' := '1= SP is from the HMI; 0= SP from program'}
         // 1= SP is from the HMI; 0= SP from program
         HMI_C_SPFromHMI : BOOL := FALSE;
-        {attribute 'OPC.UA.DA' := '1'}
-        {attribute 'OPC.UA.DA.Description' := 'Position above which valve is assumed open for the HMI object'}
-        // Position above which valve is assumed open for the HMI object
-        HMI_Cfg_MaxClosedPos : REAL := 0.0;
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Access' := '1'}
         {attribute 'OPC.UA.DA.Description' := 'CV Engineering Units Maximum Value (CVEU)'}
@@ -148,7 +142,6 @@
         {attribute 'OPC.UA.DA.Description' := 'CV Value to use with Interlock / Bad Value CV action (CVEU)'}
         // CV Value to use with Interlock / Bad Value CV action (CVEU)
         HMI_Cfg_SetPointTrack : REAL := 0.0;
-
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Description' := 'PID Active Mode: 4=Man, 3=Auto, 2=FineTune, 1=PreTune, 0=Inactive'}
         // PID Active Mode: 4=Man, 3=Auto, 2=FineTune, 1=PreTune, 0=Inactive
@@ -156,6 +149,7 @@
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Access' := '1'}
         I_PV : REAL := 0.0;		// Read-only tag
+
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Description' := '1=Allow Man control of motor from HMI'}
         // 1=Allow Man control of motor from HMI
@@ -168,7 +162,6 @@
         {attribute 'OPC.UA.DA.Description' := 'Operator Manual CV output (Rate Limited)'}
         // Operator Manual CV output (Rate Limited)
         HMI_C_ManCV : REAL := 0.0;
-
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Description' := '1=Maintenance Out of Service exists, can be selected'}
         // 1=Maintenance Out of Service exists, can be selected

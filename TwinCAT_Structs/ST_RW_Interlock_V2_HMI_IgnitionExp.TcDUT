@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="ST_RW_Interlock_V2_HMI_IgnitionExp" Id="{16bb4307-7ceb-4993-b033-d002a6b6dbba}">
+  <DUT Name="ST_RW_Interlock_V2_HMI_IgnitionExp" Id="{110b79dc-65cb-4387-8a49-8320a24324d1}">
     <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
     {attribute 'OPC.UA.DA' := '1'}
     {attribute 'OPC.UA.DA.StructuredType' := '1'}
@@ -8,8 +8,8 @@
     ST_RW_Interlock_V2_HMI_IgnitionExp
     ==================================================
     Generated from Ignition UDT: RW_Interlock_V2
-    Total tags: 12
-    Generated on: 2025-09-15 13:03:45
+    Total tags: 11
+    Generated on: 2025-09-16 11:33:46
     *)
     TYPE ST_RW_Interlock_V2_HMI_IgnitionExp :
     STRUCT
@@ -23,10 +23,6 @@
         // Packed bits to HMI
         S_HMIBits : DINT := 0;		// Read-only tag
         {attribute 'OPC.UA.DA' := '1'}
-        {attribute 'OPC.UA.DA.Description' := '1=Only Maint can reset this Interlock'}
-        // 1=Only Maint can reset this Interlock
-        UDT_mem_MaintOnlyReset : BOOL := FALSE;
-        {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Access' := '1'}
         {attribute 'OPC.UA.DA.Description' := 'NonBypassable Interlock Status (1=Tripped, 0=OK to run)'}
         // NonBypassable Interlock Status (1=Tripped, 0=OK to run)
@@ -36,11 +32,11 @@
         {attribute 'OPC.UA.DA.Description' := 'Interlock Status (1=Tripped, 0=OK to run)'}
         // Interlock Status (1=Tripped, 0=OK to run)
         S_Tripped : BOOL := FALSE;		// Read-only tag
-
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Description' := 'Minimum time for the output to be held true to verify HMI receives status'}
         // Minimum time for the output to be held true to verify HMI receives ...
         HMI_Cfg_IntlkOffDly : REAL := 0.0;
+
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Description' := '1= Bypass Interlocked Tripped condition, Enabled'}
         // 1= Bypass Interlocked Tripped condition, Enabled
@@ -59,12 +55,12 @@
         {attribute 'OPC.UA.DA.Description' := 'Bypass function is enabled by Maint/Eng'}
         // Bypass function is enabled by Maint/Eng
         S_BypEnabled : BOOL := FALSE;		// Read-only tag
-
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Access' := '1'}
         {attribute 'OPC.UA.DA.Description' := '1= Interlock is latched (sealed in) and requires reset'}
         // 1= Interlock is latched (sealed in) and requires reset
         Cfg_Latched : BOOL := FALSE;		// Read-only tag
+
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Access' := '1'}
         {attribute 'OPC.UA.DA.Description' := '1=Tripped or Interlock Condition, 0=OK to run'}

@@ -1,0 +1,136 @@
+{
+  "dataType": "Int4",
+  "name": "RW_Int_MB",
+  "value": 0,
+  "parameters": {
+    "OPCTagPath": {
+      "dataType": "String",
+      "value": "nsu=urn:BeckhoffAutomation:Ua:PLC1;s=MAIN.YourTagNameHere"
+    },
+    "OPCServer": {
+      "dataType": "String",
+      "value": "Beckhoff@YourComputerName"
+    },
+    "Data_Address": {
+      "dataType": "String",
+      "value": "Hydromet_Pilot_LH1"
+    },
+    "Description": {
+      "dataType": "String"
+    },
+    "Units": {
+      "dataType": "String"
+    }
+  },
+  "tagType": "UdtType",
+  "tags": [
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.Value"
+      },
+      "tooltip": {
+        "bindType": "parameter",
+        "binding": "{Description}"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Units}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "historicalDeadbandMode": "Absolute",
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Engineer",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "documentation": "",
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.##",
+      "tagGroup": "Leased 1000",
+      "tagType": "AtomicTag",
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Int4",
+      "name": "Value",
+      "historyEnabled": true,
+      "value": 0,
+      "HistoryMaxAgeMode": "1.0",
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    }
+  ]
+}

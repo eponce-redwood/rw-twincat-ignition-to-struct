@@ -1,5 +1,5 @@
 {
-  "name": "RW_Digital_Out_V2",
+  "name": "RW_Interlock_V2",
   "typeId": "",
   "parameters": {
     "OPCTagPath": {
@@ -10,16 +10,45 @@
       "dataType": "String",
       "value": "Beckhoff@YourComputerName"
     },
-    "Enum_True": {
-      "dataType": "String",
-      "value": "Energized"
+    "Action6": {
+      "dataType": "String"
+    },
+    "Action7": {
+      "dataType": "String"
+    },
+    "Action8": {
+      "dataType": "String"
+    },
+    "Action9": {
+      "dataType": "String"
+    },
+    "Interlock_Condition": {
+      "dataType": "String"
+    },
+    "Interlock_Action_Count": {
+      "dataType": "Integer",
+      "value": 1
     },
     "Description": {
       "dataType": "String"
     },
-    "Enum_False": {
-      "dataType": "String",
-      "value": "De-energized"
+    "Action1": {
+      "dataType": "String"
+    },
+    "Action2": {
+      "dataType": "String"
+    },
+    "Action3": {
+      "dataType": "String"
+    },
+    "Action10": {
+      "dataType": "String"
+    },
+    "Action4": {
+      "dataType": "String"
+    },
+    "Action5": {
+      "dataType": "String"
     }
   },
   "tagType": "UdtType",
@@ -27,33 +56,12 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.S_AlmNotify"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_IntlkOnDly@Long"
       },
       "valueSource": "opc",
+      "rawHigh": 1000.0,
       "historyMaxAge": 12,
-      "engHigh": 12.0,
-      "historicalDeadbandStyle": "Discrete",
-      "tooltip": "No Alarms this block.",
-      "tagGroup": "Direct 1000",
-      "tagType": "AtomicTag",
-      "readOnly": true,
-      "dataType": "Int4",
-      "historyProvider": "TagSplitter_CAM1",
-      "name": "S_AlmNotify",
-      "historyEnabled": false,
-      "opcServer": {
-        "bindType": "parameter",
-        "binding": "{OPCServer}"
-      }
-    },
-    {
-      "opcItemPath": {
-        "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.Cfg_HasOos"
-      },
-      "valueSource": "opc",
-      "historyMaxAge": 12,
-      "engHigh": 2.0,
+      "historicalDeadband": 1.0,
       "writePermissions": {
         "type": "AnyOf",
         "securityLevels": [
@@ -66,6 +74,10 @@
                   {
                     "name": "Administrator",
                     "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
                   }
                 ]
               }
@@ -74,93 +86,16 @@
         ]
       },
       "historicalDeadbandStyle": "Discrete",
-      "tooltip": "1\u003dMaintenance Out of Service exists, can be selected",
+      "tooltip": "Time delay before interlock trip is active ",
+      "formatString": "#,##0.###",
       "tagGroup": "Leased 0",
-      "enabled": true,
+      "engUnit": "sec",
       "tagType": "AtomicTag",
-      "readOnly": true,
-      "dataType": "Boolean",
-      "historyProvider": "TagSplitter_CAM1",
-      "name": "Cfg_HasOos",
-      "historyEnabled": false,
-      "opcServer": {
-        "bindType": "parameter",
-        "binding": "{OPCServer}"
-      }
-    },
-    {
-      "opcItemPath": {
-        "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.S_Output"
-      },
-      "valueSource": "opc",
-      "historyMaxAge": 12,
-      "historicalDeadband": 0.1,
-      "engHigh": 2.0,
-      "historicalDeadbandStyle": "Discrete",
-      "tooltip": "Output Command to IO Card ",
-      "tagGroup": "Direct 1000",
-      "tagType": "AtomicTag",
-      "readOnly": true,
+      "scaledHigh": 1.0,
+      "scaleMode": "Linear",
       "historyProvider": "TagSplitter_LiConv",
-      "dataType": "Boolean",
-      "name": "S_Output",
-      "historyEnabled": true,
-      "opcServer": {
-        "bindType": "parameter",
-        "binding": "{OPCServer}"
-      }
-    },
-    {
-      "opcItemPath": {
-        "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_ManAuto"
-      },
-      "valueSource": "opc",
-      "historyMaxAge": 12,
-      "engHigh": 2.0,
-      "writePermissions": {
-        "type": "AnyOf",
-        "securityLevels": [
-          {
-            "name": "Authenticated",
-            "children": [
-              {
-                "name": "Roles",
-                "children": [
-                  {
-                    "name": "Administrator",
-                    "children": []
-                  },
-                  {
-                    "name": "Role_LiConv_Engineer",
-                    "children": []
-                  },
-                  {
-                    "name": "Role_LiConv_Maintenance",
-                    "children": []
-                  },
-                  {
-                    "name": "Role_LiConv_Operator",
-                    "children": []
-                  },
-                  {
-                    "name": "Role_LiConv_Supervisor",
-                    "children": []
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      "historicalDeadbandStyle": "Discrete",
-      "tooltip": "1\u003d Manual Command to use Substitute PV (override input) ",
-      "tagGroup": "Leased 0",
-      "tagType": "AtomicTag",
-      "dataType": "Boolean",
-      "historyProvider": "TagSplitter_CAM1",
-      "name": "HMI_C_ManAuto",
+      "dataType": "Float4",
+      "name": "HMI_Cfg_IntlkOnDly",
       "historyEnabled": false,
       "opcServer": {
         "bindType": "parameter",
@@ -170,143 +105,7 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_ManSet"
-      },
-      "valueSource": "opc",
-      "historyMaxAge": 12,
-      "engHigh": 2.0,
-      "writePermissions": {
-        "type": "AnyOf",
-        "securityLevels": [
-          {
-            "name": "Authenticated",
-            "children": [
-              {
-                "name": "Roles",
-                "children": [
-                  {
-                    "name": "Administrator",
-                    "children": []
-                  },
-                  {
-                    "name": "Role_LiConv_Engineer",
-                    "children": []
-                  },
-                  {
-                    "name": "Role_LiConv_Maintenance",
-                    "children": []
-                  },
-                  {
-                    "name": "Role_LiConv_Operator",
-                    "children": []
-                  },
-                  {
-                    "name": "Role_LiConv_Supervisor",
-                    "children": []
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      "historicalDeadbandStyle": "Discrete",
-      "tooltip": "Manual-Entered Substitute Output",
-      "tagGroup": "Leased 0",
-      "tagType": "AtomicTag",
-      "dataType": "Boolean",
-      "historyProvider": "TagSplitter_CAM1",
-      "name": "HMI_C_ManSet",
-      "historyEnabled": false,
-      "opcServer": {
-        "bindType": "parameter",
-        "binding": "{OPCServer}"
-      }
-    },
-    {
-      "opcItemPath": {
-        "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Oos"
-      },
-      "valueSource": "opc",
-      "historyMaxAge": 12,
-      "engHigh": 2.0,
-      "writePermissions": {
-        "type": "AnyOf",
-        "securityLevels": [
-          {
-            "name": "Authenticated",
-            "children": [
-              {
-                "name": "Roles",
-                "children": [
-                  {
-                    "name": "Administrator",
-                    "children": []
-                  },
-                  {
-                    "name": "Role_LiConv_Engineer",
-                    "children": []
-                  },
-                  {
-                    "name": "Role_LiConv_Maintenance",
-                    "children": []
-                  },
-                  {
-                    "name": "Role_LiConv_Supervisor",
-                    "children": []
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      "historicalDeadbandStyle": "Discrete",
-      "tooltip": "1\u003d Maintenance Out Of Service, 0\u003d In Service ",
-      "tagGroup": "Leased 0",
-      "tagType": "AtomicTag",
-      "dataType": "Boolean",
-      "historyProvider": "TagSplitter_CAM1",
-      "name": "HMI_C_Oos",
-      "historyEnabled": false,
-      "opcServer": {
-        "bindType": "parameter",
-        "binding": "{OPCServer}"
-      }
-    },
-    {
-      "valueSource": "memory",
-      "dataType": "Boolean",
-      "writePermissions": {
-        "type": "AnyOf",
-        "securityLevels": [
-          {
-            "name": "Authenticated",
-            "children": [
-              {
-                "name": "Roles",
-                "children": [
-                  {
-                    "name": "Administrator",
-                    "children": []
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      "name": "UDT_Mem_DrivenByIntlks",
-      "tooltip": "1\u003d Driven by interlocks and displays Interlock view on popup",
-      "tagGroup": "Direct 1000",
-      "value": false,
-      "tagType": "AtomicTag"
-    },
-    {
-      "opcItemPath": {
-        "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.S_HMISts"
+        "binding": "{OPCTagPath}.hmiIgnition.S_HMIBits"
       },
       "valueSource": "opc",
       "historyMaxAge": 12,
@@ -317,8 +116,8 @@
       "tagType": "AtomicTag",
       "readOnly": true,
       "dataType": "Int4",
-      "historyProvider": "TagSplitter_CAM1",
-      "name": "S_HMISts",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "S_HMIBits",
       "historyEnabled": false,
       "opcServer": {
         "bindType": "parameter",
@@ -326,21 +125,253 @@
       }
     },
     {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Cfg_MaintOnlyReset"
+      },
+      "valueSource": "memory",
+      "historyMaxAge": 24,
+      "historicalDeadband": 1.0,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "tooltip": "1=Only Maint can reset this Interlock ",
+      "tagGroup": "Leased 60000",
+      "tagType": "AtomicTag",
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Boolean",
+      "name": "UDT_mem_MaintOnlyReset",
+      "historyEnabled": false,
+      "value": false,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.S_NBIntlkTripped"
+      },
       "valueSource": "expr",
-      "expression": "0",
-      "name": "UDT_Exp_Alarms",
-      "executionMode": "EventDriven",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMIBits}&16",
+      "historicalDeadband": 1.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "NonBypassable Interlock Status (1=Tripped, 0=OK to run) ",
+      "tagGroup": "Leased 5000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Boolean",
+      "name": "S_NBIntlkTripped",
+      "historyEnabled": false,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.S_Tripped"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMIBits}&8",
+      "historicalDeadband": 1.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Interlock Status (1=Tripped, 0=OK to run) ",
       "tagGroup": "Direct 1000",
-      "tagType": "AtomicTag"
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Boolean",
+      "name": "S_Tripped",
+      "historyEnabled": false,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
     },
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.Cfg_AllowMan"
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_IntlkOffDly@Long"
+      },
+      "valueSource": "opc",
+      "rawHigh": 1000.0,
+      "historyMaxAge": 12,
+      "historicalDeadband": 1.0,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Minimum time for the output to be held true to verify HMI receives status ",
+      "formatString": "#,##0.###",
+      "tagGroup": "Leased 0",
+      "engUnit": "sec",
+      "tagType": "AtomicTag",
+      "scaledHigh": 1.0,
+      "scaleMode": "Linear",
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Float4",
+      "name": "HMI_Cfg_IntlkOffDly",
+      "historyEnabled": false,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Bypass"
       },
       "valueSource": "opc",
       "historyMaxAge": 12,
-      "engHigh": 2.0,
+      "historicalDeadband": 1.0,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Maintenance",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Supervisor",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1= Bypass Interlocked Tripped condition, Enabled ",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Boolean",
+      "name": "HMI_C_Bypass",
+      "historyEnabled": true,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Reset"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 24,
+      "historicalDeadband": 1.0,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Maintenance",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Operator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Supervisor",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "tooltip": "Reset Command ",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Boolean",
+      "name": "HMI_C_Reset",
+      "historyEnabled": false,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.Cfg_Bypassable"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 24,
+      "expression": "{[.]S_HMIBits}&2",
+      "historicalDeadband": 1.0,
       "writePermissions": {
         "type": "AnyOf",
         "securityLevels": [
@@ -360,15 +391,13 @@
           }
         ]
       },
-      "historicalDeadbandStyle": "Discrete",
-      "tooltip": "1\u003dAllow selection of Substitute Output",
+      "tooltip": "1=Interlock condition can be bypassed ",
       "tagGroup": "Leased 0",
-      "enabled": true,
       "tagType": "AtomicTag",
       "readOnly": true,
+      "historyProvider": "TagSplitter_LiConv",
       "dataType": "Boolean",
-      "historyProvider": "TagSplitter_CAM1",
-      "name": "Cfg_AllowMan",
+      "name": "Cfg_Bypassable",
       "historyEnabled": false,
       "opcServer": {
         "bindType": "parameter",
@@ -378,21 +407,21 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.S_ManAuto"
+        "binding": "{OPCTagPath}.hmiIgnition.S_BypEnabled"
       },
-      "valueSource": "opc",
-      "historyMaxAge": 24,
-      "historicalDeadband": 0.1,
-      "engHigh": 2.0,
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMIBits}&32",
+      "historicalDeadband": 1.0,
       "historicalDeadbandStyle": "Discrete",
-      "tooltip": "1\u003dUsing Substitute PV (overrides input), 0\u003dUsing live Input PV from device ",
+      "tooltip": "Bypass function is enabled by Maint/Eng ",
       "tagGroup": "Leased 5000",
       "tagType": "AtomicTag",
       "readOnly": true,
       "historyProvider": "TagSplitter_LiConv",
       "dataType": "Boolean",
-      "name": "S_ManAuto",
-      "historyEnabled": true,
+      "name": "S_BypEnabled",
+      "historyEnabled": false,
       "opcServer": {
         "bindType": "parameter",
         "binding": "{OPCServer}"
@@ -401,11 +430,12 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.Cfg_OosSet"
+        "binding": "{OPCTagPath}.hmiIgnition.Cfg_Latched"
       },
-      "valueSource": "opc",
-      "historyMaxAge": 12,
-      "engHigh": 2.0,
+      "valueSource": "expr",
+      "historyMaxAge": 24,
+      "expression": "{[.]S_HMIBits}&1",
+      "historicalDeadband": 1.0,
       "writePermissions": {
         "type": "AnyOf",
         "securityLevels": [
@@ -425,15 +455,13 @@
           }
         ]
       },
-      "historicalDeadbandStyle": "Discrete",
-      "tooltip": "Output valve to set when Oos is active ",
+      "tooltip": "1= Interlock is latched (sealed in) and requires reset ",
       "tagGroup": "Leased 0",
-      "enabled": true,
       "tagType": "AtomicTag",
       "readOnly": true,
+      "historyProvider": "TagSplitter_LiConv",
       "dataType": "Boolean",
-      "historyProvider": "TagSplitter_CAM1",
-      "name": "Cfg_OosSet",
+      "name": "Cfg_Latched",
       "historyEnabled": false,
       "opcServer": {
         "bindType": "parameter",
@@ -443,42 +471,20 @@
     {
       "opcItemPath": {
         "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.S_OoS"
+        "binding": "{OPCTagPath}.hmiIgnition.C_Trip_Condition"
       },
-      "valueSource": "opc",
-      "historyMaxAge": 24,
-      "historicalDeadband": 0.1,
-      "engHigh": 2.0,
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMIBits}&4",
+      "historicalDeadband": 1.0,
       "historicalDeadbandStyle": "Discrete",
-      "tooltip": "1\u003dOut of Service is selected (supersedes Maint, Ovrd, Ext, Prog, Oper) ",
+      "tooltip": "1=Tripped or Interlock Condition, 0=OK to run ",
       "tagGroup": "Leased 5000",
       "tagType": "AtomicTag",
       "readOnly": true,
       "historyProvider": "TagSplitter_LiConv",
       "dataType": "Boolean",
-      "name": "S_OoS",
-      "historyEnabled": true,
-      "opcServer": {
-        "bindType": "parameter",
-        "binding": "{OPCServer}"
-      }
-    },
-    {
-      "opcItemPath": {
-        "bindType": "parameter",
-        "binding": "{OPCTagPath}.hmiIgnition.C_Output"
-      },
-      "valueSource": "opc",
-      "historyMaxAge": 12,
-      "engHigh": 2.0,
-      "historicalDeadbandStyle": "Discrete",
-      "tooltip": "Command from the program to drive the S_Output",
-      "tagGroup": "Leased 0",
-      "tagType": "AtomicTag",
-      "readOnly": true,
-      "historyProvider": "TagSplitter_CAM1",
-      "dataType": "Boolean",
-      "name": "C_Output",
+      "name": "C_Trip_Condition",
       "historyEnabled": false,
       "opcServer": {
         "bindType": "parameter",

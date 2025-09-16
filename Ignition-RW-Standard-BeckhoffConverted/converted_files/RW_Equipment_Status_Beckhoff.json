@@ -1,0 +1,550 @@
+{
+  "name": "RW_Equipment_Status",
+  "parameters": {
+    "OPCTagPath": {
+      "dataType": "String",
+      "value": "nsu=urn:BeckhoffAutomation:Ua:PLC1;s=MAIN.YourTagNameHere"
+    },
+    "OPCServer": {
+      "dataType": "String",
+      "value": "Beckhoff@YourComputerName"
+    },
+    "Description": {
+      "dataType": "String"
+    },
+    "Units": {
+      "dataType": "String",
+      "value": "%"
+    }
+  },
+  "tagType": "UdtType",
+  "tags": [
+    {
+      "name": "Interlocks",
+      "tagType": "Folder",
+      "tags": [
+        {
+          "name": "Interlock 27",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 27
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 18",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 18
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 12",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 12
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 13",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 13
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 24",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 24
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 20",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 20
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 10",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 10
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 22",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 22
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 9",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 9
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 6",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 6
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 4",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 4
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 28",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 28
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 11",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 11
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 19",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 19
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 5",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 5
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 15",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 15
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 3",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 3
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 14",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 14
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 7",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 7
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 25",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 25
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 21",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 21
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 31",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 31
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 2",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 2
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 26",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 26
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 29",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 29
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 16",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 16
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 23",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 23
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 30",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 30
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 17",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 17
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 8",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "parameters": {
+            "Index": {
+              "dataType": "Integer",
+              "value": 8
+            }
+          },
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        },
+        {
+          "name": "Interlock 1",
+          "typeId": "Redwood/RW_Interlock_Equipment_Map",
+          "tagType": "UdtInstance",
+          "tags": [
+            {
+              "name": "Interlock Path",
+              "tagType": "AtomicTag"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

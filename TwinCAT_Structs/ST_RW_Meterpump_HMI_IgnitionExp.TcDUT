@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="ST_RW_Meterpump_HMI_IgnitionExp" Id="{7f3acee3-9bb8-4b08-86d0-56bbee8d0c23}">
+  <DUT Name="ST_RW_Meterpump_HMI_IgnitionExp" Id="{eaa44f5b-9dcf-476c-bcb4-9da1ae857ffb}">
     <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
     {attribute 'OPC.UA.DA' := '1'}
     {attribute 'OPC.UA.DA.StructuredType' := '1'}
@@ -8,8 +8,8 @@
     ST_RW_Meterpump_HMI_IgnitionExp
     ==================================================
     Generated from Ignition UDT: RW_MeterPump
-    Total tags: 66
-    Generated on: 2025-09-15 13:03:45
+    Total tags: 64
+    Generated on: 2025-09-16 11:33:46
     *)
     TYPE ST_RW_Meterpump_HMI_IgnitionExp :
     STRUCT
@@ -63,10 +63,6 @@
         {attribute 'OPC.UA.DA' := '1'}
         S_AlmNotify : DINT := 0;
         {attribute 'OPC.UA.DA' := '1'}
-        {attribute 'OPC.UA.DA.Description' := 'True if Permissive has navigation to a Perm Popup'}
-        // True if Permissive has navigation to a Perm Popup
-        UDT_mem_HasPermNav : BOOL := FALSE;
-        {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Access' := '1'}
         {attribute 'OPC.UA.DA.Description' := '1 = Motor Failed to Stop'}
         // 1 = Motor Failed to Stop
@@ -81,12 +77,12 @@
         {attribute 'OPC.UA.DA.Description' := 'I/O Fault Status'}
         // I/O Fault Status
         A_IntlkTrip : BOOL := FALSE;		// Read-only tag
-
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Access' := '1'}
         {attribute 'OPC.UA.DA.Description' := '1=Energize Valve Solenoid'}
         // 1=Energize Valve Solenoid
         S_Output : BOOL := FALSE;		// Read-only tag
+
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Description' := 'Alarm On Delay Timer'}
         // Alarm On Delay Timer
@@ -105,16 +101,11 @@
         {attribute 'OPC.UA.DA.Description' := 'Start Permissives OK'}
         // Start Permissives OK
         S_PermOK : BOOL := FALSE;		// Read-only tag
-
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Description' := 'Manual Speed SP'}
         // Manual Speed SP
         HMI_C_Man_SpeedSP : REAL := 0.0;
-        {attribute 'OPC.UA.DA' := '1'}
-        {attribute 'OPC.UA.DA.Access' := '1'}
-        {attribute 'OPC.UA.DA.Description' := 'Always true used for Sub_AlarmConfig object'}
-        // Always true used for Sub_AlarmConfig object
-        UDT_mem_AlwaysTrue : BOOL := FALSE;		// Read-only tag
+
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Access' := '1'}
         {attribute 'OPC.UA.DA.Description' := 'Min Speed of speed SP/feedback Scale'}
@@ -129,7 +120,6 @@
         {attribute 'OPC.UA.DA.Description' := 'Speed feedback from device, if no speed feedback, will equal to speed command.'}
         // Speed feedback from device, if no speed feedback, will equal to spe...
         S_Val_Speed : REAL := 0.0;		// Read-only tag
-
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Description' := 'Operator Command to Reset all Alarms requiring Reset'}
         // Operator Command to Reset all Alarms requiring Reset
@@ -139,6 +129,7 @@
         {attribute 'OPC.UA.DA.Description' := '1 = Bypassable Interlocks are OK, motor can start/run.'}
         // 1 = Bypassable Interlocks are OK, motor can start/run.
         I_IntlkTrip : BOOL := FALSE;		// Read-only tag
+
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Access' := '1'}
         {attribute 'OPC.UA.DA.Description' := 'Packed bits to HMI CmdSrc and ORdys'}
@@ -154,49 +145,49 @@
         {attribute 'OPC.UA.DA.Description' := '1= Manaul Mode from HMI , 0=Auto Program commands'}
         // 1= Manaul Mode from HMI , 0=Auto Program commands
         S_ManAuto : BOOL := FALSE;		// Read-only tag
-
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Access' := '1'}
         {attribute 'OPC.UA.DA.Description' := '1 = Motor Failed to Start'}
         // 1 = Motor Failed to Start
         A_FailToOpen : BOOL := FALSE;		// Read-only tag
         Interlocks_Interlock_8 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 8 (Redwood/RW_Interlock_Equipment_Map)
+
         Interlocks_Interlock_24 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 24 (Redwood/RW_Interlock_Equipment_Map)
         Interlocks_Interlock_28 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 28 (Redwood/RW_Interlock_Equipment_Map)
         Interlocks_Interlock_7 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 7 (Redwood/RW_Interlock_Equipment_Map)
-
         Interlocks_Interlock_5 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 5 (Redwood/RW_Interlock_Equipment_Map)
         Interlocks_Interlock_12 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 12 (Redwood/RW_Interlock_Equipment_Map)
+
         Interlocks_Interlock_9 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 9 (Redwood/RW_Interlock_Equipment_Map)
         Interlocks_Interlock_10 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 10 (Redwood/RW_Interlock_Equipment_Map)
         Interlocks_Interlock_3 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 3 (Redwood/RW_Interlock_Equipment_Map)
-
         Interlocks_Interlock_27 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 27 (Redwood/RW_Interlock_Equipment_Map)
         Interlocks_Interlock_26 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 26 (Redwood/RW_Interlock_Equipment_Map)
+
         Interlocks_Interlock_30 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 30 (Redwood/RW_Interlock_Equipment_Map)
         Interlocks_Interlock_22 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 22 (Redwood/RW_Interlock_Equipment_Map)
         Interlocks_Interlock_13 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 13 (Redwood/RW_Interlock_Equipment_Map)
-
         Interlocks_Interlock_29 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 29 (Redwood/RW_Interlock_Equipment_Map)
         Interlocks_Interlock_16 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 16 (Redwood/RW_Interlock_Equipment_Map)
+
         Interlocks_Interlock_31 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 31 (Redwood/RW_Interlock_Equipment_Map)
         Interlocks_Interlock_17 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 17 (Redwood/RW_Interlock_Equipment_Map)
         Interlocks_Interlock_19 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 19 (Redwood/RW_Interlock_Equipment_Map)
-
         Interlocks_Interlock_14 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 14 (Redwood/RW_Interlock_Equipment_Map)
         Interlocks_Interlock_1 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 1 (Redwood/RW_Interlock_Equipment_Map)
+
         Interlocks_Interlock_11 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 11 (Redwood/RW_Interlock_Equipment_Map)
         Interlocks_Interlock_18 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 18 (Redwood/RW_Interlock_Equipment_Map)
         Interlocks_Interlock_20 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 20 (Redwood/RW_Interlock_Equipment_Map)
-
         Interlocks_Interlock_15 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 15 (Redwood/RW_Interlock_Equipment_Map)
         Interlocks_Interlock_4 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 4 (Redwood/RW_Interlock_Equipment_Map)
+
         Interlocks_Interlock_2 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 2 (Redwood/RW_Interlock_Equipment_Map)
         Interlocks_Interlock_6 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 6 (Redwood/RW_Interlock_Equipment_Map)
         Interlocks_Interlock_25 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 25 (Redwood/RW_Interlock_Equipment_Map)
-
         Interlocks_Interlock_21 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 21 (Redwood/RW_Interlock_Equipment_Map)
         Interlocks_Interlock_23 : ST_RW_Interlock_Equipment_Map_HMI_IgnitionExp;		// UDT Instance: Interlock 23 (Redwood/RW_Interlock_Equipment_Map)
+
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Access' := '1'}
         {attribute 'OPC.UA.DA.Description' := '1 = Motor Failed to Stop'}
@@ -209,7 +200,6 @@
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Access' := '1'}
         S_Stopped : BOOL := FALSE;		// Read-only tag
-
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Access' := '1'}
         {attribute 'OPC.UA.DA.Description' := 'Speed SP From Auto Function'}

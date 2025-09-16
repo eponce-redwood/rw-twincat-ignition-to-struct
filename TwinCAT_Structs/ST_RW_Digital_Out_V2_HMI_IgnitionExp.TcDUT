@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="ST_RW_Digital_Out_V2_HMI_IgnitionExp" Id="{0f62ecc6-ee0f-4144-9d01-fdb3a87b10e4}">
+  <DUT Name="ST_RW_Digital_Out_V2_HMI_IgnitionExp" Id="{7344d4e2-ddaa-43c7-b76a-9e8dbd9c5e8d}">
     <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
     {attribute 'OPC.UA.DA' := '1'}
     {attribute 'OPC.UA.DA.StructuredType' := '1'}
@@ -8,8 +8,8 @@
     ST_RW_Digital_Out_V2_HMI_IgnitionExp
     ==================================================
     Generated from Ignition UDT: RW_Digital_Out_V2
-    Total tags: 13
-    Generated on: 2025-09-15 13:03:45
+    Total tags: 12
+    Generated on: 2025-09-16 11:33:46
     *)
     TYPE ST_RW_Digital_Out_V2_HMI_IgnitionExp :
     STRUCT
@@ -42,10 +42,6 @@
         // 1= Maintenance Out Of Service, 0= In Service
         HMI_C_Oos : BOOL := FALSE;
         {attribute 'OPC.UA.DA' := '1'}
-        {attribute 'OPC.UA.DA.Description' := '1= Driven by interlocks and displays Interlock view on popup'}
-        // 1= Driven by interlocks and displays Interlock view on popup
-        UDT_Mem_DrivenByIntlks : BOOL := FALSE;
-        {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Access' := '1'}
         {attribute 'OPC.UA.DA.Description' := 'Packed bits to HMI'}
         // Packed bits to HMI
@@ -60,12 +56,12 @@
         {attribute 'OPC.UA.DA.Description' := '1=Using Substitute PV (overrides input), 0=Using live Input PV from device'}
         // 1=Using Substitute PV (overrides input), 0=Using live Input PV from...
         S_ManAuto : BOOL := FALSE;		// Read-only tag
-
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Access' := '1'}
         {attribute 'OPC.UA.DA.Description' := 'Output valve to set when Oos is active'}
         // Output valve to set when Oos is active
         Cfg_OosSet : BOOL := FALSE;		// Read-only tag
+
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Access' := '1'}
         {attribute 'OPC.UA.DA.Description' := '1=Out of Service is selected (supersedes Maint, Ovrd, Ext, Prog, Oper)'}

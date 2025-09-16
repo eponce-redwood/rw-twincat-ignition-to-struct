@@ -1,0 +1,746 @@
+{
+  "name": "RW_Soft_Starter_Siemens",
+  "parameters": {
+    "OPCTagPath": {
+      "dataType": "String",
+      "value": "nsu=urn:BeckhoffAutomation:Ua:PLC1;s=MAIN.YourTagNameHere"
+    },
+    "OPCServer": {
+      "dataType": "String",
+      "value": "Beckhoff@YourComputerName"
+    },
+    "Description": {
+      "dataType": "String"
+    }
+  },
+  "tagType": "UdtType",
+  "tags": [
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.C_Interlock_Tripped"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "engHigh": 2.0,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Engineer",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Leased 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "Interlock_Tripped",
+      "historyEnabled": true,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Run_Manual"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "engHigh": 2.0,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Engineer",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Leased 1000",
+      "tagType": "AtomicTag",
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "Manual Cmd",
+      "historyEnabled": true,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.S_Runtime_Counter"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Leased 60000",
+      "engUnit": "Hr",
+      "tagType": "AtomicTag",
+      "dataType": "Int8",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "Runtime Counter",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "SEC",
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.S_Tripped"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_LiConv",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "name": "Starter Faulted",
+      "historyEnabled": true,
+      "tagGroup": "Leased 1000",
+      "tagType": "AtomicTag",
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Fault_Reset"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_LiConv",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "name": "Fault_Reset",
+      "historyEnabled": true,
+      "tagGroup": "Leased 1000",
+      "tagType": "AtomicTag",
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.S_Communication_Error"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_LiConv",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "name": "Communication Error",
+      "historyEnabled": true,
+      "tagGroup": "Leased 1000",
+      "tagType": "AtomicTag",
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.S_Motor_Running"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_LiConv",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "name": "Running",
+      "historyEnabled": true,
+      "tagGroup": "Leased 1000",
+      "tagType": "AtomicTag",
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Feedback_Mismatch_Alarm_Time@Long"
+      },
+      "valueSource": "opc",
+      "rawHigh": 1000.0,
+      "historyMaxAge": 12,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Engineer",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.###",
+      "tagGroup": "Leased 30000",
+      "engUnit": "sec",
+      "enabled": true,
+      "tagType": "AtomicTag",
+      "scaledHigh": 1.0,
+      "scaleMode": "Linear",
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Float8",
+      "name": "Feedback Mismatch Alarm Timer",
+      "historyEnabled": true,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Manual_Mode"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "engHigh": 2.0,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Engineer",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Leased 30000",
+      "tagType": "AtomicTag",
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "Manual Mode",
+      "historyEnabled": true,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "name": "Interlocks",
+      "tagType": "Folder"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.Evaluate_Disconnect"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_LiConv",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "name": "Disconnect Enable",
+      "historyEnabled": true,
+      "tagGroup": "Leased 30000",
+      "tagType": "AtomicTag",
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{Datablock_Name}.Evaluate_Running_Status"
+      },
+      "valueSource": "memory",
+      "historyMaxAge": 12,
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Leased 30000",
+      "enabled": true,
+      "tagType": "AtomicTag",
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "Run Feedback Enable",
+      "historyEnabled": true,
+      "value": true,
+      "opcServer": "KEPServerEX_CHP01"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Runtime_Counter_Reset"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 24,
+      "engHigh": 2.0,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_LiConv_Engineer",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_LiConv_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "LiConv_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Leased 60000",
+      "tagType": "AtomicTag",
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "Runtime Counter Reset",
+      "historyEnabled": false,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.S_Motor_Running"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_LiConv",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "name": "Run Feedback",
+      "historyEnabled": true,
+      "tagGroup": "Leased 1000",
+      "tagType": "AtomicTag",
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.C_Run"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historyProvider": "TagSplitter_LiConv",
+      "dataType": "Boolean",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "name": "Command",
+      "historyEnabled": true,
+      "tagGroup": "Leased 1000",
+      "tagType": "AtomicTag",
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.Disconnect_OK"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_LiConv",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "name": "Disconnect",
+      "historyEnabled": true,
+      "tagGroup": "Leased 1000",
+      "tagType": "AtomicTag",
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.S_Feedback_Mismatch_Alarm"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Leased 1000",
+      "enabled": true,
+      "tagType": "AtomicTag",
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "Feedback Mismatch Alarm",
+      "historyEnabled": true,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.S_Disconnect_Alarm"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_LiConv",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "name": "Disconnect Alarm",
+      "historyEnabled": true,
+      "tagGroup": "Leased 1000",
+      "tagType": "AtomicTag",
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1696 @@
+{
+  "name": "RW_PID_Compact_V2",
+  "typeId": "",
+  "parameters": {
+    "OPCTagPath": {
+      "dataType": "String",
+      "value": "nsu=urn:BeckhoffAutomation:Ua:PLC1;s=MAIN.YourTagNameHere"
+    },
+    "OPCServer": {
+      "dataType": "String",
+      "value": "Beckhoff@YourComputerName"
+    },
+    "Description": {
+      "dataType": "String"
+    },
+    "Units": {
+      "dataType": "String",
+      "value": "%"
+    },
+    "DataBlock_Name": {
+      "dataType": "String",
+      "value": {
+        "bindType": "parameter",
+        "binding": "{TagName}"
+      }
+    },
+    "DataBlock_Name_PID": {
+      "dataType": "String",
+      "value": {
+        "bindType": "parameter",
+        "binding": "{TagName}_TO"
+      }
+    }
+  },
+  "tagType": "UdtType",
+  "tags": [
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.Setpoint"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Units}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.25,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Current Setpoint input value to PID block",
+      "tagGroup": "Leased 2000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Float4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "S_SP",
+      "historyEnabled": true,
+      "value": 0.0,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.Gain"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.01,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "PID Proportional Gain",
+      "tagGroup": "Leased 60000",
+      "tagType": "AtomicTag",
+      "dataType": "Float4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "Cfg_Kp",
+      "historyEnabled": false,
+      "value": 1.0,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.S_SP_HMI"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMIBits}&128",
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AllOf",
+        "securityLevels": []
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1= SP is from the HMI; 0= SP from program",
+      "tagGroup": "Direct 1000",
+      "engUnit": "",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "S_SPFromHMI",
+      "historyEnabled": false,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.Ti"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.01,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "PID Integral Action Time",
+      "tagGroup": "Leased 60000",
+      "engUnit": "s",
+      "tagType": "AtomicTag",
+      "dataType": "Float4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "Cfg_Ki",
+      "historyEnabled": false,
+      "value": 1.0,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.Cfg_PVEUMax"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.01,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CAM1_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CAM1_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CAM1_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "PV Engineering Units Maximum Value (PVEU) ",
+      "tagGroup": "Leased 60000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Float4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "Cfg_PVEUMax",
+      "historyEnabled": false,
+      "value": 100.0,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.Cfg_CVEUMin"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.01,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CAM1_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CAM1_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CAM1_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "CV Engineering Units Minimum Value (CVEU) ",
+      "tagGroup": "Leased 60000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Float4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "Cfg_CVEUMin",
+      "historyEnabled": false,
+      "value": 0.0,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_Oos"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Maintenance",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Supervisor",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1= Maintenance Command to select Device OutOfService",
+      "tagGroup": "Leased 60000",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "historyProvider": "TagSplitter_CAM1",
+      "dataType": "Boolean",
+      "name": "HMI_C_Oos",
+      "historyEnabled": false,
+      "value": false,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_ManAuto"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Maintenance",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Supervisor",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1= Select Manual/HMI control, 0= Auto/Program control ",
+      "tagGroup": "Leased 60000",
+      "tagType": "AtomicTag",
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "HMI_C_ManAuto",
+      "historyEnabled": false,
+      "value": false,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.Cfg_AllowSP_HMI"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMIBits}&64",
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1=Allow SP change from HMI",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_CAM1",
+      "dataType": "Boolean",
+      "name": "Cfg_AllowSPFromHMI",
+      "historyEnabled": false,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.Sts_OoS"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMIBits}&1",
+      "historicalDeadband": 0.1,
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1= Manaul Mode from HMI , 0=Auto Program commands ",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_CAM1",
+      "dataType": "Boolean",
+      "name": "S_ManAuto",
+      "historyEnabled": true,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.C_Track"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMIBits}&8",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1= PID not in control of process device and will track C_TrackValue Input",
+      "tagGroup": "Leased 5000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_CAM1",
+      "dataType": "Boolean",
+      "name": "C_Track",
+      "historyEnabled": false,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_SPRisingROC"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.01,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Maintenance",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Operator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Supervisor",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Setting for Setpoint Rate of Change Limit Increasing (EU/sec) ",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "dataType": "Float4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "HMI_Cfg_SPRisingROC",
+      "historyEnabled": false,
+      "value": 0.0,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_SPFallingROC"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.01,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Maintenance",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Operator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Supervisor",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Setting for Setpoint Rate of Change Limit Decreasing (EU/sec) ",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "dataType": "Float4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "HMI_Cfg_SPFallingROC",
+      "historyEnabled": false,
+      "value": 0.0,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.InvertControl"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Units}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1=Direct acting (E=PV-SP), 0=Reverse acting (E=SP-PV)",
+      "tagGroup": "Leased 60000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Float4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "Cfg_CtrlAction",
+      "historyEnabled": false,
+      "value": 1.0,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_SPEUMin"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.01,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "SP Engineering Units Minimum Value (EU)",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "dataType": "Float4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "HMI_Cfg_SPEUMin",
+      "historyEnabled": false,
+      "value": 0.0,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_ManCVFallingROC"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.01,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Maintenance",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Operator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Supervisor",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Setting for Manual Rate of Change Limit Decreasing (CVEU/sec) ",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "dataType": "Float4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "HMI_Cfg_ManCVFallingROC",
+      "historyEnabled": false,
+      "value": 0.0,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.S_CVOut"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 1000",
+      "engUnit": "%",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Float4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "S_CVOut",
+      "historyEnabled": true,
+      "value": 0.0,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.Sts_OoS"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMIBits}&4",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1= Auto; Program cmd to overide HMI selection of Manual Mode ",
+      "tagGroup": "Leased 5000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_CAM1",
+      "dataType": "Boolean",
+      "name": "C_AutoOvrd",
+      "historyEnabled": false,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_ManCVRisingROC"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.01,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Maintenance",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Operator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Supervisor",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Setting for Manual Rate of Change Limit Increasing (CVEU/sec) ",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "dataType": "Float4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "HMI_Cfg_ManCVRisingROC",
+      "historyEnabled": false,
+      "value": 0.0,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.Sts_StoppingFwd"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMIBits}&256",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "I/O Fault Status",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "I_IntlkTrip",
+      "historyEnabled": false,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.Td"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.01,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "PID Derivative Time",
+      "tagGroup": "Leased 60000",
+      "engUnit": "s",
+      "tagType": "AtomicTag",
+      "dataType": "Float4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "Cfg_Kd",
+      "historyEnabled": false,
+      "value": 1.0,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.Sts_OoS"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMIBits}&2",
+      "engHigh": 2.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1=Out of Service is selected (supersedes Maint, Ovrd, Ext, Prog, Oper) ",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "historyProvider": "TagSplitter_CAM1",
+      "dataType": "Boolean",
+      "name": "S_OoS",
+      "historyEnabled": false,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "valueSource": "expr",
+      "eventScripts": [
+        {
+          "eventid": "valueChanged",
+          "script": "\tpath = [\"[.]I_PV.HistoricalDeadband\"]\n\tvalue = [currentValue.value]\n\tsystem.tag.writeBlocking(path, value)\n\t\n\tpath1 = [\"[.]S_SP.HistoricalDeadband\"]\n\tsystem.tag.writeBlocking(path1, value)"
+        }
+      ],
+      "expression": "abs(tag({PathToParentFolder}+'/Cfg_PVEUMax.value') - tag({PathToParentFolder}+'/Cfg_PVEUMin.value'))*0.006",
+      "dataType": "Float4",
+      "name": "HistoricalDeadband",
+      "historyEnabled": false,
+      "tagGroup": "Leased 60000",
+      "sampleMode": "TagGroup",
+      "tagType": "AtomicTag"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_SPEUMax"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.01,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "SP Engineering Units Maximum Value (EU)",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "dataType": "Float4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "HMI_Cfg_SPEUMax",
+      "historyEnabled": false,
+      "value": 0.0,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.S_HMIBits"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "engHigh": 12.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Packed bits to HMI CmdSrc and ORdys  ",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Int4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "S_HMIBits",
+      "historyEnabled": false,
+      "value": 0,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_IntlkCV"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.01,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "CV Value to use with Interlock / Bad Value CV action (CVEU) ",
+      "tagGroup": "Leased 60000",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "dataType": "Float4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "HMI_Cfg_IntlkCV",
+      "historyEnabled": false,
+      "value": 0.0,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_SPFromHMI"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CAM1_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CAM1_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CAM1_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CAM1_Operator",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CAM1_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CAM1_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CAM1_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1= SP is from the HMI; 0= SP from program",
+      "tagGroup": "Leased 60000",
+      "engUnit": "PCT",
+      "tagType": "AtomicTag",
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "HMI_C_SPFromHMI",
+      "historyEnabled": false,
+      "value": false,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "nsu=KEPServerEX;s={Node}.{TIA_PLC_Name}.Blocks.{DataBlock_Name}.HMI_Cfg_MaxClosedPos"
+      },
+      "valueSource": "memory",
+      "dataType": "Float4",
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "name": "HMI_Cfg_MaxClosedPos",
+      "tooltip": "Position above which valve is assumed open for the HMI object ",
+      "tagGroup": "Leased 0",
+      "value": 0.5,
+      "tagType": "AtomicTag",
+      "opcServer": "KEPServerEX_CAM1"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.Cfg_CVEUMax"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.01,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CAM1_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CAM1_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CAM1_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "CV Engineering Units Maximum Value (CVEU) ",
+      "tagGroup": "Leased 60000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Float4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "Cfg_CVEUMax",
+      "historyEnabled": false,
+      "value": 100.0,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_Cfg_SetPointTrack"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.01,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "CV Value to use with Interlock / Bad Value CV action (CVEU) ",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "dataType": "Float4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "HMI_Cfg_SetPointTrack",
+      "historyEnabled": false,
+      "value": 0.0,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.State"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "PID Active Mode: 4=Man, 3=Auto, 2=FineTune, 1=PreTune, 0=Inactive",
+      "tagGroup": "Leased 5000",
+      "tagType": "AtomicTag",
+      "dataType": "Int4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "S_State",
+      "historyEnabled": false,
+      "value": 0,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.I_PV"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Units}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Float4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "I_PV",
+      "historyEnabled": true,
+      "value": 0.0,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.Cfg_AllowMan"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMIBits}&16",
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CHP01_Supervisor",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CHP01_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1=Allow Man control of motor from HMI ",
+      "tagGroup": "Leased 0",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "historyProvider": "TagSplitter_CAM1",
+      "dataType": "Boolean",
+      "name": "Cfg_AllowMan",
+      "historyEnabled": false,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_SP"
+      },
+      "engUnit": {
+        "bindType": "parameter",
+        "binding": "{Units}"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Maintenance",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Operator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Supervisor",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Operator Setpoint Entry (Rate Limited)",
+      "tagGroup": "Leased 60000",
+      "tagType": "AtomicTag",
+      "dataType": "Float4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "HMI_C_SP",
+      "historyEnabled": false,
+      "value": 0.0,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.HMI_C_ManCV"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.1,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Maintenance",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Operator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Supervisor",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "Operator Manual CV output (Rate Limited) ",
+      "tagGroup": "Leased 60000",
+      "engUnit": "%",
+      "tagType": "AtomicTag",
+      "dataType": "Float4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "HMI_C_ManCV",
+      "historyEnabled": false,
+      "value": 0.0,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.Cfg_HasOos"
+      },
+      "valueSource": "expr",
+      "historyMaxAge": 12,
+      "expression": "{[.]S_HMIBits}&32",
+      "engHigh": 2.0,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CAM1_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CAM1_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CAM1_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "1=Maintenance Out of Service exists, can be selected",
+      "tagGroup": "Leased 0",
+      "enabled": true,
+      "tagType": "AtomicTag",
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "Cfg_HasOos",
+      "historyEnabled": false,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition.Cfg_PVEUMin"
+      },
+      "valueSource": "opc",
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.01,
+      "writePermissions": {
+        "type": "AnyOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  },
+                  {
+                    "name": "Role_CAM1_Engineer",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CAM1_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Role_CAM1_Maintenance",
+                    "children": [
+                      {
+                        "name": "SecurityZones",
+                        "children": [
+                          {
+                            "name": "CAM1_RW",
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tooltip": "PV Engineering Units Mimimum Value (PVEU) ",
+      "tagGroup": "Leased 60000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Float4",
+      "historyProvider": "TagSplitter_CAM1",
+      "name": "Cfg_PVEUMin",
+      "historyEnabled": false,
+      "value": 0.0,
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPCServer}"
+      }
+    }
+  ]
+}

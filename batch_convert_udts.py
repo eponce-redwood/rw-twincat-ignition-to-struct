@@ -2,8 +2,19 @@
 """
 Batch UDT Converter Script
 
-This script processes all UDT JSON files in the Ignition-RW-Standard-ExtractedUDTs folder
-and converts them to TwinCAT struct format using the existing ignition_to_twincat.py converter.
+This script processes all UDT JSON files and converts them to TwinCAT struct format 
+using the existing ignition_to_twincat.py converter.
+
+Usage:
+    python batch_convert_udts.py [source_directory] [output_directory]
+    
+If source_directory is not specified, defaults to Ignition-RW-Standard-ExtractedUDTs
+If output_directory is not specified, defaults to TwinCAT_Structs
+
+Examples:
+    python batch_convert_udts.py
+    python batch_convert_udts.py ../other-udts/
+    python batch_convert_udts.py ../other-udts/ ../output-structs/
 
 Author: Automation Script
 Date: September 2025
@@ -16,16 +27,36 @@ from pathlib import Path
 from ignition_to_twincat import IgnitionToTwinCATConverter
 
 
-def batch_convert_udts():
-    """Convert all UDT JSON files in the extracted UDTs folder."""
+def batch_convert_udts(source_dir=None, output_dir=None):
+    """Convert all UDT JSON files from source directory to TwinCAT structs."""
     
     # Set up paths
     script_dir = Path(__file__).parent
-    udt_folder = script_dir / "Ignition-RW-Standard-ExtractedUDTs"
+    
+    # Default source directory
+    if source_dir is None:
+        udt_folder = script_dir / "Ignition-RW-Standard-ExtractedUDTs"
+    else:
+        udt_folder = Path(source_dir)
+    
+    # Default output directory  
+    if output_dir is None:
+        output_folder = script_dir / "TwinCAT_Structs"
+    else:
+        output_folder = Path(output_dir)
     
     print("Batch UDT to TwinCAT Converter")
     print("=" * 50)
     print(f"Source folder: {udt_folder}")
+    print(f"Output folder: {output_folder}")
+    
+    # Validate source directory
+    if not udt_folder.exists():
+        print(f"Error: Source directory '{udt_folder}' does not exist.")
+        return 0, 1
+    
+    # Create output directory if it doesn't exist
+    output_folder.mkdir(parents=True, exist_ok=True)
     
     # Find all JSON files (excluding extraction_report.txt)
     json_files = list(udt_folder.glob("*.json"))
@@ -54,6 +85,9 @@ def batch_convert_udts():
         try:
             # Create converter instance for each file
             converter = IgnitionToTwinCATConverter()
+            
+            # Set custom output folder
+            converter.output_folder = str(output_folder)
             
             # Load and convert the file
             if converter.load_ignition_json(str(json_file)):
@@ -90,10 +124,9 @@ def batch_convert_udts():
             print(f"   - {file}: {error}")
     
     # Check output directory
-    output_dir = script_dir / "TwinCAT_Structs"
-    if output_dir.exists():
-        tcdut_files = list(output_dir.glob("*.TcDUT"))
-        print(f"\n📁 OUTPUT DIRECTORY: {output_dir}")
+    if output_folder.exists():
+        tcdut_files = list(output_folder.glob("*.TcDUT"))
+        print(f"\n📁 OUTPUT DIRECTORY: {output_folder}")
         print(f"   Generated {len(tcdut_files)} TwinCAT struct files (.TcDUT)")
         
         if tcdut_files:
@@ -106,9 +139,32 @@ def batch_convert_udts():
     return len(successful_conversions), len(failed_conversions)
 
 
-if __name__ == "__main__":
+def main():
+    """Main function to handle command line arguments."""
+    # Parse command line arguments
+    source_dir = None
+    output_dir = None
+    
+    if len(sys.argv) > 1:
+        source_dir = sys.argv[1]
+    
+    if len(sys.argv) > 2:
+        output_dir = sys.argv[2]
+    
+    # Show usage if help requested
+    if len(sys.argv) > 1 and sys.argv[1] in ['-h', '--help']:
+        print("Usage: python batch_convert_udts.py [source_directory] [output_directory]")
+        print("\nArguments:")
+        print("  source_directory   Directory containing JSON UDT files (default: Ignition-RW-Standard-ExtractedUDTs)")
+        print("  output_directory   Directory to save TwinCAT struct files (default: TwinCAT_Structs)")
+        print("\nExamples:")
+        print("  python batch_convert_udts.py")
+        print("  python batch_convert_udts.py ../other-udts/")
+        print("  python batch_convert_udts.py ../other-udts/ ../output-structs/")
+        sys.exit(0)
+    
     try:
-        success_count, failed_count = batch_convert_udts()
+        success_count, failed_count = batch_convert_udts(source_dir, output_dir)
         
         if failed_count == 0:
             print("🎉 All UDT conversions completed successfully!")
@@ -120,3 +176,7 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"\n💥 CRITICAL ERROR: {str(e)}")
         sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

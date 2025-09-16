@@ -1,0 +1,316 @@
+{
+  "name": "RW_PLC_Info_S71200",
+  "typeId": "",
+  "parameters": {
+    "OPCTagPath": {
+      "dataType": "String",
+      "value": "nsu=urn:BeckhoffAutomation:Ua:PLC1;s=MAIN.YourTagNameHere"
+    },
+    "OPCServer": {
+      "dataType": "String",
+      "value": "Beckhoff@YourComputerName"
+    },
+    "OPC_Server": {
+      "dataType": "String",
+      "value": "KEPServerEX_CHP01"
+    }
+  },
+  "tagType": "UdtType",
+  "tags": [
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition._ScanRateMs"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 500,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.001,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Int4",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "KW_Device_ScanRateMs",
+      "historyEnabled": false,
+      "historyTimeDeadbandUnits": "MS"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition._SuccessfulReads"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 60,
+      "historyMaxAge": 12,
+      "historicalDeadband": 1.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 5000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Int8",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "KW_Device_SuccessfulReads",
+      "historyEnabled": false,
+      "historyTimeDeadbandUnits": "SEC"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition._Error"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 500,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.001,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "KW_Device_Error",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "MS"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition._SuccessfulWrites"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 60,
+      "historyMaxAge": 12,
+      "historicalDeadband": 1.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 5000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Int8",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "KW_Device_SuccessfulWrites",
+      "historyEnabled": false,
+      "historyTimeDeadbandUnits": "SEC"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition._Description"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 500,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.001,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "String",
+      "historyProvider": "Historian_CHP01",
+      "name": "KW_Device_Description",
+      "historyEnabled": false,
+      "historyTimeDeadbandUnits": "MS"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition._ScanMode"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 500,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.001,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "String",
+      "historyProvider": "Historian_CHP01",
+      "name": "KW_Device_ScanMode",
+      "historyEnabled": false,
+      "historyTimeDeadbandUnits": "MS"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition._ForceSymbolReload"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 500,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.001,
+      "writePermissions": {
+        "type": "AllOf",
+        "securityLevels": [
+          {
+            "name": "Authenticated",
+            "children": [
+              {
+                "name": "Roles",
+                "children": [
+                  {
+                    "name": "Administrator",
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": false,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "KW_ForceSymbolReload",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "MS"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition._Enabled"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 500,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.001,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Boolean",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "KW_Device_Enabled",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "MS"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition._SecondsInError"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 500,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.001,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Int8",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "KW_Device_SecondsInError",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "MS"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition._FailedReads"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 60,
+      "historyMaxAge": 12,
+      "historicalDeadband": 1.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 5000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Int8",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "KW_Device_FailedReads",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "SEC"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition._ActiveTagCount"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 500,
+      "historyMaxAge": 12,
+      "historicalDeadband": 0.001,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Int4",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "KW_Device_ActiveTagCount",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "MS"
+    },
+    {
+      "opcItemPath": {
+        "bindType": "parameter",
+        "binding": "{OPCTagPath}.hmiIgnition._FailedWrites"
+      },
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 60,
+      "historyMaxAge": 12,
+      "historicalDeadband": 1.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 5000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Int8",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "KW_Device_FailedWrites",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "SEC"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="ST_RW_Real_Alm_HMI_IgnitionExp" Id="{62cd7cc2-c677-4688-bae0-6785a0dcc504}">
+  <DUT Name="ST_RW_Real_Alm_HMI_IgnitionExp" Id="{1811eb03-a0ab-43ae-8703-e3d05fe80d4f}">
     <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
     {attribute 'OPC.UA.DA' := '1'}
     {attribute 'OPC.UA.DA.StructuredType' := '1'}
@@ -8,46 +8,30 @@
     ST_RW_Real_Alm_HMI_IgnitionExp
     ==================================================
     Generated from Ignition UDT: RW_Real_ALM
-    Total tags: 16
-    Generated on: 2025-09-15 13:03:45
+    Total tags: 9
+    Generated on: 2025-09-16 11:33:46
     *)
     TYPE ST_RW_Real_Alm_HMI_IgnitionExp :
     STRUCT
-        {attribute 'OPC.UA.DA' := '1'}
-        Active_Priority_Hi : DINT := 0;
-        {attribute 'OPC.UA.DA' := '1'}
-        HistoricalDeadband : REAL := 0.0;
-        {attribute 'OPC.UA.DA' := '1'}
-        Active_Priority_Lo_Lo : DINT := 0;
         {attribute 'OPC.UA.DA' := '1'}
         Process_Alm_Time_Hi : REAL := 0.0;
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Description' := '{Description}'}
         // {Description}
         Input : REAL := 0.0;
-
         {attribute 'OPC.UA.DA' := '1'}
         Process_Alm_Time_LoLo : REAL := 0.0;
         {attribute 'OPC.UA.DA' := '1'}
         Process_Alm_Val_HiHi : REAL := 0.0;
         {attribute 'OPC.UA.DA' := '1'}
         Process_Alm_Val_LoLo : REAL := 0.0;
-        {attribute 'OPC.UA.DA' := '1'}
-        Process_Alm_Time_Lo : REAL := 0.0;
-        {attribute 'OPC.UA.DA' := '1'}
-        Scale_Min : REAL := 0.0;
 
         {attribute 'OPC.UA.DA' := '1'}
-        Scale_Max : REAL := 0.0;
-        {attribute 'OPC.UA.DA' := '1'}
-        Active_Priority_Hi_Hi : DINT := 0;
-        {attribute 'OPC.UA.DA' := '1'}
-        Active_Priority_Lo : DINT := 0;
+        Process_Alm_Time_Lo : REAL := 0.0;
         {attribute 'OPC.UA.DA' := '1'}
         Process_Alm_Time_HiHi : REAL := 0.0;
         {attribute 'OPC.UA.DA' := '1'}
         Process_Alm_Val_Lo : REAL := 0.0;
-
         {attribute 'OPC.UA.DA' := '1'}
         Process_Alm_Val_Hi : REAL := 0.0;
     END_STRUCT

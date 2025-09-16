@@ -1,0 +1,165 @@
+{
+  "name": "RW_KEPServerEX_Debug_Info",
+  "typeId": "",
+  "parameters": {
+    "OPCTagPath": {
+      "dataType": "String",
+      "value": "nsu=urn:BeckhoffAutomation:Ua:PLC1;s=MAIN.YourTagNameHere"
+    },
+    "OPCServer": {
+      "dataType": "String",
+      "value": "Beckhoff@YourComputerName"
+    },
+    "OPC_Server": {
+      "dataType": "String",
+      "value": "KEPServerEX_CHP01"
+    }
+  },
+  "tagType": "UdtType",
+  "tags": [
+    {
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 1,
+      "historyMaxAge": 12,
+      "opcItemPath": "nsu=KEPServerEX;s=_System._DateTime",
+      "historicalDeadband": 1.0,
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "yyyy-MM-dd h:mm:ss aa",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "DateTime",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "DateTime",
+      "historyEnabled": false,
+      "historyTimeDeadbandUnits": "SEC"
+    },
+    {
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 1,
+      "historyMaxAge": 12,
+      "opcItemPath": "nsu=KEPServerEX;s=_System._TotalTagCount",
+      "historicalDeadband": 1.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Int8",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "TotalTagCount",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "SEC"
+    },
+    {
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 1,
+      "historyMaxAge": 12,
+      "opcItemPath": "nsu=KEPServerEX;s=_System._TimeLimitedFeatures",
+      "historicalDeadband": 1.0,
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.##",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "StringArray",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "TimeLimitedFeatures",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "SEC"
+    },
+    {
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 1,
+      "historyMaxAge": 12,
+      "opcItemPath": "ns=0;i=2255",
+      "historicalDeadband": 1.0,
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.##",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "StringArray",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "NamespaceArray",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "SEC"
+    },
+    {
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 1,
+      "historyMaxAge": 12,
+      "opcItemPath": "nsu=KEPServerEX;s=_System._ProductVersion",
+      "historicalDeadband": 1.0,
+      "historicalDeadbandStyle": "Discrete",
+      "formatString": "#,##0.##",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "String",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "KepwareVersion",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "SEC"
+    },
+    {
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 1,
+      "historyMaxAge": 12,
+      "opcItemPath": "nsu=KEPServerEX;s=_System._ClientCount",
+      "historicalDeadband": 1.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Int8",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "ClientCount",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "SEC"
+    },
+    {
+      "opcServer": {
+        "bindType": "parameter",
+        "binding": "{OPC_Server}"
+      },
+      "valueSource": "opc",
+      "historyTimeDeadband": 1,
+      "historyMaxAge": 12,
+      "opcItemPath": "nsu=KEPServerEX;s=_System._ActiveTagCount",
+      "historicalDeadband": 1.0,
+      "historicalDeadbandStyle": "Discrete",
+      "tagGroup": "Direct 1000",
+      "tagType": "AtomicTag",
+      "readOnly": true,
+      "dataType": "Int8",
+      "historyProvider": "TagSplitter_LiConv",
+      "name": "ActiveTagCount",
+      "historyEnabled": true,
+      "historyTimeDeadbandUnits": "SEC"
+    }
+  ]
+}

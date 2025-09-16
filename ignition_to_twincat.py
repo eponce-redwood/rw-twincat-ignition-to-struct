@@ -204,12 +204,13 @@ class IgnitionToTwinCATConverter:
                     print(f"Warning: Unknown UDT type '{type_id}' for instance '{tag_name}'")
                     
             elif tag_type == 'AtomicTag' or tag.get('dataType'):
-                # Regular atomic tag - use original name, store folder path for organization
-                tag_info = self._extract_tag_info(tag)  # Don't pass folder_prefix
-                if tag_info:
-                    # Store folder path for OPC UA pragma generation and comments
-                    tag_info['folder_path'] = folder_prefix.rstrip('_') if folder_prefix else None
-                    self.tags.append(tag_info)
+                # Regular atomic tag - only include if it maps to PLC variables
+                if self._should_include_in_twincat_struct(tag):
+                    tag_info = self._extract_tag_info(tag)  # Don't pass folder_prefix
+                    if tag_info:
+                        # Store folder path for OPC UA pragma generation and comments
+                        tag_info['folder_path'] = folder_prefix.rstrip('_') if folder_prefix else None
+                        self.tags.append(tag_info)
     
     def _extract_folder_contents(self, tags_array, folder_tags, folder_nested_structs):
         """Extract contents of a folder into separate lists."""
@@ -263,10 +264,11 @@ class IgnitionToTwinCATConverter:
                     print(f"Warning: Unknown UDT type '{type_id}' for instance '{tag_name}'")
                     
             elif tag_type == 'AtomicTag' or tag.get('dataType'):
-                # Atomic tag within folder
-                tag_info = self._extract_tag_info(tag)
-                if tag_info:
-                    folder_tags.append(tag_info)
+                # Atomic tag within folder - only include if it maps to PLC variables
+                if self._should_include_in_twincat_struct(tag):
+                    tag_info = self._extract_tag_info(tag)
+                    if tag_info:
+                        folder_tags.append(tag_info)
     
     def _sanitize_name(self, name):
         """Sanitize name for TwinCAT compatibility."""
@@ -278,6 +280,35 @@ class IgnitionToTwinCATConverter:
         # Remove leading/trailing underscores
         sanitized = sanitized.strip('_')
         return sanitized
+    
+    def _should_include_in_twincat_struct(self, tag):
+        """
+        Determine if a tag should be included in the TwinCAT struct.
+        
+        Include only tags that represent actual PLC variables:
+        1. valueSource: "opc" - Direct OPC mapping
+        2. valueSource: "expr" with opcItemPath - Calculated from OPC data (bit extraction)
+        
+        Exclude Ignition-internal tags:
+        1. valueSource: "expr" without opcItemPath - Pure Ignition calculations
+        2. valueSource: "memory" - Ignition memory variables
+        """
+        value_source = tag.get('valueSource', '')
+        has_opc_item_path = 'opcItemPath' in tag
+        
+        if value_source == 'opc':
+            # Direct OPC mapping - always include
+            return True
+        elif value_source == 'expr':
+            # Expression - include only if it references OPC data
+            return has_opc_item_path
+        elif value_source == 'memory':
+            # Memory tags are Ignition-internal - exclude
+            return False
+        else:
+            # Unknown valueSource - be conservative and exclude
+            # (or include if it has OPC connection for backwards compatibility)
+            return has_opc_item_path
     
     def _extract_tag_info(self, tag):
         """Extract relevant information from a single tag."""
@@ -545,6 +576,11 @@ class IgnitionToTwinCATConverter:
     def save_twincat_file(self, output_path=None):
         """Save the generated TwinCAT struct to a file."""
         import os
+        
+        # Check if there are any tags to convert
+        if not self.tags:
+            print(f"⏭️ SKIPPED: {self.struct_name} - No tags found for TwinCAT conversion (all tags are Ignition-internal)")
+            return True  # Return True to indicate successful processing (just skipped)
         
         # Ensure output directory exists
         self._ensure_output_directory()

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="ST_RW_Analog_In_V2_HMI_IgnitionExp" Id="{9f5d66e3-4ad6-4205-b28e-3ab80ed583f6}">
+  <DUT Name="ST_RW_Analog_In_V2_HMI_IgnitionExp" Id="{e628f9f0-87bf-4285-bcc4-5317abfd8ee2}">
     <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
     {attribute 'OPC.UA.DA' := '1'}
     {attribute 'OPC.UA.DA.StructuredType' := '1'}
@@ -8,8 +8,8 @@
     ST_RW_Analog_In_V2_HMI_IgnitionExp
     ==================================================
     Generated from Ignition UDT: RW_Analog_In_V2
-    Total tags: 64
-    Generated on: 2025-09-15 13:03:45
+    Total tags: 63
+    Generated on: 2025-09-16 11:33:45
     *)
     TYPE ST_RW_Analog_In_V2_HMI_IgnitionExp :
     STRUCT
@@ -187,13 +187,11 @@
         {attribute 'OPC.UA.DA' := '1'}
         HMI_Cfg_LoLoOffDly : REAL := 0.0;
         {attribute 'OPC.UA.DA' := '1'}
-        HistoricalDeadband : REAL := 0.0;
-
-        {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Access' := '1'}
         {attribute 'OPC.UA.DA.Description' := '1=Analog Input is above High limit'}
         // 1=Analog Input is above High limit
         S_Hi : BOOL := FALSE;		// Read-only tag
+
         {attribute 'OPC.UA.DA' := '1'}
         HMI_Cfg_HiLim : REAL := 0.0;
         {attribute 'OPC.UA.DA' := '1'}
@@ -205,11 +203,11 @@
         {attribute 'OPC.UA.DA.Description' := '1= Manual Command to use Substitute PV (override input)'}
         // 1= Manual Command to use Substitute PV (override input)
         HMI_C_ManAuto : BOOL := FALSE;
-
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Description' := 'Input (unscaled) Minimum for Scaling'}
         // Input (unscaled) Minimum for Scaling
         Cfg_InpRawMin : REAL := 0.0;
+
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Access' := '1'}
         {attribute 'OPC.UA.DA.Description' := 'Val is limited Lo or Hi'}
@@ -221,11 +219,11 @@
         HMI_C_ManSet : REAL := 0.0;
         {attribute 'OPC.UA.DA' := '1'}
         HMI_Cfg_LoOffDly : REAL := 0.0;
-
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Description' := '1=Reset required to clear Analog Input Failure Alarm'}
         // 1=Reset required to clear Analog Input Failure Alarm
         HMI_Cfg_FailResetReqd : BOOL := FALSE;
+
         {attribute 'OPC.UA.DA' := '1'}
         Cfg_PVEUMin : REAL := 0.0;
         {attribute 'OPC.UA.DA' := '1'}
@@ -240,11 +238,11 @@
         S_ValPct : REAL := 0.0;		// Read-only tag
         {attribute 'OPC.UA.DA' := '1'}
         HMI_Cfg_LoLoLim : REAL := 0.0;
-
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Description' := '1= Maintenance Command to select Device OutOfService'}
         // 1= Maintenance Command to select Device OutOfService
         HMI_C_Oos : BOOL := FALSE;
+
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Description' := 'Out-of-Range (fail) High Limit (% of scale)'}
         // Out-of-Range (fail) High Limit (% of scale)
