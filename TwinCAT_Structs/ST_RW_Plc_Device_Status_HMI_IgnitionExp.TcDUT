@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="ST_RW_Plc_Device_Status_HMI_IgnitionExp" Id="{18aea920-4b00-4ef4-94a7-1b28f18ffc23}">
+  <DUT Name="ST_RW_Plc_Device_Status_HMI_IgnitionExp" Id="{0950552e-c078-43b6-8a9c-5c2f604f378a}">
     <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
     {attribute 'OPC.UA.DA' := '1'}
     {attribute 'OPC.UA.DA.StructuredType' := '1'}
@@ -9,7 +9,7 @@
     ==================================================
     Generated from Ignition UDT: RW_PLC_Device_Status
     Total tags: 3
-    Generated on: 2025-09-16 12:06:04
+    Generated on: 2025-09-16 15:04:58
     *)
     TYPE ST_RW_Plc_Device_Status_HMI_IgnitionExp :
     STRUCT

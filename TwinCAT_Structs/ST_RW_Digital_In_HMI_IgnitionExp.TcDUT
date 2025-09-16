@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="ST_RW_Digital_In_HMI_IgnitionExp" Id="{db9fcce1-6d8a-4f41-9890-c52e1358b2e2}">
+  <DUT Name="ST_RW_Digital_In_HMI_IgnitionExp" Id="{6411c3ac-6e7b-425f-8089-9a175b22060b}">
     <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
     {attribute 'OPC.UA.DA' := '1'}
     {attribute 'OPC.UA.DA.StructuredType' := '1'}
@@ -9,7 +9,7 @@
     ==================================================
     Generated from Ignition UDT: RW_Digital_In
     Total tags: 5
-    Generated on: 2025-09-16 12:06:03
+    Generated on: 2025-09-16 15:04:58
     *)
     TYPE ST_RW_Digital_In_HMI_IgnitionExp :
     STRUCT

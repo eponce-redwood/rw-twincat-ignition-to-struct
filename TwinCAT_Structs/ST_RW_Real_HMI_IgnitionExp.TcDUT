@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="ST_RW_Real_HMI_IgnitionExp" Id="{a8b48c15-9f47-456f-a315-b7c591a42247}">
+  <DUT Name="ST_RW_Real_HMI_IgnitionExp" Id="{763ec276-15a5-4b28-9d12-9c7b45d19e5d}">
     <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
     {attribute 'OPC.UA.DA' := '1'}
     {attribute 'OPC.UA.DA.StructuredType' := '1'}
@@ -9,13 +9,11 @@
     ==================================================
     Generated from Ignition UDT: RW_Real
     Total tags: 1
-    Generated on: 2025-09-16 12:06:04
+    Generated on: 2025-09-16 15:04:58
     *)
     TYPE ST_RW_Real_HMI_IgnitionExp :
     STRUCT
         {attribute 'OPC.UA.DA' := '1'}
-        {attribute 'OPC.UA.DA.Description' := '{Description}'}
-        // {Description}
         Value : REAL := 0.0;
     END_STRUCT
     END_TYPE

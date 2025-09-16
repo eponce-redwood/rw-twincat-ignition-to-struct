@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="ST_RW_Analog_Out_HMI_IgnitionExp" Id="{3312f228-de64-4b74-9873-70766b94d2e7}">
+  <DUT Name="ST_RW_Analog_Out_HMI_IgnitionExp" Id="{0c4c9140-488d-48eb-92ad-969d7881ebd0}">
     <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
     {attribute 'OPC.UA.DA' := '1'}
     {attribute 'OPC.UA.DA.StructuredType' := '1'}
@@ -9,7 +9,7 @@
     ==================================================
     Generated from Ignition UDT: RW_Analog_Out
     Total tags: 6
-    Generated on: 2025-09-16 12:06:03
+    Generated on: 2025-09-16 15:04:58
     *)
     TYPE ST_RW_Analog_Out_HMI_IgnitionExp :
     STRUCT

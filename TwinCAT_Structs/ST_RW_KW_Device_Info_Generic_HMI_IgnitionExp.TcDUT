@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="ST_RW_KW_Device_Info_Generic_HMI_IgnitionExp" Id="{c26178b5-b008-4a3c-9250-daf9aab9c5da}">
+  <DUT Name="ST_RW_KW_Device_Info_Generic_HMI_IgnitionExp" Id="{849ec803-a043-43fc-8671-b26b209794f5}">
     <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
     {attribute 'OPC.UA.DA' := '1'}
     {attribute 'OPC.UA.DA.StructuredType' := '1'}
@@ -9,7 +9,7 @@
     ==================================================
     Generated from Ignition UDT: RW_KW_Device_Info_Generic
     Total tags: 8
-    Generated on: 2025-09-16 12:06:03
+    Generated on: 2025-09-16 15:04:58
     *)
     TYPE ST_RW_KW_Device_Info_Generic_HMI_IgnitionExp :
     STRUCT

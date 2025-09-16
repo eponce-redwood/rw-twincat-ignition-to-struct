@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="ST_RW_Interlock_V2_HMI_IgnitionExp" Id="{8edf9bf6-8c1f-4a95-b233-344179920fa7}">
+  <DUT Name="ST_RW_Interlock_V2_HMI_IgnitionExp" Id="{d55c2f74-3d56-41fa-8d6c-af74c6f47901}">
     <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
     {attribute 'OPC.UA.DA' := '1'}
     {attribute 'OPC.UA.DA.StructuredType' := '1'}
@@ -8,8 +8,8 @@
     ST_RW_Interlock_V2_HMI_IgnitionExp
     ==================================================
     Generated from Ignition UDT: RW_Interlock_V2
-    Total tags: 11
-    Generated on: 2025-09-16 12:06:03
+    Total tags: 5
+    Generated on: 2025-09-16 15:04:58
     *)
     TYPE ST_RW_Interlock_V2_HMI_IgnitionExp :
     STRUCT
@@ -23,20 +23,9 @@
         // Packed bits to HMI
         S_HMIBits : DINT := 0;		// Read-only tag
         {attribute 'OPC.UA.DA' := '1'}
-        {attribute 'OPC.UA.DA.Access' := '1'}
-        {attribute 'OPC.UA.DA.Description' := 'NonBypassable Interlock Status (1=Tripped, 0=OK to run)'}
-        // NonBypassable Interlock Status (1=Tripped, 0=OK to run)
-        S_NBIntlkTripped : BOOL := FALSE;		// Read-only tag
-        {attribute 'OPC.UA.DA' := '1'}
-        {attribute 'OPC.UA.DA.Access' := '1'}
-        {attribute 'OPC.UA.DA.Description' := 'Interlock Status (1=Tripped, 0=OK to run)'}
-        // Interlock Status (1=Tripped, 0=OK to run)
-        S_Tripped : BOOL := FALSE;		// Read-only tag
-        {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Description' := 'Minimum time for the output to be held true to verify HMI receives status'}
         // Minimum time for the output to be held true to verify HMI receives ...
         HMI_Cfg_IntlkOffDly : REAL := 0.0;
-
         {attribute 'OPC.UA.DA' := '1'}
         {attribute 'OPC.UA.DA.Description' := '1= Bypass Interlocked Tripped condition, Enabled'}
         // 1= Bypass Interlocked Tripped condition, Enabled
@@ -45,27 +34,6 @@
         {attribute 'OPC.UA.DA.Description' := 'Reset Command'}
         // Reset Command
         HMI_C_Reset : BOOL := FALSE;
-        {attribute 'OPC.UA.DA' := '1'}
-        {attribute 'OPC.UA.DA.Access' := '1'}
-        {attribute 'OPC.UA.DA.Description' := '1=Interlock condition can be bypassed'}
-        // 1=Interlock condition can be bypassed
-        Cfg_Bypassable : BOOL := FALSE;		// Read-only tag
-        {attribute 'OPC.UA.DA' := '1'}
-        {attribute 'OPC.UA.DA.Access' := '1'}
-        {attribute 'OPC.UA.DA.Description' := 'Bypass function is enabled by Maint/Eng'}
-        // Bypass function is enabled by Maint/Eng
-        S_BypEnabled : BOOL := FALSE;		// Read-only tag
-        {attribute 'OPC.UA.DA' := '1'}
-        {attribute 'OPC.UA.DA.Access' := '1'}
-        {attribute 'OPC.UA.DA.Description' := '1= Interlock is latched (sealed in) and requires reset'}
-        // 1= Interlock is latched (sealed in) and requires reset
-        Cfg_Latched : BOOL := FALSE;		// Read-only tag
-
-        {attribute 'OPC.UA.DA' := '1'}
-        {attribute 'OPC.UA.DA.Access' := '1'}
-        {attribute 'OPC.UA.DA.Description' := '1=Tripped or Interlock Condition, 0=OK to run'}
-        // 1=Tripped or Interlock Condition, 0=OK to run
-        C_Trip_Condition : BOOL := FALSE;		// Read-only tag
     END_STRUCT
     END_TYPE
 ]]></Declaration>

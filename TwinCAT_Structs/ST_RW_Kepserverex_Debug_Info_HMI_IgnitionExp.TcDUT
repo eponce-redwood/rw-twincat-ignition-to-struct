@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="ST_RW_Kepserverex_Debug_Info_HMI_IgnitionExp" Id="{e12f6fb0-ce51-4745-aa36-145bcbe7ee96}">
+  <DUT Name="ST_RW_Kepserverex_Debug_Info_HMI_IgnitionExp" Id="{ec8854de-a860-491e-acc6-2faa15aaa2a5}">
     <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
     {attribute 'OPC.UA.DA' := '1'}
     {attribute 'OPC.UA.DA.StructuredType' := '1'}
@@ -9,7 +9,7 @@
     ==================================================
     Generated from Ignition UDT: RW_KEPServerEX_Debug_Info
     Total tags: 7
-    Generated on: 2025-09-16 12:06:03
+    Generated on: 2025-09-16 15:04:58
     *)
     TYPE ST_RW_Kepserverex_Debug_Info_HMI_IgnitionExp :
     STRUCT

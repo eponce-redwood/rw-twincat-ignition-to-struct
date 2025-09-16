@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1">
-  <DUT Name="ST_RW_Motor_Vfd_HMI_IgnitionExp" Id="{c559ba95-e359-40a1-b1e7-6dccf57d11b5}">
+  <DUT Name="ST_RW_Motor_Vfd_HMI_IgnitionExp" Id="{1415d40e-7984-4073-b380-b0c5b52bd283}">
     <Declaration><![CDATA[    {attribute 'pack_mode' := '1'}
     {attribute 'OPC.UA.DA' := '1'}
     {attribute 'OPC.UA.DA.StructuredType' := '1'}
@@ -9,7 +9,7 @@
     ==================================================
     Generated from Ignition UDT: RW_Motor_VFD
     Total tags: 20
-    Generated on: 2025-09-16 12:06:03
+    Generated on: 2025-09-16 15:04:58
     *)
     TYPE ST_RW_Motor_Vfd_HMI_IgnitionExp :
     STRUCT

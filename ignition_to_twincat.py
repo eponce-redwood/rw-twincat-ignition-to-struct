@@ -287,28 +287,29 @@ class IgnitionToTwinCATConverter:
         
         Include only tags that represent actual PLC variables:
         1. valueSource: "opc" - Direct OPC mapping
-        2. valueSource: "expr" with opcItemPath - Calculated from OPC data (bit extraction)
         
-        Exclude Ignition-internal tags:
-        1. valueSource: "expr" without opcItemPath - Pure Ignition calculations
+        Exclude Ignition-internal tags and calculated expressions:
+        1. valueSource: "expr" - All expression tags (bit extraction, calculations)
         2. valueSource: "memory" - Ignition memory variables
+        
+        Note: Expression tags like bit extraction ({[.]S_HMISts}&1) are excluded because
+        TwinCAT will expose the individual Boolean variables directly.
         """
         value_source = tag.get('valueSource', '')
-        has_opc_item_path = 'opcItemPath' in tag
         
         if value_source == 'opc':
             # Direct OPC mapping - always include
             return True
         elif value_source == 'expr':
-            # Expression - include only if it references OPC data
-            return has_opc_item_path
+            # Expression tags (bit extraction, calculations) - exclude all
+            # TwinCAT will have individual Boolean variables directly exposed
+            return False
         elif value_source == 'memory':
             # Memory tags are Ignition-internal - exclude
             return False
         else:
-            # Unknown valueSource - be conservative and exclude
-            # (or include if it has OPC connection for backwards compatibility)
-            return has_opc_item_path
+            # Unknown valueSource - be conservative and exclude unless it has OPC connection
+            return 'opcItemPath' in tag
     
     def _extract_tag_info(self, tag):
         """Extract relevant information from a single tag."""
@@ -328,8 +329,14 @@ class IgnitionToTwinCATConverter:
         # Handle tooltip - can be string or dict with binding info
         tooltip_raw = tag.get('tooltip', '')
         if isinstance(tooltip_raw, dict):
-            # If tooltip is a dict with binding info, extract the binding or use empty string
-            tag_info['tooltip'] = tooltip_raw.get('binding', '').strip()
+            # If tooltip is a dict with binding info, check if it's a parameter binding
+            binding = tooltip_raw.get('binding', '').strip()
+            if binding.startswith('{') and binding.endswith('}'):
+                # This is a parameter binding (like {Description}) - skip it since we can't resolve it
+                tag_info['tooltip'] = ''
+            else:
+                # Regular binding, use as-is
+                tag_info['tooltip'] = binding
         elif isinstance(tooltip_raw, str):
             tag_info['tooltip'] = tooltip_raw.strip()
         else:
